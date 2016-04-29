@@ -1,0 +1,28 @@
+
+<style>
+.verify-btn {
+    display: inline-block;
+}
+</style>
+
+
+<div class='app-content'>
+
+    <h1>反馈详情</h1>
+
+    <hr>
+
+    <div class='apply-infos'>
+
+        <label>联系方式</label> {{item.contact}}
+        <br />
+        <label>反馈内容</label>{{item.content}}
+        <br/>
+        <label>反馈时间</label>{{item.create_time}}
+        <br />
+        <label>用户</label> <a href='#/index/user_detail/{{item.user.id}}'>{{item.user.name}}</a>
+    </div>
+
+
+
+</div>

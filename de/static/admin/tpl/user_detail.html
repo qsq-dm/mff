@@ -1,0 +1,121 @@
+
+<style>
+ label {
+    width: 100px;
+ }
+</style>
+<div class='app-content'>
+
+    <h1>用户详情</h1>
+
+    <hr>
+
+    <label>美分分用户名</label>           {{item.name}}
+    <br>
+    <label>手机号</label>           {{item.phone}}
+    <br>
+    <label>注册时间</label>           {{item.create_time}}
+    <br>
+    <div ng-if='apply.id'>
+        <a href='#/index/apply_detail/{{apply.id}}'>申请资料</a>
+        <br />
+        <label>真实姓名</label> {{apply.name}}
+        <br />
+        <label>身份证号</label>               {{apply.id_no}}
+        <br />
+        <label>学校</label>                 {{apply.school}}
+        <br />
+        <label>专业</label>             {{apply.major}}
+        <br />
+        <label>地址</label>               {{apply.addr}}
+        <br />
+        <label>入学时间</label>             {{apply.enrollment_time}}
+        <br />
+        <label>毕业时间</label>           {{apply.graduate_time}}
+    </div>
+
+
+      <div ng-if='wechat_info'>
+        <label>微信昵称</label>           {{wechat_info.nickname}}
+        <br>
+        <label>微信城市</label>           {{wechat_info.city}}
+        <br>
+        <label>微信性别</label>           <span ng-if='wechat_info.sex==1'>男</span><span ng-if='wechat_info.sex==2'>女</span>
+        <br>
+        <img src='{{wechat_info.headimgurl}}' style='width:150px'> </img>
+      </div>
+
+      <div class="form-group" ng-if='location' ng-controller="AmapCtrl">
+        <label>首次定位地址</label>
+        <position-field item='location' ng-if='location'></position-field>
+      </div>
+
+  <br/>
+  <br/>
+  <span ng-if='infos.length>0'>相同微信号注册用户</span>
+  <div ng-if='infos.length>0'>
+        <table class="table table-hover" ng-if="true" style='margin:0'>
+          <thead>
+            <tr>
+              <th>序号</th>
+              <th>名称</th>
+              <th>手机号</th>
+              <th>微信性别</th>
+              <th>微信头像</th>
+              <th>微信昵称</th>
+              <th>微信城市</th>
+              <th>首次定位</th>
+              <th>注册时间</th>
+              <th>重复注册数</th>
+              <th>推广员</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="info in infos">
+              <td>{{info.id}}</td>
+              <td>{{info.name}}</td>
+
+              <td>{{info.phone}}</td>
+
+              <td>
+                   <span ng-if='info.wechat_info.sex==1'>男</span>
+                   <span ng-if='info.wechat_info.sex==2'>女</span>
+              </td>
+
+              <td>
+                    <img nf-if='info.wechat_info' class='user-list-avatar' style='width:50px' src={{info.wechat_info.headimgurl}}></img>
+              </td>
+              <td>{{info.wechat_info.nickname}}</td>
+              <td>{{info.wechat_info.city}}</td>
+              <td lng='{{info.wechat_info.lnglat}}'>{{info.wechat_info.location}}</td>
+              <td>{{info.create_time}}</td>
+              <td>{{info.same_user_count}}</td>
+              <td><span ng-if='info.promoter'><a href='#/index/user_list?page=1&promoter_id={{info.parent.id}}'>{{info.parent.name}}</a>({{info.promoter.name}})</span></td>
+              <td class='item-actions'>
+                  <a href='#/index/user_detail/{{info.id}}'>详情</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <nav>
+        <ul class="pagination" ng-if="page_info.total>1">
+            <li>
+              <a href="#" aria-label="Previous" ng-click='routeTo(1)'>
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+            <li ng-repeat="page in page_info.pages" ng-class="[{active: currentpage==page}]">
+                <a ng-click='routeTo(page)' ng-if='page>0'>{{page}}</a>
+                <span ng-if='!(page>0)' style='color:gray;'>...</span>
+            <li>
+            <li>
+              <a href="#" aria-label="Next" ng-click='routeTo(page_info.total)'>
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+    </div>
+
+</div>

@@ -1,0 +1,104 @@
+
+
+<div class='app-content'>
+
+    <h1>商品列表</h1>
+    <p class="lead">
+        <a href='#/index/new_item'>添加商品</a>
+    </p>
+
+    <hr>
+
+<form class="form-inline">
+  <toggle-switch ng-model="filters.is_recommend"  on-label='推荐' off-label='全部' knob-label='' on-change='routeTo(1)'></toggle-switch>
+  <div class="form-group" ng-controller="ngActivity">
+    <select class='form-control' ng-model="filters.activity_id" ng-options="o.id as o.title for o in optionsData" ng-change="routeTo(1)">
+        <option value="">活动</option>
+    </select>
+  </div>
+
+  <div class="form-group" ng-controller="ngItemSubcat">
+    <select class='form-control' ng-model="filters.sub_cat_id" ng-options="o.id as o.name for o in optionsData" ng-change="routeTo(1)">
+        <option value="">商品子分类</option>
+    </select>
+  </div>
+  <div class="form-group" ng-controller="ngHospital">
+    <select class='form-control' ng-model="filters.hospital_id" ng-options="o.id as o.name for o in optionsData" ng-change="routeTo(1)">
+        <option value="">医院</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="title" style='display:none'>名称</label>
+    <input type="text" class="form-control" ng-model='filters.keyword' placeholder="搜索名字">
+  </div>
+  <button type="submit" class="btn btn-default" ng-click='routeTo(1)'>搜索</button>
+  <button type="submit" class="btn btn-default" ng-click='reset()'>清空条件</button>
+</form>
+
+    <div>
+        <table class="table table-hover" ng-if="true" style='margin:0'>
+          <thead>
+            <tr>
+              <th>序号</th>
+              <th>名称</th>
+              <th>价格</th>
+              <th>原价</th>
+              <th>推荐</th>
+              <th ng-if='filters.is_recommend'>排序</th>
+              <th>状态</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="info in infos">
+              <td>{{info.id}}</td>
+              <td>{{info.title}}</td>
+              <td>{{info.price}}</td>
+              <td>{{info.orig_price}}</td>
+              <td>
+                  <span ng-if='info.is_recommend'><i class="fa fa-check"></i></span>
+                  <span ng-if='!info.is_recommend'><i class="fa fa-remove"></i></span>
+              </td>
+              <td ng-if='filters.is_recommend'>
+                  <order-field action='"/admin/set_recommend_order/"' item='info'></order-field>
+              </td>
+              <td>
+                  <span ng-if='info.status==1'><i class="fa fa-check"></i></span>
+                  <span ng-if='info.status!=1'><i class="fa fa-remove"></i></span>
+              </td>
+              <td class='item-actions'>
+                <a href='#/index/item_edit/{{info.id}}'>编辑</a>
+                <button class='action-btn btn-normal' ng-click='Recommend(info.id, !info.is_recommend)'  ng-if='filters.is_recommend&&info.is_recommend'>取消推荐</button> 
+                <button ng-if='filters.is_recommend' class='action-btn btn-normal' ng-click='topRecommend(info.id)' >置顶</button>
+                <a href='#/index/item_recommend_edit/{{info.id}}' ng-if='info.is_recommend'>编辑推荐</a>
+                <a href='#/index/item_recommend_edit/{{info.id}}' ng-if='!info.is_recommend'>加入推荐</a>
+                <a href='#/index/item_activity_edit/{{info.id}}'>加入活动</a>
+                <button ng-if='filters.activity_id' class='action-btn btn-normal' ng-click='removeItemActivity(info.id)' >从活动移除</button>
+                <button class='action-btn btn-danger' ng-click='Online(info.id, 1)' ng-if='info.status==0'>上线</button>
+                <button class='action-btn btn-normal' ng-click='Online(info.id, 0)' ng-if='info.status==1'>下线</button>
+                <span ng-if='info.status==2'>医院下线</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <nav>
+        <ul class="pagination" ng-if="page_info.total>1">
+            <li>
+              <a href="#" aria-label="Previous" ng-click='routeTo(1)'>
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+            <li ng-repeat="page in page_info.pages" ng-class="[{active: currentpage==page}]">
+                <a ng-click='routeTo(page)' ng-if='page>0'>{{page}}</a>
+                <span ng-if='!(page>0)' style='color:gray;'>...</span>
+            <li>
+            <li>
+              <a href="#" aria-label="Next" ng-click='routeTo(page_info.total)'>
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+    </div>
+
+</div>

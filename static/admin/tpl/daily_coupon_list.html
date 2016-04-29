@@ -1,0 +1,67 @@
+
+
+<div class='app-content'>
+
+    <h1>每日领取优惠券列表</h1>
+    <p class="lead">
+        <a href='#/index/new_daily_coupon'>添加优惠券领取</a>
+    </p>
+    <hr>
+
+    <div>
+        <table class="table table-hover" ng-if="true" style='margin:0'>
+          <thead>
+            <tr>
+              <th>序号</th>
+              <th>总量</th>
+              <th>已领取</th>
+              <th>使用条件</th>
+              <th>使用时间</th>
+              <th>开始领取时间</th>
+              <th>结束领取时间</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="info in infos">
+              <td>{{info.id}}</td>
+              <td>{{info.total}}</td>
+              <td>{{info.sent}}</td>
+              <td>
+                {{info.use_condition}}
+              </td>
+              <td>
+                {{info.use_time}}
+              </td>
+              <td>
+                {{info.start_time}}
+              </td>
+              <td>{{info.end_time}}</td>
+              <td class='item-actions'>
+                <a href='#/index/daily_coupon_edit/{{info.id}}'>编辑</a>
+                <a href='#/index/daily_detail?item_id={{info.id}}'>每日详情</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <nav>
+        <ul class="pagination" ng-if="page_info.total>1">
+            <li>
+              <a href="#" aria-label="Previous" ng-click='routeTo(1)'>
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+            <li ng-repeat="page in page_info.pages" ng-class="[{active: currentpage==page}]">
+                <a ng-click='routeTo(page)' ng-if='page>0'>{{page}}</a>
+                <span ng-if='!(page>0)' style='color:gray;'>...</span>
+            <li>
+            <li>
+              <a href="#" aria-label="Next" ng-click='routeTo(page_info.total)'>
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+    </div>
+
+</div>

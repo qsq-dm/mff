@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>cropit</title>
+    <script src="/static/user/js/jquery.min.js"></script>
+    <script src="/static/user/js/jquery.cropit.js"></script>
+    <script src="/static/user/js/crop.util.js"></script>
+
+  
+    <style>
+      .cropit-image-preview {
+        background-color: #f8f8f8;
+        background-size: cover;
+        border: 5px solid transparent;
+        border-radius: 3px;
+        margin-top: 7px;
+        cursor: move;
+      }
+      .cropit-image-background {
+        opacity: .2;
+        cursor: auto;
+      }
+      .image-size-label {
+        margin-top: 10px;
+      }
+      input {
+        /* Use relative position to prevent from being covered by image background */
+        position: relative;
+        z-index: 10;
+        display: block;
+      }
+      .export {
+        margin-top: 10px;
+        z-index:10000;
+        position:relative;
+      }
+      .cropit-image-background-container {
+        overflow: inherit !important;
+        height:  auto !important;
+        width: 100% !important;
+      }
+      .cropit-image-background {
+        width: 100% !important;
+        height: auto !important;
+      }
+      #scream {
+        display: none;
+      }
+      body {
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <img id='scream' src='/static/user/img/logo.png'></img>
+    <canvas id='myCanvas' />
+    <script>
+          var canvas = document.getElementById('myCanvas');
+          var data   = getViewport();
+          canvas.width = data[0];
+          canvas.height= data[1];
+        var ctx=canvas.getContext("2d");
+      var x, y;
+      x=0;
+      y=0;
+      var defaultoffset_x, defaultoffset_y;
+      var img = document.getElementById('scream');
+      function draw_img(x, y) {
+        clear();
+        ctx.drawImage(img, canvas.offsetLeft+x, canvas.offsetTop+y, 146,146)
+      }
+      function clear() {
+        ctx.clearRect(0, 0, data[0], data[1]);
+      }
+      window.onload = function() {
+        
+        var img=document.getElementById("scream");
+        draw_img(0,0);
+        function myMove(e){
+          console.log(e.pageX)
+          console.log(e.pageY)
+          var old_x, old_y;
+          old_x = x;
+          old_y = y;
+          x = e.pageX - canvas.offsetLeft;
+          y = e.pageY - canvas.offsetTop;
+          console.log(x+','+y +'----'+old_x+','+old_y);
+          console.log(x-old_x, y-old_y);
+          console.log(x);
+          console.log(y);
+          draw_img(x-defaultoffset_x, y-defaultoffset_y);
+        }
+
+        function myDown(e){
+            if(!defaultoffset_x) {
+                defaultoffset_x = e.pageX;
+                defaultoffset_y = e.pageY;
+                alert(e.pageX+'.'+e.pageY);
+            }
+                x = e.pageX - canvas.offsetLeft;
+                y = e.pageY - canvas.offsetTop;
+                dragok = true;
+                canvas.ontouchmove = myMove;
+        }
+
+        function myUp(){
+            dragok = false;
+            canvas.ontouchmove = null;
+        }
+
+        canvas.ontouchstart = myDown;
+        canvas.ontouchend = myUp;
+
+        };
+
+      
+    </script>
+  </body>
+</html>

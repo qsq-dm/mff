@@ -1,0 +1,13 @@
+
+<div ng-controller="DatetimePickerController  as ctrl">
+    <div class="form-group">
+        <div>
+            <p class="input-group">
+                <input type="text" class="form-control" name='{{fieldname}}' datetime-picker="yyyy-MM-dd HH:mm" ng-model="val" is-open="is_open" />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="ctrl.openCalendar($event)"><i class="fa fa-calendar"></i></button>
+                </span>
+            </p>
+        </div>
+    </div>
+</div>

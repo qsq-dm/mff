@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>项目列表</title>
+    <script src="/static/hospital/js/mui.min.js"></script>
+    <link href="/static/hospital/css/mui.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="/static/hospital/css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/hospital/css/iconfont.css"/>
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+    </script>
+    <style type="text/css">
+        .mui-table-view {
+            margin-bottom: 10px;
+        }
+    	.mui-table-view .mui-media-object {
+			height: 50px;
+			max-width: 50px;
+		}
+		.mui-media-body .mui-ellipsis {
+			height: 16px;
+			line-height: 16px;
+			font-size: 12px;
+		}
+		.mui-table-view-cell.mui-media{
+			position: relative;
+		}
+		.mui-btn.mui-btn-outlined{
+			width: 80px;
+			padding: 2px 0;
+		}
+    	.mui-btn.mui-btn-outlined.has-two-btn{
+    		margin-right: 90px;
+    	}
+		.mui-control-content{
+			min-height:400px;
+		}
+		.guide{
+			height: 50px;
+			line-height: 50px;
+			padding: 0 14px;
+			background: #F4F4F4;
+			border-top: 1px solid #ECECEC;
+		}
+    </style>
+</head>
+<body>
+	<div class="mui-content" style="padding: 60px 0 60px 0;">
+		<div class="b-search-cont has-cancel">
+            <div class="out-cont">
+                <input type="text" name="" id="keyword" value="{{keyword}}" placeholder="请输入项目编号或名称"/>
+                <div class="icon-cont" id='search-btn'>
+                    <i class="iconfont">&#xe610;</i>
+                </div>
+                {% if keyword %}
+                <div class="cancel-btn">
+                    取消
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        
+        {% if subcat or cat %}
+		<div class="guide">
+			
+			{% if subcat %}
+                <span class="color-grey" onclick='goItems({{cat['id']}})'>{{cat['name']}}</span>
+                <i class="iconfont color-grey">&#xe639;</i>
+                <span class="color-black">{{subcat['name']}}</span>
+            {% elif cat %}
+                <span class="color-grey"  onclick='goItems({{cat['id']}})'>{{cat['name']}}</span>
+            {% endif %}
+		</div>
+        {% endif %}
+
+		{% for info in infos %}
+		<ul class="mui-table-view">
+			<li class="mui-table-view-cell">
+		 		<span>编号：{{info.item_no}}</span>
+		 		<span class="mui-pull-right color-grey">上线时间:{{info.create_time}}</span>
+		 	</li>
+			<li class="mui-table-view-cell mui-media">
+				<a >
+					<img class="mui-media-object mui-pull-left" src="{{info.image}}">
+					<div class="mui-media-body">
+						{{info.title}}
+						<p class='mui-ellipsis'>
+							售价：<span class="color-red">￥{{info.price}}</span>
+						</p>
+						<p class='mui-ellipsis'>
+							预定：<span class="color-black">{{info.sold_count}}人</span>
+						</p>
+					</div>
+				</a>
+			</li>
+		</ul>
+		{% endfor %}
+
+        {% if not infos %}
+        <div class="no-coupon">
+            <img src="/static/user/img/icon-no-repay.png">
+            {%if keyword %}
+                <p>没有找到相应的项目</p>
+            {% else %}
+                <p>没有项目</p>
+            {% endif %}
+        </div>
+        {% endif %}
+		
+	</div>
+	<script type="text/javascript" src="/static/hospital/js/jquery.min.js" ></script>
+	<script>
+		$(function(){
+			$(".mui-control-item").on("click",function(){
+				$(".mui-control-item").attr("class","color-grey");
+				$(this).find("span").attr("class","color-red");
+			});
+		});
+		var goItems  = function( cat_id) {
+		    window.location = '/hospital/cat_items/?cat_id='+cat_id;
+		}
+	</script>
+	<script>
+
+	 {% if keyword %}
+     var cancel_btn = $('.cancel-btn')[0];
+     cancel_btn.addEventListener('tap', function() {
+        window.location = window.location = '/hospital/cat_items/';
+      }
+      )
+     {% endif %}
+
+     var search_btn = $('#search-btn')[0];
+     search_btn.addEventListener('tap', function() {
+        var keyword = $('#keyword').val();
+        window.location = window.location = '/hospital/cat_items/?keyword='+keyword;
+      }
+      )
+    </script>
+    <script>
+     var btns = $('.mui-tab-item');
+     btns.each(function(i, btn) {
+          btn.addEventListener('tap', function() {
+            window.location = this.getAttribute('href')
+          }
+          )
+       }
+     )
+     
+    $('#keyword').bind('focus',function(e) {
+          $('.b-search-cont').css('position','absolute');
+          //$('.b-search-cont').css('top','0px');
+    });
+
+    $('#keyword').bind('focusout',function(e) {
+        $('.b-search-cont').removeAttr('style');
+    });
+     
+    </script>
+</body>
+</html>

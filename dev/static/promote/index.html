@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+   <title>首页</title>
+   <meta name="description" content="">
+   <meta name="keywords" content="">
+   <link href="/static/promote/css/base.css" rel="stylesheet">
+   <link href="/static/promote/css/style.css" rel="stylesheet">
+   <link rel="stylesheet" href="/static/promote/font/iconfont.css">
+</head>
+<div class="body">
+ <div class="header">
+  <div class="left">美分分推广后台管理系统</div>
+  <div class='right'>
+   <span>姓名</span>
+   <button class='li40'>退出</button>
+</div>
+</div>
+<div class="main">
+  <div class="form">
+   <div class="fr-hd">
+    <div class='fr-left'>
+     <button class="li40" id='create'>创建推广员</button>
+  </div>
+  <div class='fr-right'>
+    <input type="text" class="li40 search" placeholder='请输入推广员手机号码'>
+    <button  class="li40">搜索</button>
+ </div>                 
+</div>
+<table>
+ <tr>
+  <td>姓名</td>
+  <td>手机号码</td>
+  <td id='focus'>关注数
+     <i class='iconfont'>&#xe6b0;</i>
+  </td>
+  <td id='reg'>注册数<i class="iconfont">&#xe6af;</i></td>
+  <td>二维码</td>
+  <td>操作</td>
+</tr>
+</table>
+<table style='margin-top:10px;' class="tow">
+  <tr>
+     <td>姓名</td>
+     <td>手机号码</td>
+     <td>扫描数量</td>
+     <td>注册数</td>
+     <td>取消关注数</td>
+     <td>
+      <img src="/static/promote/images/error.png" alt="">
+   </td>
+   <td>
+      <button class="li40 download">下载二维码</button>
+      <button class="li40 rPreson">删除推广员</button>
+   </td>
+</tr>
+<tr>
+  <td>姓名</td>
+  <td>手机号码</td>
+  <td>扫描数量</td>
+  <td>注册数</td>
+  <td>取消关注数</td>
+  <td>
+   <img src="/static/promote/images/error.png" alt="">
+</td>
+<td>
+   <button class="li40">下载二维码</button>
+   <button class="li40">删除推广员</button>
+</td>
+</tr>
+<tr>
+  <td>姓名</td>
+  <td>手机号码</td>
+  <td>扫描数量</td>
+  <td>注册数</td>
+  <td>
+   <img src="/static/promote/images/error.png" alt="">
+</td>
+<td>
+   <button class="li40">下载二维码</button>
+   <button class="li40">删除推广员</button>
+</td>
+</tr>                                    
+
+</table>
+<div class="btn">
+  <button class="li40">上一页</button>
+  <button class="li40">下一页</button>
+  <button class="li40">1</button>
+  <button class="li40">2</button>
+  <span class="li40">....</span>
+  <button class="li40">55</button>
+
+  <input type="text" style='width:60px;border:1px solid red;line-height:30px;' class="li40">
+  <button class="li40">确认</button>
+
+</div>
+</div>
+</div>
+</div>
+<div class="mark success">
+   <p>创建推广员</p>
+   <div class="img">
+      <img src="/static/promote/images/gou.png" height="64" width="64" alt="">
+      <span>创建成功</span>
+   </div>
+   <button>确认</button>  
+</div>
+<div class="mark fail">
+   <p>创建推广员</p>
+   <div class="img">
+      <img src="/static/promote/images/error.png" height="64" width="64" alt="">
+      <span>创建失败推广员已存在</span>
+   </div>
+   <button>确认</button>  
+</div>
+<div class="mark remove">
+   <p>创建推广员</p>
+   <div class="img">
+      <img src="/static/promote/images/error.png" height="64" width="64" alt="">
+      <span>删除成功</span>
+   </div>
+   <button class='close'>确认</button>  
+</div>
+<div class="mark preson">
+   <p>创建推广员</p>
+   <div class="img">
+      <div class="top"><label for="name">姓名&nbsp;&nbsp;</label><input type="text" id='name'></div>
+      <div class="buttom"><label for="phone">手机号</label><input type="text" id='phone'></div>
+     
+   </div>
+   <button>确认</button>
+   <button class='close'>取消</button>
+</div>
+<div class="mark ercode">
+   <p>创建二维码</p>
+   <div class="img">
+      <img src="/static/promote/images/error.png" height="64" width="64" alt="">
+      <span>创建成功</span>
+   </div>
+   <button style='margin-right:10px;'>下载二维码</button>
+   <button class='close'>关闭</button>
+</div>
+
+<script src='js/jquery.min.js'></script>
+<script>
+$('#create').on('click',function(){
+   $('.preson').show();
+})
+$('.close').on('click',function(){
+   $(this).parent('.mark').hide();
+});
+$('.rPreson').on('click',function(){
+   $('.remove').show()
+})
+$('.download').on('click',function(){
+   $('.ercode').show()
+});
+var focusOff=true;
+var regOff=true;
+$('#focus').on('click', function(event) {
+   if (focusOff) {
+      $(this).find('i').html('&#xe6af;')
+       focusOff=false;
+   }else{
+      $(this).find('i').html('&#xe6b0;')
+       focusOff=true;
+   } 
+   console.log(focusOff);
+});
+$('#reg').on('click', function(event) {
+   if (regOff) {
+      $(this).find('i').html('&#xe6b0;');
+       regOff=false;
+   }else{     
+       $(this).find('i').html('&#xe6af;');
+       regOff=true;
+   } 
+   console.log(regOff);
+});
+</script>
+</html>

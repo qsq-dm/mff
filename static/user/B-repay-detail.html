@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>我要还款</title>
+    <script src="js/mui.min.js"></script>
+    <link href="css/mui.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+    </script>
+    <style type="text/css">
+    	.mui-table-view .mui-media-object {
+			height: 60px;
+			max-width: 60px;
+		}
+		.mui-control-content{
+			min-height:300px;
+		}
+		.mui-table-view-cell.mui-checkbox.mui-left {
+			padding-left: 40px;
+			vertical-align: middle;
+		}
+		.mui-table-view-cell.mui-checkbox.mui-left.repayed h4{
+			color: #9B9B9B;
+		}
+		.mui-table-view-cell.mui-checkbox.mui-left .mycar_input {
+			margin-top: 20px;
+			z-index: 10;
+		}
+		.mui-radio input[type="radio"]:checked:before, .mui-checkbox input[type="checkbox"]:checked:before{
+			color: #FF6565;
+		}
+		.mui-checkbox.repayed input[type="checkbox"]:checked:before{
+			color: #9B9B9B;
+		}
+		
+		.check-all-cont{
+			position: fixed;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			background: #FFF;
+			overflow: hidden;
+		}
+		.check-all-cont li{
+			float: left;
+			height: 40px;
+			line-height: 40px;
+		}
+		.check-all-cont li:first-of-type{
+			width: 70%;
+		}
+		.check-all-cont li:last-of-type{
+			width: 30%;
+		}
+		.check-all-cont li:last-of-type button{
+			height: 100%;
+			width: 100%;
+			border-radius: 0;
+		}
+		
+    </style>
+</head>
+<body>
+	<div class="mui-content">
+		<ul class="mui-table-view" style="margin-top: 0;">
+			<li class="mui-table-view-cell mui-media">
+				<a id='detail'>
+					<img class="mui-media-object mui-pull-left img">
+					<div class="mui-media-body">
+						<h4 class='title'>最新华丽美版Ulthera 还你紧致童颜</h4>
+						<p class='mui-ellipsis'>
+							<span class='hospital'>上海春夏秋冬外科整形医院</span>
+						</p>
+						<p class='mui-ellipsis'>
+							售价：<span class="color-red" id='price'>￥600</span>
+							医院价：<span class="line-throu" id='oldPrice'>￥1000</span>
+						</p>
+					</div>
+				</a>
+			</li>
+		</ul>
+
+		<ul class="mui-table-view has-m-top">
+			<li class="mui-table-view-cell">
+				分期账单
+			</li>
+			<li class="mui-table-view-cell mui-checkbox mui-left unrepay">
+				<input name="checkbox" type="checkbox" class="mycar_input">
+				<a href="#" class="mui-navigate-right">
+					<div class="mui-media-body">
+						<span class="color-red">￥380</span>
+						<h4>光子联合有效嫩肤 PPP镭射净肤</h4>
+						<p class='mui-ellipsis'>
+							<span>2015-9-26（2/6期）</span>
+							<span class="color-black">待还</span>
+						</p>
+					</div>
+				</a>
+			</li>
+			<li class="mui-table-view-cell mui-checkbox mui-left unrepay">
+				<input name="checkbox" type="checkbox" class="mycar_input">
+				<a href="#" class="mui-navigate-right">
+					<div class="mui-media-body">
+						<span class="color-red">￥380</span>
+						<h4>光子联合有效嫩肤 PPP镭射净肤</h4>
+						<p class='mui-ellipsis'>
+							<span>2015-9-26（2/6期）</span>
+							<span class="color-black">待还</span>
+						</p>
+					</div>
+				</a>
+			</li>
+			<li class="mui-table-view-cell mui-checkbox mui-left repayed">
+				<input name="checkbox" type="checkbox" class="mycar_input" checked="checked" disabled="disabled">
+				<a href="#" class="mui-navigate-right">
+					<div class="mui-media-body">
+						<span class="color-grey">￥380</span>
+						<h4 class="color-grey">光子联合有效嫩肤 PPP镭射净肤</h4>
+						<p class='mui-ellipsis'>
+							<span>2015-9-26（2/6期）</span>
+							<span class="color-grey">已还</span>
+						</p>
+					</div>
+				</a>
+			</li>
+		</ul>
+		<ul class="check-all-cont mui-checkbox">
+			<li>
+				<div class="mui-input-row mui-checkbox mui-left">
+					<label>全选<span class="color-red" id='no1'>￥0</span></label>
+					<input id="SelectAll" name="checkbox" type="checkbox">
+				</div>
+			</li>
+			<li>
+				<button class="mui-btn-negative" id='like'>立即还款</button>
+			</li>
+		</ul>
+	</div>
+ 		<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+        <script type="text/javascript" src="http://www.meifenfen.com/user/jssdk.js"></script>	
+		<script type="text/javascript" src="js/jquery.min.js" ></script>
+		<script src='js/util.js'></script>
+	<script>
+		$(function(){
+				$('li.mui-left').remove();
+				var onOff=true;
+				$("#SelectAll").on("click",function(){
+					if(onOff){
+						$(".unrepay .mycar_input").prop("checked",true);
+						onOff=false;
+						Calculate('.has-m-top input:checked','#no1');
+					}else{
+						$(".unrepay .mycar_input").prop("checked",false);
+						onOff=true;
+						$('#no1').html('￥'+0);
+					}
+				});
+			// 我要还款
+			var falg=false;
+			$.ajax({
+				type:"post",
+				url:"http://www.meifenfen.com/user/my_order_bill/?order_id="+Common.UrlGet().order_id+token,
+				dataType:'json',
+				success:function(data){
+					var infos=data.infos;
+					for(var i=0;i<infos.length;i++){
+						$('.hospital').html(data.hospital.name);
+						$('.title').html(data.item.title);
+						$('#price').html(data.item.price);
+						$('#oldPrice').html(data.item.orig_price);
+						$('.img').attr('src',data.item.image);
+						$('#detail').attr('href','/static/user/detail.html?item_id='+data.item.id);
+						var  totalAmount=(infos[i].amount+infos[i].punish+infos[i].fee).toFixed(2);
+						var  totalAmount_val=(infos[i].amount+infos[i].punish+infos[i].fee).toFixed(2);
+						var repayed_str = '未还'
+						if(infos[i].status==1) {
+			   			 repayed_str = '已还';
+		   				 totalAmount_val=0;
+		 				}
+								var str=$('<li class="mui-table-view-cell mui-checkbox mui-left"><input name="checkbox" type="checkbox" class="mycar_input" value='+totalAmount_val+'><a ><div class="mui-media-body"><span class="color-red">￥'+totalAmount+'</span><span style="color:#FF6565;vertical-align: 1px;font-size:12px;" class="overdue">(逾期'+infos[i].delayed_days+'天，账单金额'+infos[i].amount+'+滞纳金'+infos[i].punish+')</span><h4>光子联合有效嫩肤 PPP镭射净肤</h4><p class="mui-ellipsis"><span>2015-9-26（'+infos[i].period_pay_index+'/'+infos[i].period_count+'期）</span><span class="color-black">'+repayed_str+'</span></p></div></a></li>');
+								if (!infos[i].delayed) {
+									str.find('.overdue').hide()
+								};
+								if (infos[i].status==1) {
+									str.addClass('repayed')
+									str.find('input').attr({
+										'checked': 'checked',
+										'disabled': 'disabled'
+									});
+								}else{
+									str.addClass('unrepay');
+									falg=true;
+								}
+								str.attr({
+									'log-id': infos[i].id,
+									'log-fee': infos[i].fee,
+									'log-amount':infos[i].amount,
+									'log-punish':infos[i].punish
+								});					
+								$('.has-m-top').append(str)
+					}
+					if(!falg){
+							$('#SelectAll').attr({
+							'checked': 'checked',
+							'disabled': 'disabled'
+						});
+							$('#like').attr('disabled','true')
+					}
+				},error:function(){
+					alert('网络已开小差，请稍后再试')
+				}
+		});
+		function Calculate(name,id){
+			var num=0;
+			for(var i=0;i<$(name).length;i++){
+					num+=parseFloat($(name).eq(i).val())					
+			}	num=num.toFixed(2);
+				$(id).html('￥'+num);
+		}
+		$(document).on('change','.has-m-top input',function(){
+	
+				Calculate('.has-m-top input:checked','#no1');
+		});
+		$('#like').on('click',function(){
+			var data=[];
+			var oLength=0;
+			for(var x=0;x<$('.has-m-top input:checked').length;x++){
+				if(!$('.has-m-top input:checked').eq(x).parent('li').hasClass('repayed')){
+					oLength++;
+				}
+			}
+			if (oLength==0) {
+				alert('请选择需要付款的项目');
+				return;
+			}else{
+				for(var i=0;i<$('.has-m-top input:checked').length;i++){
+					if($('.has-m-top input:checked').eq(i).parent('li').hasClass('repayed')){
+						continue;
+					}else{
+					var tmp = {};
+					tmp['id'] = $('.has-m-top input:checked').eq(i).parent('li').attr('log-id');
+					tmp['fee'] = $('.has-m-top input:checked').eq(i).parent('li').attr('log-fee')
+					tmp['amount'] = $('.has-m-top input:checked').eq(i).parent('li').attr('log-amount')
+					tmp['punish']= $('.has-m-top input:checked').eq(i).parent('li').attr('log-punish')
+				    data.push(tmp)
+					}
+
+				}
+			};
+			data_str = JSON.stringify(data);
+			alert(data_str);
+				$.ajax({
+				url: 'http://www.meifenfen.com/user/repayment/?'+token,
+				type: 'post',
+				dataType: 'json',
+				data:{'data':data_str},
+				success:function(data){
+					if(data.code==0){
+						location.href='http://www.meifenfen.com/user/repayment_pay/?repayment_id='+data.repayment_id;
+					}
+				},error:function(){
+		
+				}
+			})
+		
+		})		
+			
+	});
+	</script>
+</body>
+</html>

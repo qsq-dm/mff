@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>客户订单</title>
+    <script src="/static/hospital/js/mui.min.js"></script>
+    <link href="/static/hospital/css/mui.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="/static/hospital/css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/hospital/css/mui.picker.min.css" />
+    <link rel="stylesheet" type="text/css" href="/static/hospital/css/popover.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/hospital/css/iconfont.css"/>
+    <script type="text/javascript" charset="utf-8">
+    </script>
+    <style type="text/css">
+        .mui-table-view .mui-media-object {
+            height: 50px;
+            max-width: 50px;
+        }
+        .mui-media-body .mui-ellipsis {
+            height: 16px;
+            line-height: 16px;
+            font-size: 12px;
+        }
+        .mui-table-view-cell.mui-media{
+            position: relative;
+        }
+        .mui-btn.mui-btn-outlined{
+            width: 80px;
+            padding: 2px 0;
+        }
+        .mui-btn.mui-btn-outlined.has-two-btn{
+            margin-right: 90px;
+        }
+        .mui-control-content{
+            min-height:400px;
+        }
+        .dialog.lower-dialog{
+            height: 140px;
+            width: 240px;
+            margin: -70px 0 0 -120px;
+            text-align: center;
+        }
+        .dialog.lower-dialog .code{
+            height: 30px;
+            width: 80%;
+            margin-top: 10px;
+        }
+        .dialog.heigher-dialog{
+            height: 180px;
+            width: 260px;
+            margin: -90px 0 0 -130px;
+        }
+        .mui-control-item.mui-active {
+            color: #FF6565;
+            background: #FFF;
+            border-bottom: 2px solid red;
+        }
+        #code-no-dialog,#code-yes-dialog{
+            padding-top: 20px;
+        }
+        #code-no-dialog .iconfont,#code-yes-dialog .iconfont{
+            font-size: 26px;
+        }
+        #code-no-dialog p,#code-yes-dialog p{
+            margin-top: 6px;
+            /*line-height: 25px;*/
+            border: ;
+        }
+        #dialogBg {
+            z-index: 100;
+            height: 100% !important;
+            width: 100% !important;
+            bottom: 0;
+            position: fixed;
+        }
+        {% if phone %}
+            .mui-container-content {
+                padding: 50px 0 60px 0 !important;
+            }
+        {% endif %}
+    </style>
+</head>
+<body>
+    <div class="mui-content mui-container-content" style="padding: 60px 0 60px 0;">
+        <div class="b-search-cont has-cancel">
+            <div class="out-cont">
+                <input type="text" name="" id="order-search-phone" onkeydown="if(event.keyCode==13) {searchOrder();return false;}" id="" value="{{phone or ''}}" placeholder="请输入客户的手机号"/>
+                <div class="icon-cont" onclick='searchOrder()'>
+                    <i class="iconfont">&#xe610;</i>
+                </div>
+                <div class="cancel-btn">
+                    取消
+                </div>
+            </div>
+        </div>
+        {% if not phone %}
+        <div id="segmentedControl" class="mui-segmented-control active-red">
+                <a class="mui-control-item {{top_nav[1]}}" href="/hospital/?cat=1">
+                        全部
+                        <span>({{counters[1]}})</span>
+                    </a>
+                <a class="mui-control-item {{top_nav[2]}}" href="/hospital/?cat=2">
+                        待预约
+                        <span>({{counters[2]}})</span>
+                    </a>
+                <a class="mui-control-item {{top_nav[3]}}" href="/hospital/?cat=3">
+                        待验证
+                        <span>({{counters[3]}})</span>
+                    </a>
+                <a class="mui-control-item {{top_nav[4]}}" href="/hospital/?cat=4">
+                        待完成
+                        <span>({{counters[4]}})</span>
+                    </a>
+            </div>
+        {% endif %}
+            <div class="mui-content mui-inner-content" style="{% if not phone %}margin-top: 10px;{% endif %}">
+                <div id="item1mobile" class="mui-control-content mui-active">
+                
+                    {% for info in infos %}
+                        
+                            {% include 'hospital/entry.html' %}
+
+                    {% endfor %}
+                    
+                    {% if not infos %}
+                    <div class="no-coupon">
+                        <img src="/static/user/img/icon-no-repay.png">
+                        {%if phone %}
+                        <p>没有找到相应的订单</p>
+                        {% else %}
+                        <p>没有订单</p>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+
+                </div>
+                <div id="item2mobile" class="mui-control-content">
+                    {% for info in data[2] %}
+                        
+                            {% include 'hospital/entry.html' %}
+
+                    {% endfor %}
+                </div>
+                <div id="item3mobile" class="mui-control-content">
+                    {% for info in data[3] %}
+                        
+                            {% include 'hospital/entry.html' %}
+
+                    {% endfor %}
+                </div>
+                <div id="item4mobile" class="mui-control-content">
+                    {% for info in data[4] %}
+                        
+                            {% include 'hospital/entry.html' %}
+
+                    {% endfor %}          
+                </div>
+
+                <nav class="mui-bar mui-bar-tab">
+                    <a class="mui-tab-item mui-tab-item1 mui-active " href="/hospital/" >
+                        <span class="mui-icon"></span>
+                        <span class="mui-tab-label">客户订单</span>
+                    </a>
+                    <a class="mui-tab-item mui-tab-item2" href="/hospital/cat/" >
+                        <span class="mui-icon"><i class="fa fa-shopping-cart"></i></span>
+                        <span class="mui-tab-label">上线项目</span>
+                    </a>
+                    <a class="mui-tab-item mui-tab-item3" href="/hospital/home/" >
+                        <span class="mui-icon"><i class="fa fa-tags"></i></span>
+                        <span class="mui-tab-label">账号</span>
+                    </a>
+                </nav>
+            </div>
+            <!--弹出层开始-->
+            <div id="dialogBg"></div>
+            <div id="code-dialog" class="animated dialog lower-dialog">
+                <p class="color-black text-cont">
+                    服务验证码
+                    <input class="code" type="text" name="" id="order-service-code" value="" />
+                </p>
+                <ul class="btn-ul">
+                    <li>
+                        <a id='confirm-code-cancel-btn'>
+                            取消
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" id='confirm-code-ok-btn'>
+                            确认
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            
+            <!--验证码错误弹窗-->
+            <div id="code-no-dialog" class="animated dialog lower-dialog">
+                <i class="iconfont color-red">&#xe646;</i>
+                <p class="color-black text-cont">
+                    服务验证码错误，请核查是否输入正确或提供正确
+                </p>
+                <ul class="btn-ul">
+                    <li>
+                        <a class="close-pop">
+                            取消
+                        </a>
+                    </li>
+                    <li>
+                        <a class='verfiy-code-error-btn'>
+                            确认
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!--验证码正确弹窗-->
+            <div id="code-yes-dialog" class="animated dialog lower-dialog">
+                <i class="iconfont color-blue">&#xe63d;</i>
+                <p class="color-black text-cont">
+                    服务验证码
+                </p>
+                <ul class="btn-ul">
+                    <li>
+                        <a class="close-pop">
+                            取消
+                        </a>
+                    </li>
+                    <li>
+                        <a class="code-yes-dialog-ok-btn">
+                            确认
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!--确认手术完成-->
+            <div id="confirm-surgery-dialog" class="dialog heigher-dialog dialogbounceIn animated dialogbounceOutUp" style="display: none;">
+                <p class="color-black text-cont">
+                    该手术已完成？
+                </p>
+                <ul class="mui-table-view no-after-line no-before-line">
+                    <li class="mui-table-view-cell mui-media">
+                        <a href="A-hospital-detail.html">
+                            <img class="mui-media-object mui-pull-left" src="/static/hospital/img/pic1.png">
+                            <div class="mui-media-body">
+                                <span class='item-title'>最新华丽美版Ulthera 还你紧致童颜</span>
+                                <p class="mui-ellipsis">
+                                    客户手机：<span class='user-phone'>18801794394</span>
+                                </p>
+                                <p class="mui-ellipsis">
+                                    预约时间：<span class='book-time'>2015-11-11  16:22:22</span>
+                                </p>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="btn-ul">
+                    <li>
+                        <a id='cancel-dialog-cancel-btn' class='dialog-cancel-btn'>
+                            取消
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" id='confirm-surgery-dialog-ok-btn'>
+                            确认
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!--弹出层结束-->
+            <!--取消手术-->
+            <div id="quxiao-surgery-dialog" class="dialog heigher-dialog dialogbounceIn animated dialogbounceOutUp" style="display: none;">
+                <p class="color-black text-cont">
+                    请问是否确认取消该手术？
+                </p>
+                <ul class="mui-table-view no-after-line no-before-line">
+                    <li class="mui-table-view-cell mui-media">
+                        <a href="A-hospital-detail.html">
+                            <img class="mui-media-object mui-pull-left" src="/static/hospital/img/pic1.png">
+                            <div class="mui-media-body">
+                                <span class='item-title'>最新华丽美版Ulthera 还你紧致童颜</span>
+                                <p class="mui-ellipsis">
+                                    客户手机：<span class='user-phone'>18801794394</span>
+                                </p>
+                                <p class="mui-ellipsis">
+                                    预约时间：<span class='book-time'>2015-11-11  16:22:22</span>
+                                </p>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="btn-ul">
+                    <li>
+                        <a id='cancel-dialog-cancel-btn' class='dialog-cancel-btn'>
+                            取消
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" id='cancel-surgery-dialog-ok-btn'>
+                            确认
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!--弹出层结束-->
+            <!--取消预约-->
+            <div id="quxiao-dialog" class="dialog heigher-dialog dialogbounceIn animated dialogbounceOutUp" style="display: none;">
+                <p class="color-black text-cont">
+                    请问是否取消该预约？
+                </p>
+                <ul class="mui-table-view no-after-line no-before-line">
+                    <li class="mui-table-view-cell mui-media">
+                        <a href="A-hospital-detail.html">
+                            <img class="mui-media-object mui-pull-left" src="/static/hospital/img/pic1.png">
+                            <div class="mui-media-body">
+                                <span class='item-title'>最新华丽美版Ulthera 还你紧致童颜</span>
+                                <p class="mui-ellipsis">
+                                    客户手机：<span class='user-phone'>18801794394</span>
+                                </p>
+                                <p class="mui-ellipsis">
+                                    预约时间：<span class='book-time'>2015-11-11  16:22:22</span>
+                                </p>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="btn-ul">
+                    <li>
+                        <a id='cancel-dialog-cancel-btn' class='dialog-cancel-btn'>
+                            取消
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" id='cancel-dialog-ok-btn'>
+                            确认
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!--弹出层结束-->
+    </div>
+    <script type="text/javascript" src="/static/hospital/js/jquery.min.js" ></script>
+    <script type="text/javascript" src="/static/user/js/util.js" ></script>
+
+    {% include 'hospital/order_js.html' %}
+
+    <script>
+    
+        $('.cancel-btn')[0].addEventListener('tap', function() {
+             window.location = '/hospital/';
+        })
+        function searchOrder () {
+            var phone = $('#order-search-phone').val();
+            if(!(phone&&phone.length==11)) {
+                return alert('请正确输入手机号码')
+            }
+            window.location = '/hospital/?phone=' + phone;
+        }
+    </script>
+
+    <script>
+     var Order  = {};
+     Order.offset = '{{offset or ""}}';
+     {% if has_more %}
+        Order.has_more = true;
+     {% endif %}
+     
+     var btns = $('.mui-tab-item');
+     btns.each(function(i, btn) {
+          btn.addEventListener('tap', function() {
+            window.location = this.getAttribute('href')
+          }
+          )
+       }
+     )
+     var div = $('#item1mobile');
+     function loadmore() {
+          var cat_id = Common.UrlGet()['cat'];
+          var suffix = '?offset='+Order.offset;
+          if(cat_id) {
+              suffix = suffix+'&=cat='+cat_id;
+          }
+          console.log(suffix);
+
+          $.get("/hospital/get_paged_orders"+suffix,
+            function(data){
+                Order.is_loading = false;
+                Order.has_more = data.has_more;
+                if (data.infos) {
+                    Order.offset = data.offset;
+                    div.append(data.infos);
+                    bind_click();
+                   
+                }
+            });
+    }    
+    bind_click();
+
+    $(window).scroll(function() {
+       if($(window).scrollTop() + $(window).height() > $(document).height()-50) {
+           //alert('bot');
+           if (Order.has_more&&!Order.is_loading) {
+                Order.is_loading=true;
+                console.log("bottom!");
+                loadmore();
+           }
+       }
+    });
+
+    $('#order-search-phone').bind('focus',function(e) {
+          $('.b-search-cont').css('position','absolute');
+          //$('.b-search-cont').css('top','0px');
+    });
+
+    $('#order-search-phone').bind('focusout',function(e) {
+        $('.b-search-cont').removeAttr('style');
+    });
+
+
+
+    </script>
+
+</body>
+</html>

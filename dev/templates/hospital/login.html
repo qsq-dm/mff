@@ -1,0 +1,82 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=0, width=device-width, height=device-height">
+    </head>
+
+<style>
+
+body {
+    margin: 0;
+}
+input {
+    color: black !important;
+}
+#signup-form input {
+    border: 0px
+}
+#login-submit {
+    width: 80%;
+    margin: 0 auto;
+    display: block;
+    padding: 5px;
+    border-radius: 5px;
+    background: white;
+    border: 1px solid;
+}
+#send-vcode-btn {
+    border: 1px solid gray;
+    border-radius: 3px;
+    padding: 3px;
+}
+form > div {
+    margin: 10px;
+}
+</style>
+<h1>医院登录</h1>
+
+<form id='signup-form' action='/hospital/login_post' onsubmit='return login()' method="post">
+
+      <div class="form-group loginform-line">
+        <label class=''>用户名</label>
+        <input class='login-input form-col-4' type="text" name='name' id='login-name-val' class="form-control" placeholder="用户名">
+      </div>
+
+      </div>
+      <div class="form-group loginform-line">
+        <label class="">密码</label>
+        <input class='login-input form-col-4' type="password" name='passwd' id='login-passwd-val' class="form-control" placeholder="密码">
+
+      </div>
+
+
+     <div class="form-group loginform-line">
+      <button type="submit" class="btn btn-default" id='login-submit'>登录</button>
+    </div>
+
+</form>
+
+
+<script type="text/javascript" src="/static/vendor/jquery-2.1.1.min.js"></script>
+
+<script>
+
+     var login = function() {
+        var data = {
+            'name' : $('#login-name-val').val(),
+            'passwd': $('#login-passwd-val').val(),
+            };
+        $.post("/hospital/login_post/", data,
+           function(data){
+             if(data.code==0) {
+                alert("登录成功");
+                window.location='/hospital';
+             } else {
+                alert(data.msg);
+             }
+           });
+        return false;
+    };
+</script>
+
+</html>

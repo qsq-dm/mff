@@ -1,0 +1,154 @@
+
+    {% if info['status'] == 2 %}
+
+         <ul class="mui-table-view  has-m-top" order-id="{{info['id']}}">
+            <li class="mui-table-view-cell mui-media">
+            <a >
+                    <img class="mui-media-object mui-pull-left" src="{{info.item.image}}">
+                    <div class="mui-media-body">
+                        <span class='item-title'>{{info.item.title}}</span>
+                        <p class='mui-ellipsis'>
+                            售价：<span class="color-red">￥{{info.total}}</span>
+                        </p>
+                        <p class='mui-ellipsis'>
+                            {{info.create_time}}
+                        </p>
+                    </div>
+                </a>
+            </li>
+            <li class="mui-table-view-cell mui-media">
+                <p class="color-grey">姓名:<span class="mui-pull-right">{{info.credit.name}}</span></p>
+                <p class="color-grey">手机号:<span class="mui-pull-right user-phone">{{info.user.phone}}</span></p>
+                <p class="color-grey">身份证:<span class="mui-pull-right">{{info.credit.id_no}}</span></p>
+            </li>
+            <li class="mui-table-view-cell">
+                待确认预约
+                <button id="sure-btn" class="mui-btn mui-btn-outlined mui-btn-negative hospital-sure-btn">确认预约</button>
+            </li>
+        </ul>
+
+    {% elif info['status']==4 %}
+
+        <ul class="mui-table-view has-m-top" order-id="{{info['id']}}">
+            <li class="mui-table-view-cell mui-media">
+                <a >
+                    <img class="mui-media-object mui-pull-left" src="{{info.item.image}}">
+                    <div class="mui-media-body">
+                        <span class='item-title'>{{info.item.title}}</span>
+                        <p class='mui-ellipsis'>
+                            售价：<span class="color-red">￥{{info.total}}</span>
+                        </p>
+                        <p class='mui-ellipsis'>
+                            {{info.create_time}}
+                        </p>
+                    </div>
+                </a>
+            </li>
+            <li class="mui-table-view-cell mui-media">
+                <p class="color-grey">姓名:<span class="mui-pull-right">{{info.credit.name}}</span></p>
+                <p class="color-grey">手机号:<span class="mui-pull-right user-phone">{{info.user.phone}}</span></p>
+                <p class="color-grey">身份证:<span class="mui-pull-right">{{info.credit.id_no}}</span></p>
+            </li>
+            <li class="mui-table-view-cell mui-media">
+                待到院验证
+                <p class="size-sm">已预约<span class='book-time'>{{info.service_code_dict.book_time}}</span></p>
+                <button class="mui-btn mui-btn-outlined mui-btn-negative has-two-btn hospital-verify-btn">验证服务码</button>
+                <button id="cancel-btn" class="mui-btn mui-btn-outlined hospital-cancel-btn">取消预约</button>
+            </li>
+        </ul>
+
+    {% elif info['status']==9 %}
+
+        <ul class="mui-table-view has-m-top" order-id="{{info['id']}}">
+            <li class="mui-table-view-cell mui-media">
+                <a >
+                    <img class="mui-media-object mui-pull-left" src="{{info.item.image}}">
+                    <div class="mui-media-body">
+                        <span class='item-title'>{{info.item.title}}</span>
+                        <p class='mui-ellipsis'>
+                            售价：<span class="color-red">￥{{info.price}}</span>
+                        </p>
+                        <p class='mui-ellipsis'>
+                            {{info.create_time}}
+                        </p>
+                    </div>
+                </a>
+            </li>
+            <li class="mui-table-view-cell mui-media">
+                <p class="color-grey">姓名:<span class="mui-pull-right">{{info.credit.name}}</span></p>
+                <p class="color-grey">手机号:<span class="mui-pull-right user-phone">{{info.user.phone}}</span></p>
+                <p class="color-grey">身份证:<span class="mui-pull-right">{{info.credit.id_no}}</span></p>
+            </li>
+            <li class="mui-table-view-cell mui-media">
+                已验证服务码
+                <p class="size-sm">已预约<span class='book-time'>{{info.service_code_dict.book_time}}</span></p>
+                <button class="mui-btn mui-btn-outlined mui-btn-negative has-two-btn hospital-finish-surgery-btn">手术完成</button>
+                <button class="mui-btn mui-btn-outlined hospital-cancel-surgery-btn">取消手术</button>
+            </li>
+        </ul>
+        
+    {% elif info['status']==5 or info['status']==6 %}
+
+        <ul class="mui-table-view has-m-top" order-id="{{info['id']}}">
+            <li class="mui-table-view-cell mui-media">
+                <a >
+                    <img class="mui-media-object mui-pull-left" src="{{info.item.image}}">
+                    <div class="mui-media-body">
+                        <span class='item-title'>{{info.item.title}}</span>
+                        <p class='mui-ellipsis'>
+                            售价：<span class="color-red">￥{{info.price}}</span>
+                        </p>
+                        <p class='mui-ellipsis'>
+                            {{info.create_time}}
+                        </p>
+                    </div>
+                </a>
+            </li>
+            <li class="mui-table-view-cell mui-media">
+                <p class="color-grey">姓名:<span class="mui-pull-right">{{info.credit.name}}</span></p>
+                <p class="color-grey">手机号:<span class="mui-pull-right user-phone">{{info.user.phone}}</span></p>
+                <p class="color-grey">身份证:<span class="mui-pull-right">{{info.credit.id_no}}</span></p>
+            </li>
+            <li class="mui-table-view-cell">
+                已完成
+            </li>
+        </ul>
+
+    {% elif info['status']==7 %}
+
+        <ul class="mui-table-view has-m-top" order-id="{{info['id']}}">
+            <li class="mui-table-view-cell mui-media">
+                <a >
+                    <img class="mui-media-object mui-pull-left" src="{{info.item.image}}">
+                    <div class="mui-media-body">
+                        <span class='item-title'>{{info.item.title}}</span>
+                        <p class='mui-ellipsis'>
+                            售价：<span class="color-red">￥{{info.price}}</span>
+                        </p>
+                        <p class='mui-ellipsis'>
+                            {{info.create_time}}
+                        </p>
+                    </div>
+                </a>
+            </li>
+            <li class="mui-table-view-cell mui-media">
+                <p class="color-grey">姓名:<span class="mui-pull-right">{{info.credit.name}}</span></p>
+                <p class="color-grey">手机号:<span class="mui-pull-right user-phone">{{info.user.phone}}</span></p>
+                <p class="color-grey">身份证:<span class="mui-pull-right">{{info.credit.id_no}}</span></p>
+            </li>
+            <li class="mui-table-view-cell">
+                已取消
+            </li>
+        </ul>
+
+    {% else %}
+
+        <span>
+            {{info['status']}}
+        </span>
+
+    {% endif %}
+
+
+
+

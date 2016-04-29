@@ -1,0 +1,28 @@
+@media (max-width: 640px) {
+    body{font-size: 10px;}
+}
+
+@media (max-width: 960px) {
+    body{font-size: 14px;}
+}
+
+
+h5{
+    font-size: 1.4em;
+}
+
+
+
+.upload-link {
+	color: red;
+    font-size: 30px;
+    margin: 0 auto;
+    width: 50%;
+    display: block;
+    text-align: center;
+    padding: 50px;
+}
+
+.nav-btn > a {
+    font-size: 1rem;
+}

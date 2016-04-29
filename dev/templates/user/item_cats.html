@@ -1,0 +1,12 @@
+
+{% extends 'user/root.html' %}
+
+{% block content %}
+    <h1>商品分类</h1>
+
+    {% for i in data %}
+    <p>
+        {{i.name}}
+    </p>
+    {% endfor %}
+{% endblock %}

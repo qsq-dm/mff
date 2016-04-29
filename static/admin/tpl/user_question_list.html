@@ -1,0 +1,67 @@
+
+
+<div class='app-content'>
+
+    <h1>用户问题列表</h1>
+    <p class="lead">
+        <h3>{{total}}个问题 {{total_redpack}}个红包 总共{{total_money}}元</h3>
+    </p>
+    <hr>
+
+<form class="form-inline">
+  <div class="form-group" >
+    <select class='form-control' ng-model="filters.is_random" ng-options="o.id as o.name for o in question_choices" ng-change="routeTo(1)">
+        <option value="">全部问题</option>
+    </select>
+  </div>
+</form>
+
+    <div>
+        <table class="table table-hover" ng-if="true" style='margin:0'>
+          <thead>
+            <tr>
+              <th>序号</th>
+              <th>内容</th>
+              <th ng-click="sortQuestion('view_count')">查看数</th>
+              <th>金额</th>
+              <th ng-click="sortQuestion('money')">收到红包总额</th>
+              <th ng-click="sortQuestion('create_time')">创建时间</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="info in infos">
+              <td>{{info.id}}</td>
+              <td>{{info.question || info.the_question.content}}</td>
+              <td>{{info.view_count}}</td>
+              <td>
+                <span ng-if='info.is_random==0'>{{info.price}}</span>
+                <span ng-if='info.is_random==1'>随机</span>
+              </td>
+              <td>{{info.money}}</td>
+              <td class='item-actions'>
+                {{info.create_time}}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <nav>
+        <ul class="pagination" ng-if="page_info.total>1">
+            <li>
+              <a href="#" aria-label="Previous" ng-click='routeTo(1)'>
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+            <li ng-repeat="page in page_info.pages" ng-class="[{active: currentpage==page}]">
+                <a ng-click='routeTo(page)' ng-if='page>0'>{{page}}</a>
+                <span ng-if='!(page>0)' style='color:gray;'>...</span>
+            <li>
+            <li>
+              <a href="#" aria-label="Next" ng-click='routeTo(page_info.total)'>
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+    </div>
+
+</div>

@@ -1,0 +1,95 @@
+<style>
+    .add-promoter-form {
+        display: block;
+        overflow: hidden;
+    }
+    .add-promoter-toggle {
+        font-size: 25px;
+        cursor: pointer;
+    }
+    .add-promoter-form > div {
+        margin-bottom: 3px;
+    }
+</style>
+
+<div class='app-content'>
+
+    <h1>推广员列表</h1>
+     <a class='add-promoter-toggle' ng-click='togglePromoter()'>添加推广员</a>
+
+<form class="form-inline add-promoter-form" ng-if='tmp' ng-submit='addPromoter()'>
+    <div class='' >
+          <input type="text" class="form-control" ng-model='tmp.name' placeholder="推广员姓名" required>
+    </div>
+    <div class="">
+          <input type="text" class="form-control" ng-model='tmp.phone' placeholder="手机号" required>
+    </div>
+    <div class="">
+          <input type="text" class="form-control" ng-model='tmp.passwd' placeholder="密码" required>
+    </div>
+
+    <div class="">
+        <button type='submit' class="btn btn-default" >添加</button>
+    </div>
+</form>
+
+    <hr>
+
+    <form class="form-inline">
+
+      <div class="form-group">
+        <label for="title" style='display:none'>名称</label>
+        <input type="text" class="form-control" ng-model='filters.keyword' placeholder="搜索名字或手机号">
+      </div>
+      <button type="submit" class="btn btn-default" ng-click='routeTo(1)'>搜索</button>
+      <button type="submit" class="btn btn-default" ng-click='reset()'>清空条件</button>
+    </form>
+
+    <div>
+        <table class="table table-hover" ng-if="true" style='margin:0'>
+          <thead>
+            <tr>
+              <th>序号</th>
+              <th>名称</th>
+              <th>手机</th>
+              <th>密码</th>
+              <th>关注总数</th>
+              <th>注册总数</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="info in infos">
+              <td>{{info.id}}</td>
+              <td>{{info.name}}</td>
+              <td>{{info.phone}}</td>
+              <td>{{info.passwd}}</td>
+              <td>{{info.follow_count_total}}</td>
+              <td>{{info.reg_count_total}}</td>
+              <td class='item-actions'>
+              <a href='#/index/user_list?&promoter_id={{info.id}}'>查看注册用户</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <nav>
+        <ul class="pagination" ng-if="page_info.total>1">
+            <li>
+              <a href="#" aria-label="Previous" ng-click='routeTo(1)'>
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+            <li ng-repeat="page in page_info.pages" ng-class="[{active: currentpage==page}]">
+                <a ng-click='routeTo(page)' ng-if='page>0'>{{page}}</a>
+                <span ng-if='!(page>0)' style='color:gray;'>...</span>
+            <li>
+            <li>
+              <a href="#" aria-label="Next" ng-click='routeTo(page_info.total)'>
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+    </div>
+
+</div>

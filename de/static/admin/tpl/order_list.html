@@ -1,0 +1,90 @@
+
+
+<div class='app-content'>
+
+    <h1>订单列表</h1>
+
+    <hr>
+
+    <form class="form-inline">
+      <div class="form-group" ng-controller="ngHospital">
+        <select class='form-control' ng-model="filters.hospital_id" ng-options="o.id as o.name for o in optionsData" ng-change="routeTo(1)">
+            <option value="">医院</option>
+        </select>
+      </div>
+      <div class="form-group" ng-controller="ngItemSubcat">
+        <select class='form-control' ng-model="filters.sub_cat_id" ng-options="o.id as o.name for o in optionsData" ng-change="routeTo(1)">
+            <option value="">商品子分类</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="title" style='display:none'>名称</label>
+        <input type="text" class="form-control" ng-model='filters.keyword' placeholder="搜索订单号或用户手机号">
+      </div>
+      <button type="submit" class="btn btn-default" ng-click='routeTo(1)'>搜索</button>
+      <button type="submit" class="btn btn-default" ng-click='reset()'>清空条件</button>
+    </form>
+
+   <form class="form-inline">
+      <button class='order-status-btn' ng-class="[{active: filters.order_status==option.id}]" ng-click='chooseStatus(option.id)' ng-repeat='option in order_status_choices'>{{option.title}}</button>
+    </form>
+
+    <div>
+        <table class="table table-hover" ng-if="true" style='margin:0'>
+          <thead>
+            <tr>
+              <th>序号</th>
+              <th>订单号</th>
+              <th>用户</th>
+              <th>商品</th>
+              <th>下单时间</th>
+              <th>总价</th>
+              <th>支付金额</th>
+              <th>使用额度</th>
+              <th>状态</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="info in infos">
+              <td>{{info.id}}</td>
+              <td>{{info.order_no}}</td>
+              <td>
+                <a href='#/index/user_detail/{{info.user.id}}'>{{info.user.name}}</a>
+              </td>
+              <td>
+                <a href='#/index/item_edit/{{info.item.id}}'>{{info.item.title}}</a>
+              </td>
+              <td>{{info.create_time}}</td>
+              <td>{{info.total}}</td>
+              <td>{{info.price}}</td>
+              <td>{{info.credit_amount}}</td>
+              <td>{{info.status_label}}</td>
+              <td class='item-actions'>
+                <button class='action-btn btn-danger' ng-class="[{'btn-refunded': info.refund==1}]" ng-if='filters.order_status==5' ng-click='refund(info.id)'>退款</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <nav>
+            <ul class="pagination item-pagination" ng-if="page_info.total>1">
+                <li>
+                  <a href="#" aria-label="Previous" ng-click='routeTo(1)'>
+                    <span aria-hidden="true">&laquo;</span>
+                  </a>
+                </li>
+                <li ng-repeat="page in page_info.pages" ng-class="[{active: currentpage==page}]">
+                    <a ng-click='routeTo(page)' ng-if='page>0'>{{page}}</a>
+                    <span ng-if='!(page>0)' style='color:gray;'>...</span>
+                </li>
+                <li>
+                  <a href="#" aria-label="Next" ng-click='routeTo(page_info.total)'>
+                    <span aria-hidden="true">&raquo;</span>
+                  </a>
+                </li>
+            </ul>
+            <span ng-if='total' class='page-item-count'>共{{total}}条</span>
+        </nav>
+    </div>
+
+</div>

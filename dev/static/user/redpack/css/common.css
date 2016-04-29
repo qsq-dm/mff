@@ -1,0 +1,48 @@
+	.content{
+		width: 86%;
+		position: absolute;
+		margin-left:-43%;
+		left: 50%;
+		top:25%;
+		text-align:center;
+		/*height: 200px;*/
+		border-radius: 10px;
+		background: #fff;
+		box-sizing: border-box;
+		padding-top:40px;
+	}
+	.content .img{
+		width:80px;
+		position: absolute;
+		left: -20px;
+		top:-30%;
+		z-index: 999;
+	}
+	.content button{
+		width: 60%;
+		position: absolute;
+		top:65%;
+		left: 0;
+		right: 0;
+		margin: 0 auto;
+		border:none;
+		background: url(../images/button-red.png) no-repeat 0 0;
+		background-size:100% 100%;
+		color: #fff;
+		line-height: 25px;
+	}
+	.content .close{
+		position: absolute;
+		width:25px;
+		height:25px;
+		background:url(../images/close.png) no-repeat 0 0;
+		background-size: 100% 100%;
+		top:-8px;
+		right:0;
+	}
+	.mui-backdrop{
+		    background-color: rgba(0, 0, 0, .5);
+		    display:none;
+	}
+
+	/*弹窗*/

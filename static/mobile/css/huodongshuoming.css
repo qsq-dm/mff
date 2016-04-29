@@ -1,0 +1,128 @@
+.header{
+	/* width:100%; */
+	height:1.225rem;
+	background:url(/static/mobile/image/a2.jpg) no-repeat;
+	-webkit-background-size: cover;
+	background-size: cover;
+}
+.nav{
+	height:1.975rem;
+	background-color: #2e2d33;
+	position: relative;
+	font-size: 0.75rem;
+	color: #fff;
+	line-height: 1.975rem;
+	text-align: center;
+}
+.nav:before{
+	content: "";
+	position: absolute;
+	width:0.375rem;
+	height:0.625rem;
+	left:1.4rem;
+	top:50%;
+	transform:translateY(-50%);
+	background: url(/static/mobile/image/c-2.png) no-repeat;
+	-webkit-background-size: cover;
+	background-size: cover;
+
+}
+.nav:after{
+	content: "";
+	position: absolute;
+	width:1.15rem;
+	height:0.3rem;
+	background: url(/static/mobile/image/a3.jpg) no-repeat;
+	right:1.4rem;
+	top:50%;
+	transform:translateY(-50%);
+	-webkit-background-size: cover;
+	background-size: cover;
+}
+.content{
+	background:url(/static/mobile/image/bgg_02.png) no-repeat;
+	-webkit-background-size: cover;
+	background-size: cover;
+	 height:39rem;
+	width: 100%;
+	padding-top: 28px;
+	box-sizing: border-box;
+	position: relative;
+	
+}
+.box{
+	width:15.725rem;
+	height:16.325rem;
+	border-radius: 0.25rem;
+	background:url(/static/mobile/image/bg.jpg) no-repeat;
+	-webkit-background-size: cover;
+	background-size: cover;
+	padding:1.25rem 1rem;
+	box-sizing: border-box;
+	margin:0 auto;
+}
+.box ul{
+	width:100%;
+	height:100%;
+}
+.box li{
+	width:4.325rem;
+	height:4.35rem;
+	border-radius:0.25rem;
+	float: left;
+	margin:0.125rem;
+	cursor: pointer;
+}
+
+.box1{
+	width:11.05rem;
+	height:2.05rem;
+	background:url(/static/mobile/image/c1.jpg) no-repeat;
+	-webkit-background-size: cover;
+	background-size: cover;
+	margin:-10px auto;
+}
+.foot{
+	height:2.225rem;
+	position: relative;
+	padding-top: 3.625rem;
+	box-sizing: border-box;
+}
+.foot:before{
+	content: "";
+	position: absolute;
+	background:url(/static/mobile/image/c1.png) no-repeat;
+	-webkit-background-size: contain;
+	background-size: contain;
+	width:6.75rem;
+	height:2.225rem;
+	top:50%;
+	transform: translateY(-50%);
+	left: 2.5rem;
+}
+.foot:after{
+	content: "";
+	position: absolute;
+	background:url(/static/mobile./image/c2.png) no-repeat;
+	-webkit-background-size: cover;
+	background-size:cover;
+	width:6.25rem;
+	height:2.225rem;
+	top:50%;
+	transform: translateY(-50%);
+	right: 2.5rem;
+}
+
+.footer{
+	width:17.725rem;
+	
+	background-color:#ffc69c;
+	margin:0 auto ;
+	padding:0.5rem 0.5rem;
+	box-sizing: border-box;	
+
+}
+.footer p{
+	font-size: 0.6rem;
+	line-height: 1.5rem;
+}

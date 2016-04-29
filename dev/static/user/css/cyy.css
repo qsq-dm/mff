@@ -1,0 +1,41 @@
+		.mui-card{
+			margin:0;
+			border-radius:5px 5px 0 0;
+			margin:10px;
+			border:0;
+		}
+		.warp{
+			white-space: normal;
+			width: 100%;
+			font-size:0px;
+			text-indent: -4px;
+			margin-top:5px;
+			width: 100%;
+		}
+		.warp p{
+			text-overflow: ellipsis;
+			overflow: hidden;
+			white-space: nowrap;
+			margin-top:12px;
+			text-indent: 0px;
+			color:#333;
+			font-size:12px;
+		}
+		.top15{
+			margin-top:8px;
+			padding-left:15px;
+			background: url(../img/location.png) no-repeat 0 3px;
+			background-size:auto 65%;
+			font-size:14px;
+		}
+		.h4 span{
+			font-size:20px;
+			color:#ffa51f;
+		}
+		.h4 .mui-pull-right{
+			font-weight: bold;	
+		}
+		.mui-table-view.item-list .mui-media-body .yytitle.mui-pull-left{
+			font-size:16px;
+			color:#333;
+		}

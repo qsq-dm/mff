@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>医院项目</title>
+    <script src="/static/user/js/mui.min.js"></script>
+    <link href="/static/user/css/mui.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="/static/user/css/style.css"/>
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+    </script>
+    <style type="text/css">
+    	.mui-card{
+			margin: 0 5px;
+		}
+    </style>
+</head>
+<body>
+	<div class="mui-content">
+		<div class="mui-card">
+		    <ul class="mui-table-view item-list" style="margin-top: 0;">
+		        {% for info in infos %}
+		        <li class="mui-table-view-cell no-after-dotted mui-media meifenfen-item item-{{info['id']}}">
+                    <a href="/static/user/detail.html?item_id={{info['id']}}">
+                        <img class="mui-media-object mui-pull-left item-image" src="{{info.image}}">
+                        <div class="mui-media-body">
+                            <span class='item-title'>{{info['title']}}</span>
+                            <p class='mui-ellipsis'>
+                                <span class='item-hospital-name'>{{info.hospital.name}}</span>
+                            </p>
+                            <p class='mui-ellipsis'>
+                                售价：<span class="color-red item-price">￥{{info.price}}</span>
+                                医院价：<span class="line-throu item-orig-price">￥{{info.orig_price}}</span>
+                            </p>
+                        </div>
+                        <div class="month-pay  month-pay-sm">
+                            <div class="tit">月供</div>
+                            <div class="num">
+                                <p class="color-red">
+                                    <b class='item-period_money'>￥{{info.period_money}}</b>
+                                    <span>x <span class='item-period_count'>{{info.period_count}}</span></span>
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+		        {% endfor %}
+			</ul>
+		</div>
+	</div>
+
+    <script src="/static/user/js/jquery.min.js"></script>
+    <script>
+    var Pager = {};
+    {% if has_more %}
+        Pager.has_more = true;
+    {% else %}
+        Pager.has_more = false;
+    {% endif %}
+    Pager.offset       = "{{offset}}" ;
+
+    function refreshNode(node, data) {
+        node.find('a').attr('href', '/static/user/detail.html?item_id='+data.id)
+        node.find('.item-title').html(data.title);
+        node.find('.item-image').attr('src', data.image);
+        node.find('.item-price').html('￥'+data.price);
+        node.find('.item-orig-price').html('￥'+data.orig_price);
+        node.find('.item-period_money').html('￥'+data.period_money);
+        node.find('.item-period_count').html(data.period_count);
+        node.find('.item-hospital-name').html(data.hospital.name);
+    }
+
+    function loadmore() {
+          $.get("/user/item_list"+location.search+"&offset="+Pager.offset,
+            function(data){
+                Pager.is_loading = false;
+                Pager.has_more   = data.has_more;
+                Pager.offset     = data.offset
+                if (data.infos.length>0) {
+                    for(var i=0;i<data.infos.length;i++) {
+                        var node = $($('.meifenfen-item')[$('.meifenfen-item').length-1]);
+                        var clone_node = node.clone();
+                        refreshNode(clone_node, data.infos[i]);
+                        clone_node.insertAfter(node);
+                    }
+                }
+            });
+    }    
+
+    $(window).scroll(function() {
+       if($(window).scrollTop() + $(window).height() > $(document).height()-50) {
+           if (Pager.has_more&&!Pager.is_loading) {
+                Pager.is_loading=true;
+                console.log("bottom!");
+                loadmore();
+           }
+       }
+    });
+    </script>
+
+
+</body>
+</html>

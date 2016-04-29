@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>我的参与</title>
+		<link href="../css/mui.css" rel="stylesheet" />
+
+		<link href="css/style.css" rel="stylesheet" />
+		<link href="css/public.css" rel="stylesheet" />
+		<script src="../js/mui.min.js"></script>
+	</head>
+	<style type="text/css">
+		div.img {
+			top: -5%;
+			width: 100%;
+		}
+		
+		@media only screen and (max-height: 568px) div.img {
+			top: -4% !important;
+		}
+		
+		.float {
+			width: 100%;
+		}
+		
+		.content {
+			overflow: hidden;
+			border-radius: 0 0 10px 10px;
+			box-shadow: 0 3px 4px #ccc;
+			background: #fff;
+		}
+		
+		.main {
+			padding-top: 30px;
+			margin-top: 10px;
+		}
+		
+		.foot-btn {
+			text-align: center;
+			margin-top: 20px;
+		}
+		
+		.foot-btn span {
+			display: inline-block;
+			width: 80px;
+			height: 80px;
+			background: red;
+			border-radius: 50%;
+		}
+		
+		.foot-btn span:nth-child(2) {
+			margin: 0 5%;
+			background: url(images/shar.png) no-repeat 0 0;
+			background-size: 100% 100%;
+		}
+		
+		.foot-btn span:nth-child(1) {
+			background: url(images/vote.png) no-repeat 0 0;
+			background-size: 100% 100%;
+		}
+		
+		.foot-btn span:nth-child(3) {
+			background: url(images/location-index.png) no-repeat 0 0;
+			background-size: 100% 100%;
+		}
+		
+		.txt {
+			margin-bottom: 10px;
+		}
+		
+		.mui-backdrop {
+			background-color: rgba(0, 0, 0, .6);
+			text-align: center;
+		}
+		
+		.mui-backdrop img {
+			width: 80%;
+			margin-top: 15%;
+		}
+		
+		.mui-backdrop .fl img {
+			width: 20px;
+		}
+		
+		.img span {
+			display: block;
+			width: 60%;
+			line-height: 33px;
+			height: 40px;
+			background: red;
+			color: #fff;
+			margin: 0 auto;
+			background: url(images/canyu.png) no-repeat 0 0;
+			background-size: 100% 100%;
+		}
+		
+		img.img {
+			display: none;
+		}
+		
+		.edit {
+			position: absolute;
+			width: 20px;
+			background: url(images/edit.png) no-repeat 0 0;
+			background-size: 100% 100%;
+			height: 20px;
+			right: 0;
+			top: 0;
+		}
+		
+		.photo li .img {
+			height: 130px;
+		}
+	</style>
+
+	<body>
+		<div class="mui-content">
+			<div class="main">
+				<div class="img">
+					<!--<img src="images/canyu.png" alt="" />-->
+					<span>我的参与</span>
+				</div>
+				<div class="content">
+
+				</div>
+
+				<div class="foot-btn">
+					<span class="vote"></span>
+					<span class="shar"></span>
+					<span class="index"></span>
+				</div>
+				<div class="mui-backdrop" style="display: none;">
+					<img src="images/mark_icon.png" class="img" alt="" />
+					<div class="from alert" id="ulit" style="display: none;">
+						<div class="header">
+							提示
+							<span class="close"></span>
+						</div>
+						<section>
+							<p>你要见的小主还没来呢！</p>
+						</section>
+					</div>
+					<div class="from alert" id="login" style="display: none;">
+						<div class="header">
+							提示
+							<span class="close"></span>
+						</div>
+						<section>
+							<p>小主需要先登入才可以投票！</p>
+							<button>去登入</button>
+						</section>
+					</div>
+					<div class="from vote-alert" style="display: none;">
+						<div class="header">
+							投票小妙招
+							<span class="close"></span>
+						</div>
+						<section>
+							<p>投票期间申请额度通过，就会收到小美送出的一次20票的投票机会哦！</p>
+							<button id="apply-ed">去申请额度</button>
+							<div id="lines" class="ulit" style="display: none;">
+								<span class="fl">
+							<img src="images/ok.png" alt="">
+							已获得
+						</span>
+								<span class="fr">已使用</span>
+							</div>
+							<p>投票期间完成一次分期整形就会收到小美送出的一次200票的投票机会哦</p>
+							<button id="submit">去下单</button>
+							<div id="success" class="ulit">
+								<span class="fl">
+							<img src="images/ok.png" alt="">
+							已获得
+						</span>
+								<span class="fr">已使用</span>
+							</div>
+							<p>直接投票</p>
+							<button id="zhijie">直接投票</button>
+						</section>
+					</div>
+				</div>
+			</div>
+		</div>
+		<p style="display: none;">
+			<input type="file" class="file0" />
+			<input type="file" class="file1" />
+			<input type="file" class="file2" />
+			<input type="file" class="file3" />
+		</p>
+	</body>
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/util.js"></script>
+	<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<script type="text/javascript" src="http://www.meifenfen.com/user/jssdk.js"></script>
+	<script>
+		$('#login button').on('tap', function() {
+			location.href = '/static/user/login.html?next=' + location.href;
+		})
+		$('img.img').click(function() {
+			$('.mui-backdrop').hide();
+		});
+		$('.shar').on('click', function() {
+			$('.mui-backdrop').show();
+			$('img.img').show().siblings().hide();
+		});
+		$('.index').on('click', function() {
+			location.href = 'home.html';
+		});
+		// 申请额度
+		$('#apply-ed').on('tap', function() {
+			location.href = '/static/user/applyer-infor.html';
+		});
+		//下单
+		$('#submit').on('tap', function() {
+			location.href = '/user/index';
+		});
+		// 分割线
+		var para = Common.UrlGet();
+		$.ajax({
+			xhrFields: {
+				withCredentials: true
+			},
+			url: 'http://' + getHostName() + '/user/get_room_detail/',
+			type: 'post',
+			dataType: 'json',
+			data: {
+				room_id: para.room_id
+			},
+			success: function(data) {
+				var room = data.room;
+				var privileges = data.privileges;
+				var arry = room.pics.split(',');
+				for (var i = 0; i < $('input:file').length; i++) {
+					$('input:file').eq(i).attr('path', arry[i])
+				};
+				$('.vote').on('click', function() {
+					$('.mui-backdrop img.img').hide();
+					//判断是否登入;
+					if (!getCookie('sign_user')) {
+						$('.mui-backdrop').show();
+						$('#login').show();
+						$('.vote-alert').hide();
+						$('#ulit').hide();
+					} else {
+						$('.mui-backdrop').show();
+						$('.vote-alert').show();
+						$('#login').hide();
+						$('#ulit').hide();
+					};
+					if (privileges[0].status == 0) {
+						//0可以投票
+						$('#lines').show();
+						$('#lines .fr').html('可投票');
+						$('#lines .fr').css('background-image', 'url(images/button.png)').addClass('can');
+						$('#apply-ed').hide();
+					} else if (privileges[0].status == 1) {
+						//1已经投票
+						$('#lines').show();
+						$('#lines .fr').html('已投票');
+						$('#lines .fr').css('background-image', 'url(images/disb.png)').removeClass('can');
+						$('#apply-ed').hide();
+					} else {
+						//没权限快去申请
+						$('#lines').hide();
+					};
+					//下单的按钮
+					if (privileges[1].status == 0) {
+						//0可以投票
+						$('#success').show();
+						$('#success .fr').html('可投票');
+						$('#success .fr').css('background-image', 'url(images/button.png)').addClass('can');
+						$('#submit').hide();
+					} else if (privileges[1].status == 1) {
+						//1已经投票
+						$('#success').show();
+						$('#success .fr').html('已投票');
+						$('#success .fr').css('background-image', 'url(images/disb.png)').removeClass('can');
+						$('#submit').hide();
+					} else {
+						//没权限快去申请
+						$('#success').hide();
+					};
+				});
+				$('#lines .can').on('click', function() {
+					touPiao(1);
+				});
+				$('#success .can').on('click', function() {
+					touPiao(2);
+				})
+				$('#zhijie').off('tap'); //解除之前的绑定;
+				$('#zhijie').on('tap', function() {
+					if (privileges[2].status == 1) {
+						$('.vote-alert').hide();
+						$('#ulit').show();
+						$('#ulit .header').html('投票失败 <span class="close"></span>	');
+						$('#ulit p').html('今日已投明天再来吧');
+					} else {
+						//还没投票请求投票接口;
+						touPiao(3)
+					}
+				});
+				//分割线
+				vone_list(room, '.content');
+
+				function vone_list(id, name) {
+					var chlid_str = '';
+					if (id.pic_list.length == 4) {
+						for (var k = 0; k < id.pic_list.length; k++) {
+							chlid_str += '<li><img class="img" src="' + id.pic_list[k] + '"><span></span><i class="edit" cat-num="' + k + '"></i></li>'
+						}
+					}else{
+						for (var k = 0; k < id.pic_list.length; k++) {
+							chlid_str += '<li><img class="img" src="' + id.pic_list[k] + '"><span></span><i class="edit" cat-num="' + k + '"></i></li>'
+						}
+						chlid_str+='<li><img class="img" src="images/pink-pic.png"><span></span><i class="edit" cat-num="3"></i></li>'
+					}
+					var str_li = '<div class="fl float">\
+							<div class="title">\
+								<span>' + id.room_name + '</span>\
+								<span class="mui-ellipsis">' + id.apply_no + '</span>\
+							</div>\
+							<div class="ranking">\
+								<p>\
+									排名<span>' + id.rank + '</span>\
+								</p>\
+								<p>\
+									票数<span>' + id.vote_count + '</span>\
+								</p>\
+							</div>\
+							<ul class="photo">\
+								' + chlid_str + '</ul>\
+								<div class="txt">' + data.note + '</div>\
+							</div>\
+							';
+					$(name).append(str_li);
+				};
+			}
+		});
+		//close 
+		$(document).on('tap', '.close', function() {
+			$('.mui-backdrop').hide();
+		})
+		$(document).on('tap', 'i', function() {
+			var index = $(this).attr('cat-num');
+			$(".file" + index).click();
+		});
+		$('input:file').on('change', function() {
+			var index = $(this).index();
+
+			function callback() {
+				var str = [];
+				for (var i = 0; i < $('input:file').length; i++) {
+					var el = $('input:file').eq(i).attr('path');
+					if (el == undefined) {
+						el = '';
+					}
+					str.push(el);
+					str.join(',');
+				};
+				str = str.join(',');
+				console.log(str);
+				$.ajax({
+					xhrFields: {
+						withCredentials: true
+					},
+					url: 'http://' + getHostName() + '/user/add_room_pics/',
+					type: 'post',
+					dataType: 'json',
+					data: {
+						room_id: para.room_id,
+						pics: str
+					},
+					success: function(data) {}
+				});
+			}
+			upload($(this)[0], $('img.img').eq(index), callback);
+		});
+		//上传图片方法
+		var upload = function(_file, btn, callback) {
+			if (_file.files.length === 0) {
+				return;
+			}
+			var data = new FormData();
+			data.append('file', _file.files[0]);
+			data.append('image_cat', 'avatar')
+			var request = new XMLHttpRequest();
+			request.withCredentials = true;
+			request.onreadystatechange = function() {
+				if (request.readyState == 4) {
+					try {
+						window.r = request.response;
+						var resp = JSON.parse(request.response);
+						btn.parent().find('.progress').hide(); //进度条；
+						btn.siblings('.close').show();
+						btn.attr('src', resp.fullpath)
+						$(_file).attr('path', resp.image);
+						callback();
+					} catch (e) {
+						var resp = {
+							status: 'error',
+							data: 'Unknown error occurred: [' + request.responseText + ']'
+						};
+					}
+					console.log(resp.status + ': ' + resp.data);
+				}
+			};
+			request.upload.addEventListener('progress', function(e) {
+				console.log(parseInt(100 * e.loaded / e.total));
+				btn.parent().find('.progress div').css('width', parseInt(100 * e.loaded / e.total) + '%');
+				//		$('.mask').find('span').html(parseInt(100*e.loaded/e.total)+'%')
+			}, false);
+			request.open('POST', 'http://' + getHostName() + '/user/upload_image/?');
+			request.send(data);
+		};
+
+		function touPiao(v) {
+			var room_id = $('.btn.act').attr('cat-id');
+			$.ajax({
+				xhrFields: {
+					withCredentials: true
+				},
+				url: 'http://' + getHostName() + '/user/vote_room/',
+				type: 'post',
+				dataType: 'json',
+				data: {
+					room_id: para.room_id,
+					source: v
+				},
+				success: function(data) {
+					alert(data.msg);
+				},
+				error: function() {
+					alert('网络出现小差');
+				}
+			});
+		};
+		var item_comment_img_preview = function() {
+			var obj = this;
+			if (!obj.getAttribute('src')) {
+				console.log('image not ready');
+				return;
+			}
+			console.log('preview item comment image');
+			console.log(obj.getAttribute('src'));
+			var current = obj.getAttribute('src');
+			var img_tags = $('.photo img');
+			var image_list = [];
+			for (var i = 0; i < img_tags.length; i++) {
+				image_list.push($(img_tags[i]).attr('src'));
+			}
+			wx.previewImage({
+				current: current,
+				urls: image_list,
+			});
+		};
+		$(document).on('tap', '.photo img', item_comment_img_preview)
+	</script>
+
+</html>

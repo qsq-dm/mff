@@ -1,0 +1,387 @@
+
+
+.left-side-bar {
+    padding: 50px 50px 0 50px;
+}
+
+.left-side-bar a {
+    font-size: 15px;
+}
+
+.nav-link {
+    cursor: pointer;
+}
+
+#nav-wrap {
+    font-size: 25px;
+}
+
+.app-content {
+    padding: 50px;
+}
+
+.page-item-count {
+    float: left;
+    line-height: 60px;
+    margin: 10px;
+}
+
+.item-pagination {
+    float: left;
+}
+
+.action-btn {
+    border: 1px solid #E0E0E0;
+    display:block;
+    padding: 1px 5px;
+    font-size: 12px;
+    line-height: 22px;
+    border-radius: 3px;
+    background-color: white;
+    color: gray;
+    cursor: pointer;
+}
+
+.btn-danger {
+    background: red;
+    color: white;
+    border: 1px solid red;
+}
+
+.btn-normal {
+    background: #62C7DE;
+    color: white;
+    border: 1px solid #62C7DE;
+}
+
+.btn-default {
+    background: white;
+    color: gray;
+    border: 1px solid #62C7DE;
+}
+
+.btn-back {
+    position: absolute;
+    top: 80px;
+    right: 66px;
+    color: #333;
+    border-color: #adadad;
+
+}
+
+.cat-choose {
+    overflow-x: scroll;
+    /* white-space: nowrap; */
+    width: 99%;
+    margin: 0 auto;
+    padding-bottom: 5px;
+}
+
+.cat-grid {
+    position: relative;
+    border-radius: 5px;
+    border: 1px solid;
+    text-align: center;
+    cursor: pointer;
+    background-color: white;
+    width: 100px;
+    display: inline-block;
+    margin-right: 10px;
+    margin-bottom: 5px;
+    height: 30px;
+    line-height: 30px;
+}
+.cat-grid.active {
+    color: white;
+    background: rgb(107, 202, 252);
+}
+
+.icon-cat-edit {
+    color: black;
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    display: none;
+}
+
+.icon-cat-add {
+    color: black;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    display: none;
+}
+
+.cat-grid:hover .icon-cat-edit {
+    display: block !important;
+}
+
+.cat-grid:hover .icon-cat-add {
+    display: block !important;
+}
+
+.chosen-container0000 > .chosen-single {
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+.search-choice-close {
+    top: 10px;
+}
+
+.item-actions > button {
+    float: left;
+    margin-right: 10px;
+}
+
+
+
+#images-list-wrap  img {
+    width: 150px;
+}
+#images-list-wrap  ul {
+    padding: 0;
+    list-style-type: none;
+    overflow: hidden;
+}
+#images-list-wrap .sort-image {
+    float: left;
+    border: 1px solid #A9A6A6;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+.chosen-container > a > span { /* chosen text align horizonal fixed */
+    position: relative;
+}
+
+.apply-actions > button {
+    display: block;
+    float: left;
+    font-size: 20px;
+    margin-right: 10px;
+    padding: 5px 10px 5px 10px;
+}
+
+.order-status-btn.active {
+    background: blue;
+    border: 1px solid gray;
+    color: white;
+}
+
+.apply-status-btn.active {
+    background: blue;
+    border: 1px solid gray;
+    color: white;
+}
+
+
+/* 图片上传预览 */
+.img-upload-result {
+    max-width: 150px;
+}
+
+.apply-infos > label {
+    width: 200px;
+}
+
+.apply-infos {
+    border-radius: 10px;
+    border: 1px solid #ECE6E6;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+/* 弹出框 */
+.ngdialog-content {
+    width: 500px;
+    height: auto;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-radius: 5px;
+    position: absolute;
+    display: table;
+}
+
+.select-options-list>li>a {
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: 400;
+    line-height: 1.42857143;
+    color: #333;
+    white-space: nowrap;
+    text-decoration: none;
+}
+
+.select-options-list {
+    overflow: scroll;
+    max-height: 200px;
+}
+
+
+
+.form-horizontal {
+   width:500px;
+}
+
+.datetime-picker-dropdown {
+  
+}
+
+.datetime-picker-dropdown > li.date-picker-menu div > table .btn-default {
+  border: 0;
+}
+
+.datetime-picker-dropdown > li.time-picker-menu div > table {
+  
+}
+
+
+[contenteditable|="true"]
+{
+    background: white;
+}
+[contenteditable|="true"] h1
+{
+    color: gray;
+    font-size: 20px;
+}
+[contenteditable|="true"] h2
+{
+    color: red;
+    font-size: 20px;
+}
+[contenteditable|="true"] h3
+{
+    color: blue;
+    font-size: 20px;
+}
+[contenteditable|="true"] h4
+{
+    color: blue;
+    font-size: 20px;
+}
+[contenteditable|="true"] h5
+{
+    color: blue;
+    font-size: 20px;
+}
+[contenteditable|="true"] h6
+{
+    color: blue;
+    font-size: 20px;
+}
+[contenteditable|="true"] *
+{
+    margin: 0;
+}
+
+.item-edit-page .search-choice-close {
+    top: 5px !important;
+}
+
+#itemsubcatform .search-choice-close {
+    top: 5px !important;
+}
+
+.btn-back {
+    z-index: 10000;
+}
+
+.btn-refunded {
+    background: gray;
+}
+
+
+
+    .sortable.grid {
+        overflow: hidden;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+    .sortable.grid li {
+      line-height: 80px;
+      float: left;
+      width: 80px;
+      height: 80px;
+      text-align: center;
+    }
+    .sortable li {
+      list-style: none;
+      border: 1px solid #CCC;
+      background: #F6F6F6;
+      color: #1C94C4;
+      margin: 5px;
+      padding: 5px;
+      height: 22px;
+    }
+    
+    #sortable {
+      width: 500px;
+      display: block;
+      list-style-type: disc;
+    }
+    #sortable img {
+      display: block;
+      width: 100%;
+    }
+    
+    .as-sortable-item {
+    }
+    
+    .as-sortable-item,
+    .as-sortable-placeholder {
+        margin: 2px;
+        border-radius: 5px;
+        list-style: none;
+        display: inline-block;
+        float: left;
+    }
+    
+    .as-sortable-placeholder {
+        border: 1px solid #428bca !important;
+    }
+    
+    #sortable-container {
+        display: inline-block;
+    }
+    
+    .column {
+        border: 1px solid #000000;
+        border-radius: 5px;
+    }
+    #images-list-values {
+        overflow: hidden;
+    }
+    
+    #images-list-values > ul {
+        padding: 0;
+    }
+    
+    .gallery-box img {
+        display: block;
+        height: 150px;
+    }
+    
+    
+

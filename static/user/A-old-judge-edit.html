@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>发表评价</title>
+    <script src="js/mui.min.js"></script>
+    <link href="css/mui.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+    </script>
+    <style type="text/css">
+    	.mui-table-view .mui-media-object {
+			height: 60px;
+			max-width: 60px;
+		}
+		.mui-control-content{
+			min-height:300px;
+		}
+		.mui-table-view-cell.mui-checkbox.mui-left {
+			padding-left: 40px;
+			vertical-align: middle;
+		}
+		.mui-radio input[type="radio"]:checked:before, .mui-checkbox input[type="checkbox"]:checked:before{
+			color: #FF6565;
+		}
+		.mui-checkbox.repayed input[type="checkbox"]:checked:before{
+			color: #9B9B9B;
+		}
+		
+		.check-all-cont{
+			position: fixed;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			background: #FFF;
+			overflow: hidden;
+		}
+		.check-all-cont li{
+			float: left;
+			height: 40px;
+			line-height: 40px;
+		}
+		.check-all-cont li:first-of-type{
+			width: 70%;
+		}
+		.check-all-cont li:last-of-type{
+			width: 30%;
+		}
+		.check-all-cont li:last-of-type button{
+			height: 100%;
+			width: 100%;
+			border-radius: 0;
+		}
+		#star{
+			display: inline-block;
+		}
+		.star-cont{
+			height: 40px;
+			line-height: 40px;
+			padding:0 14px;
+			background: #FFF;
+		}
+		.star-cont span{
+			display: inline-block;
+			/*line-height: 30px;*/
+		}
+		textarea{
+			border: none;
+		}
+    </style>
+</head>
+<body>
+	<div class="mui-content">
+		<div class="star-cont has-after-line has-l-padded">
+			<span>服务评价</span>
+			<div id="star"></div>
+		</div>
+		<textarea name="" rows="8" cols=""></textarea>
+		<div class="pic-cont"></div>
+	</div>
+	<script type="text/javascript" src="js/jquery.min.js" ></script>
+	<script type="text/javascript" src="js/jquery.raty.min.js" ></script>
+	<script>
+		$('#star').raty({
+            hints: ['1', '2', '3', '4', '5'],
+            click: function (score, evt) {
+                alert(score);
+            }
+       });
+	</script>
+</body>
+</html>

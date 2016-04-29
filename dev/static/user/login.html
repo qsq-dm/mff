@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>登录</title>
+		<script src="/static/user/js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<link href="/static/user/css/mui.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="/static/user/css/iconfont.css"/>
+		    <script>
+			var _hmt = _hmt || [];
+			(function() {
+			  var hm = document.createElement("script");
+			  hm.src = "//hm.baidu.com/hm.js?f232e4e56216f4d1ac7bcccaa630f2f3";
+			  var s = document.getElementsByTagName("script")[0]; 
+			  s.parentNode.insertBefore(hm, s);
+			})();
+			</script>
+		<!--<link rel="stylesheet" type="text/css" href="css/style.css"/>-->
+		<script type="text/javascript" charset="utf-8">
+			mui.init();
+		</script>
+		<style type="text/css">
+		    .mui-input-group .mui-input-row{
+		    	height: 46px;
+		    }
+			.mui-input-row label ~ input,.mui-input-row label ~ select{
+				margin-top: 4px;
+				width: 85%;
+				text-align: left;
+				/*border: 1px solid red;*/
+				font-size: 14px;
+				color: #333;
+			}
+			.mui-input-row label ~ select{
+				position: relative;
+				left: -3px;
+			}
+			.mui-input-row label {
+				width: 40px;
+				padding: 12px 0 10px 14px;
+				/*border: 1px solid red;*/
+			}
+			.mui-input-row label i{
+				font-size: 22px;
+				color: #9B9B9B;
+			}
+			.login_botm{
+				overflow: hidden;
+				padding: 0 15px;
+				width: 100%;
+			}
+			.login_botm a{
+				color: #9c9c9c;
+			}
+		</style>
+
+	</head>
+
+	<body>
+		<div class="mui-content has-m-top">
+			<form class="mui-input-group">
+				<div class="mui-input-row">
+					<label>
+						<i class="iconfont">&#xe615;</i>
+					</label>
+					<input type="tel" maxlength="11" placeholder="请输入手机号" id='phone' class="mui-input-clear">
+				</div>
+				<div class="mui-input-row">
+					<label>
+						<i class="iconfont">&#xe636;</i>
+					</label>
+					<input type="password" placeholder="请输入密码" id='password' class="mui-input-clear">
+				</div>
+			</form>
+			<!--<ul class="mui-table-view">
+				<li class="mui-table-view-cell mui-checkbox mui-left">
+					<input name="checkbox" type="checkbox">记住密码
+				</li>
+			</ul>-->
+
+			<button  class="mui-btn mui-btn-negative mui-btn-block" id='submit'>登录</button>
+
+			<div class="login_botm">
+				<a class="fl" id='zhuce'>新用户注册</a>
+				<a id="wangji" class="fr">忘记密码？</a>
+			</div>
+		</div>
+		<script src='/static/user/js/zepto.min.js'></script>
+		<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+		<script type="text/javascript" src="http://www.meifenfen.com/user/jssdk.js"></script>
+		<script src='/static/user/js/md5.min.js'></script>
+		<script src='/static/user/js/util.js'></script>
+		<script>
+		$(function(){
+			$('#wangji').click(function(){
+				location.href='/static/user/resetpassword.html?next='+(Common.UrlGet().next||'')
+			})
+			$('#zhuce').click(function(){
+				location.href='/user/signup/?next='+ (Common.UrlGet().next||'')
+			})
+			$('#submit').on('click',function(){
+			var phone=$('#phone').val();
+			var code=$('#code').val();
+			var password=md5($('#password').val(),'meifenfen');
+			var ptest = /^((?:13\d|14\d|15[\d]|17[\d]|10[\d]|18[\d])-?\d{5}(\d{3}|\*{3}))$/;
+			if (!ptest.test(phone)) {
+				alert('请输入正确的手机号码');
+				return;
+			}
+		$.ajax({
+			url:'http://'+getHostName()+'/user/login_post/',
+					type: 'post',
+					dataType: 'json',
+					data: {phone:phone,passwd:password},
+					success:function(data){
+						if (data.code==0) {
+							if(Common.UrlGet().next){
+								location.href=Common.UrlGet().next
+							}else{
+								location.href='/user/index'
+							}
+							
+						}else{
+							alert(data.msg);
+						}						
+					},error:function(){
+			            alert('网络出现小差，请稍后再试')
+					}
+				})
+			})
+						
+		})
+		</script>
+	</body>
+</html>

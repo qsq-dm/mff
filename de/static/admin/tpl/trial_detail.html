@@ -1,0 +1,118 @@
+
+<style>
+    .app-content label {
+        width: 120px;
+    }
+    .trial-rules {
+        display: inline-block;
+        vertical-align: middle;
+        text-align: center;
+        line-height: 50px;
+    }
+</style>
+<div class='app-content'>
+
+    <h1>试用详情</h1>
+    <p class="lead">
+        <a href='#/index/trial_edit/{{item.id}}'>编辑试用</a>
+    </p>
+
+    <hr>
+
+    <div>
+
+    <label>标题</label> {{item.title}}
+    
+    <br />
+
+    <label>总数</label> {{item.total}}
+    <br />
+
+    <label>人气</label> {{item.apply_count}}
+    <br />
+    <label>已发放</label> {{item.sent}}
+
+
+      <div class="form-group">
+        <label for="">类型</label>
+        <label class="radio-inline">
+          <input type="radio" ng-model="item.cat"  name='cat' value="0">免费礼品
+        </label>
+        <label class="radio-inline">
+          <input type="radio" ng-model="item.cat"  name='cat' value="1">代金券
+        </label>
+      </div>
+
+    <label>结束时间</label> {{item.end_time}}
+    </br>
+    <label>试用图片</label> <img style='max-width:180px' src='{{item.image}}'></img>
+
+      <div class="form-group">
+        <label for="">试用规则</label>
+        <div class='trial-rules' ng-bind-html="item.rules | rawHtml"></div>
+      </div>
+
+    <div>
+        <table class="table table-hover" ng-if="true" style='margin:0'>
+          <thead>
+            <tr>
+              <th>序号</th>
+              <th>名称</th>
+              <th>性别</th>
+              <th>手机号码</th>
+              <th>学校</th>
+              <th>申请理由</th>
+              <th>申请时间</th>
+              <th>申请地址</th>
+              <th>总申请数</th>
+              <th>总发放数</th>
+              <th>状态</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="info in infos">
+              <td>{{info.id}}</td>
+              <td>{{info.name}}</td>
+              <td>
+                  <span ng-if='info.sex==1'>男</span>
+                  <span ng-if='info.sex==2'>女</span>
+              </td>
+              <td>{{info.phone}}</td>
+              <td>{{info.school}}</td>
+              <td>{{info.content}}</td>
+              <td>{{info.create_time}}</td>
+              <td>{{info.addr}}</td>
+              <td>{{info.apply_count}}</td>
+              <td>{{info.apply_received_count}}</td>
+              <td>
+                  <span ng-if='info.status==0'>待审核</span>
+                  <span ng-if='info.status==1'>已发放</span>
+              </td>
+              <td class='item-actions'>
+                <a ng-click='approve(info.id)' ng-if='item.sent<item.total&&info.status==0' class='btn btn-normal' >通过</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <nav>
+          <ul class="pagination" ng-if="page_info.total>1">
+            <li>
+              <a href="#" aria-label="Previous" ng-click='routeTo(1)'>
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+            <li ng-repeat="page in page_info.pages" ng-class="[{active: currentpage==page}]">
+                <a ng-click='routeTo(page)' ng-if='page>0'>{{page}}</a>
+                <span ng-if='!(page>0)' style='color:gray;'>...</span>
+            <li>
+            <li>
+              <a href="#" aria-label="Next" ng-click='routeTo(page_info.total)'>
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+    </div>
+
+</div>

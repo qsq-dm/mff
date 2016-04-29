@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>项目</title>
+    <script src="js/mui.min.js"></script>
+    <link href="css/mui.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="css/iconfont.css"/>
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+    </script>
+    <style type="text/css">
+    	
+    	.mui-grid-view.mui-grid-9 .mui-table-view-cell img{
+    		height: 45px;
+    		width: 45px;
+    		border-radius: 30px;
+    	}
+    	.mui-grid-view.mui-grid-9 .mui-table-view-cell{
+    		border: none;
+    	}
+    	html,body,.mui-content,.mui-grid-view.mui-grid-9{
+    		background: #FFF;
+    		height: 100%;
+    		border: none;
+    	}
+    
+    	.tab-vertical{
+    		width: 20%;
+    		height: 100%;
+    		background: #F3F4F6;
+    	}
+    	.tab-vertical li{
+    		text-align: center;
+    		height: 60px;
+    		line-height: 20px;
+    		padding-top: 8px;
+    		border-width: 0 1px 1px 0;
+    		border-style: solid;
+    		border-color: #D8D8D8;
+    		cursor: pointer;
+    	}
+    	.tab-vertical .active{
+    		background: #FFF;
+    		border-left: 3px solid #FF6565;
+    		border-right: 0;
+    		color:#FF6565 ;
+    	}
+    	.pro-cont{
+    		width:80%;
+    	}
+    </style>
+</head>
+<body>
+	<div class="mui-content">
+    	<ul class="tab-vertical fl">
+    		<li class="active">
+    			<i class="iconfont">&#xe608;</i>
+    			<br />
+    			<span class="size-sm">推荐</span>
+    		</li>
+    		<li>
+    			<i class="iconfont">&#xe61c;</i>
+    			<br />
+    			<span class="size-sm">眼部</span>
+    		</li>
+    		<li>
+    			<i class="iconfont">&#xe62c;</i>
+    			<br />
+    			<span class="size-sm">鼻部</span>
+    		</li>
+    		<li>
+    			<i class="iconfont">&#xe623;</i>
+    			<br />
+    			<span class="size-sm">牙齿</span>
+    		</li>
+    	</ul>
+    	<div class="fr pro-cont bg-white">
+    		<ul class="mui-table-view mui-grid-view mui-grid-9">
+				<li class="mui-table-view-cell mui-media mui-col-xs-4">
+					<a href="#">
+						<img src="img/pic1.png"/>
+						<div class="mui-media-body">双眼皮</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-4">
+					<a href="#">
+						<img src="img/pic1.png"/>
+						<div class="mui-media-body">双眼皮</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-4">
+					<a href="#">
+						<img src="img/pic1.png"/>
+						<div class="mui-media-body">双眼皮</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-4">
+					<a href="#">
+						<img src="img/pic1.png"/>
+						<div class="mui-media-body">双眼皮</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-4">
+					<a href="#">
+						<img src="img/pic1.png"/>
+						<div class="mui-media-body">双眼皮</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-4">
+					<a href="#">
+						<img src="img/pic1.png"/>
+						<div class="mui-media-body">双眼皮</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media mui-col-xs-4">
+					<a href="#">
+						<img src="img/pic1.png"/>
+						<div class="mui-media-body">双眼皮</div>
+					</a>
+				</li>
+			</ul>
+    	</div>
+	</div>
+	<script type="text/javascript" src="js/jquery.min.js" ></script>
+	<script>
+		$(document).ready(function(){
+			$(".tab-vertical li").on("click",function(){
+				$(".tab-vertical li").removeClass("active");
+				$(this).addClass("active");
+			});
+		});
+	</script>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<style>
+
+.nav-list > li {
+    border-bottom: 1px solid #e7e7e7;
+    background: white;
+}
+
+.nav-list > li.active > ul {
+    max-height: 0;
+}
+
+
+.left-side-bar {
+    padding: 0;
+    width: 200px;
+}
+
+.admin-menu-right {
+    position: relative;
+    left: 120px;
+    font-size: 20px;
+}
+
+.nav-list {
+    border-right: 1px solid #e7e7e7;
+}
+
+ul {
+    list-style: none;
+}
+
+.admin-sub-menu li {
+    padding: 5px;
+}
+
+.admin-sub-menu {
+    transition: max-height 0.1s ease-in;
+    max-height: 500px;
+    background: rgba(240, 240, 240, 0.41);
+    border-top: 1px solid #e7e7e7;
+}
+
+li.active .admin-sub-menu {
+    border: 0;
+    transition: max-height 0.1s ease-out;
+    max-height: 0;
+    display: none;
+}
+
+</style>
+
+<div  ng-controller='appController'>
+<div class="left-side-bar col-lg-2">
+      <div class="span3 bs-docs-sidebar">
+        <ul class="nav nav-list bs-docs-sidenav">
+
+          <li >
+            <a ng-if='isRoot()||isPromoter()||isEditor()||isCustom()' href="#/index/city_list"><i ></i>城市
+            </a>
+            
+          </li>
+          
+          
+          
+          <li toggle-class='active' class='active'>
+              <a ng-if='isRoot()||isPromoter()||isEditor()||isCustom()' class='menu-label'><i ></i>用户
+                <i class="fa fa-angle-right admin-menu-right"></i>
+              </a>
+              <ul class='admin-sub-menu'>
+                    <li><a ng-if='isRoot()||isCustom()' href="#/index/apply_list"><i ></i>申请</a></li>
+                    <li><a ng-if='isRoot()||isPromoter()||isEditor()||isMarketer()' href="#/index/user_list"><i ></i>用户</a></li>
+                    <li><a ng-if='isRoot()||isCustom()' href="#/index/advice_list"><i ></i>反馈列表</a></li>
+              </ul>
+          </li>
+          
+          <li toggle-class='active' class='active'>
+              <a ng-if='isRoot()||isPromoter()||isEditor()||isCustom()' class='menu-label'><i ></i>项目
+                <i class="fa fa-angle-right admin-menu-right"></i>
+              </a>
+              <ul class='admin-sub-menu'>
+                    <li><a ng-if='isRoot()||isEditor()||isCustom()' href="#/index/item_list"><i ></i>商品</a></li>
+                    <li><a ng-if='isRoot()||isEditor()' href="#/index/hospital_list"><i ></i>医院</a></li>
+                    <li><a ng-if='isRoot()||isEditor()' href="#/index/hospital_user_list"><i ></i>医院管理员列表</a></li>
+                    <li><a ng-if='isRoot()||isEditor()' href="#/index/coupon_list"><i ></i>优惠券列表</a></li>
+                    <li><a ng-if='isRoot()||isEditor()' href="#/index/period_pay_choice_list"><i ></i>分期选项列表</a></li>
+                    <li><a ng-if='isRoot()||isEditor()' href="#/index/subcat_list"><i ></i>商品分类</a></li>
+              </ul>
+          </li>
+          
+          <li toggle-class='active' class='active'>
+              <a ng-if='isRoot()||isPromoter()||isEditor()||isCustom()' class='menu-label'><i ></i>活动
+                <i class="fa fa-angle-right admin-menu-right"></i>
+              </a>
+              <ul class='admin-sub-menu'>
+                  <li><a ng-if='isRoot()||isEditor()||isMarketer()' href="#/index/activity_list"><i ></i>活动列表</a></li>
+                  <li><a ng-if='isRoot()||isEditor()||isMarketer()' href="#/index/trial_list"><i ></i>试用列表</a></li>
+                  <li><a ng-if='isRoot()||isEditor()' href="#/index/daily_coupon_list"><i ></i>每日优惠券列表</a></li>
+                  <li><a ng-if='isRoot()||isEditor()' href="#/index/tutorial_list"><i ></i>美攻略列表</a></li>
+                  <li><a ng-if='isRoot()||isEditor()||isTester()||isPromoter()' href="#/index/question_list"><i ></i>问题列表</a></li>
+                  <li><a ng-if='isRoot()||isEditor()||isTester()||isPromoter()' href="#/index/user_question_list"><i></i>用户问题列表</a></li>
+                  <li><a ng-if='isRoot()||isEditor()||isTester()||isPromoter()' href="#/index/school_list"><i></i>学校列表</a></li>
+                  <li><a ng-if='isRoot()||isEditor()||isTester()||isPromoter()' href="#/index/room_list"><i></i>寝室列表</a></li>
+              </ul>
+          </li>
+          <li ng-if='isRoot()||isTester()'><a href="#/index/user_vcode"><i ></i>获取验证码</a></li>
+          <li ng-if='isRoot()||isPromoter()||isMarketer()'><a href="#/index/promoter_list"><i ></i>推广列表</a></li>
+
+          <li ng-if='isRoot()||isEditor()||isCustom()'><a href="#/index/order_list"><i ></i>订单</a></li>
+          
+          <li ng-if='isRoot()||isCustom()'><a href="#/index/period_pay_log_list"><i ></i>逾期帐单列表</a></li>
+
+        </ul>
+      </div>
+</div>
+
+<div class='content col-lg-9'>
+    <div id='nav-wrap' style='display:block;float:right;'>
+        <div class="form-group" style='float:left;padding:5px;'>
+            <select class="form-group" ng-controller="ngCity"
+                chosen
+                allow-single-deselect="true"
+                data-placeholder="选择城市"
+                no-results-text="'没找到'"
+                ng-model="extra.city_id"
+                ng-options="o.id as o.name for o in optionsData"
+                style="width:200px;">
+                <option value=""></option>
+            </select>
+        </div>
+        <span class='name-label'>{{name}}</span>
+        <a class='nav-link btn-back btn' onclick='history.back()'>
+            <i class="fa fa-angle-left" style='margin-right: 5px;'></i>返回
+        </a>
+        <a class='login-button' href='/admin/#/signin' ng-if='!token'>登录</a>
+        <a class='nav-link' class='login-button' href='/admin/logout' ng-if='token'>退出</a>
+    </div>
+
+    <div ui-view class='view-wrapper'>
+    
+    </div>
+
+<div>
+
+</div>

@@ -1,0 +1,451 @@
+mysqld, Version: 5.6.22-log (Homebrew). started with:
+Tcp port: 0  Unix socket: (null)
+Time                 Id Command    Argument
+mysqld, Version: 5.6.22-log (Homebrew). started with:
+Tcp port: 0  Unix socket: (null)
+Time                 Id Command    Argument
+# Time: 151226  9:44:11
+# User@Host: root[root] @ localhost []  Id:     1
+# Query_time: 0.000176  Lock_time: 0.000000 Rows_sent: 1  Rows_examined: 0
+SET timestamp=1451094251;
+select @@version_comment limit 1;
+# Time: 151226  9:44:13
+# User@Host: root[root] @ localhost []  Id:     1
+# Query_time: 0.000083  Lock_time: 0.000000 Rows_sent: 1  Rows_examined: 0
+SET timestamp=1451094253;
+SELECT DATABASE();
+# User@Host: root[root] @ localhost []  Id:     1
+# Query_time: 0.000149  Lock_time: 0.000000 Rows_sent: 1  Rows_examined: 0
+use main;
+SET timestamp=1451094253;
+# administrator command: Init DB;
+# User@Host: root[root] @ localhost []  Id:     1
+# Query_time: 0.001034  Lock_time: 0.000152 Rows_sent: 11  Rows_examined: 11
+SET timestamp=1451094253;
+show databases;
+# User@Host: root[root] @ localhost []  Id:     1
+# Query_time: 0.000221  Lock_time: 0.000055 Rows_sent: 46  Rows_examined: 46
+SET timestamp=1451094253;
+show tables;
+# User@Host: root[root] @ localhost []  Id:     1
+# Query_time: 0.000549  Lock_time: 0.000000 Rows_sent: 0  Rows_examined: 0
+SET timestamp=1451094253;
+;
+# User@Host: root[root] @ localhost []  Id:     1
+# Query_time: 0.000354  Lock_time: 0.000000 Rows_sent: 0  Rows_examined: 0
+SET timestamp=1451094253;
+;
+# User@Host: root[root] @ localhost []  Id:     1
+# Query_time: 0.000459  Lock_time: 0.000000 Rows_sent: 0  Rows_examined: 0
+SET timestamp=1451094253;
+;
+# User@Host: root[root] @ localhost []  Id:     1
+# Query_time: 0.000184  Lock_time: 0.000000 Rows_sent: 0  Rows_examined: 0
+SET timestamp=1451094253;
+;
+# User@Host: root[root] @ localhost []  Id:     1
+# Query_time: 0.001166  Lock_time: 0.000000 Rows_sent: 0  Rows_examined: 0
+SET timestamp=1451094253;
+;
+# User@Host: root[root] @ localhost []  Id:     1
+# Query_time: 0.000408  Lock_time: 0.000000 Rows_sent: 0  Rows_examined: 0
+SET timestamp=1451094253;
+;
+# User@Host: root[root] @ localhost []  Id:     1
+# Query_time: 0.000447  Lock_time: 0.000000 Rows_sent: 0  Rows_examined: 0
+SET timestamp=1451094253;
+;
+# User@Host: root[root] @ localhost []  Id:     1
+# Query_time: 0.000384  Lock_time: 0.000000 Rows_sent: 0  Rows_examined: 0
+SET timestamp=1451094253;
+;
+# User@Host: root[root] @ localhost []  Id:     1
+# Query_time: 0.000355  Lock_time: 0.000000 Rows_sent: 0  Rows_examined: 0
+SET timestamp=1451094253;
+;
+# User@Host: root[root] @ localhost []  Id:     1
+# Query_time: 0.000364  Lock_time: 0.000000 Rows_sent: 0  Rows_examined: 0
+SET timestamp=1451094253;
+;
+# User@Host: root[root] @ localhost []  Id:     1
+# Query_time: 0.000415  Lock_time: 0.000000 Rows_sent: 0  Rows_examined: 0
+SET timestamp=1451094253;
+;
+# User@Host: root[root] @ localhost []  Id:     1
+# Query_time: 0.000404  Lock_time: 0.000000 Rows_sent: 0  Rows_examined: 0
+SET timestamp=1451094253;
+;
+# User@Host: root[root] @ localhost []  Id:     1
+# Query_time: 0.000381  Lock_time: 0.000000 Rows_sent: 0  Rows_examined: 0
+SET timestamp=1451094253;
+;
+# User@Host: root[root] @ localhost []  Id:     1
+# Query_time: 0.000358  Lock_time: 0.000000 Rows_sent: 0  Rows_examined: 0
+SET timestamp=1451094253;
+;
+# User@Host: root[root] @ localhost []  Id:     1
+# Query_time: 0.000339  Lock_time: 0.000000 Rows_sent: 0  Rows_examined: 0
+SET timestamp=1451094253;
+;
+# User@Host: root[root] @ localhost []  Id:     1
+# Query_time: 0.000200  Lock_time: 0.000000 Rows_sent: 0  Rows_examined: 0
+SET timestamp=1451094253;
+;
+# User@Host: root[root] @ localhost []  Id:     1
+# Query_time: 0.000422  Lock_time: 0.000000 Rows_sent: 0  Rows_examined: 0
+SET timestamp=1451094253;
+;
+# User@Host: root[root] @ localhost []  Id:     1
+# Query_time: 0.000462  Lock_time: 0.000000 Rows_sent: 0  Rows_examined: 0
+SET timestamp=1451094253;
+;
+# User@Host: root[root] @ localhost []  Id:     1
+# Query_time: 0.000392  Lock_time: 0.000000 Rows_sent: 0  Rows_examined: 0
+SET timestamp=1451094253;
+;
+# User@Host: root[root] @ localhost []  Id:     1
+# Query_time: 0.000271  Lock_time: 0.000000 Rows_sent: 0  Rows_examined: 0
+SET timestamp=1451094253;
+;
+# User@Host: root[root] @ localhost []  Id:     1
+# Query_time: 0.000512  Lock_time: 0.000000 Rows_sent: 0  Rows_examined: 0
+SET timestamp=1451094253;
+;
+# User@Host: root[root] @ localhost []  Id:     1
+# Query_time: 0.000522  Lock_time: 0.000000 Rows_sent: 0  Rows_examined: 0
+SET timestamp=1451094253;
+;
+# User@Host: root[root] @ localhost []  Id:     1
+# Query_time: 0.000274  Lock_time: 0.000000 Rows_sent: 0  Rows_examined: 0
+SET timestamp=1451094253;
+;
+# User@Host: root[root] @ localhost []  Id:     1
+# Query_time: 0.000327  Lock_time: 0.000000 Rows_sent: 0  Rows_examined: 0
+SET timestamp=1451094253;
+;
+# User@Host: root[root] @ localhost []  Id:     1
+# Query_time: 0.000466  Lock_time: 0.000000 Rows_sent: 0  Rows_examined: 0
+SET timestamp=1451094253;
+;
+# User@Host: root[root] @ localhost []  Id:     1
+# Query_time: 0.000372  Lock_time: 0.000000 Rows_sent: 0  Rows_examined: 0
+SET timestamp=1451094253;
+;
+# User@Host: root[root] @ localhost []  Id:     1
+# Query_time: 0.000344  Lock_time: 0.000000 Rows_sent: 0  Rows_examined: 0
+SET timestamp=1451094253;
+;
+# User@Host: root[root] @ localhost []  Id:     1
+# Query_time: 0.000292  Lock_time: 0.000000 Rows_sent: 0  Rows_examined: 0
+SET timestamp=1451094253;
+;
+# User@Host: root[root] @ localhost []  Id:     1
+# Query_time: 0.000333  Lock_time: 0.000000 Rows_sent: 0  Rows_examined: 0
+SET timestamp=1451094253;
+;
+# User@Host: root[root] @ localhost []  Id:     1
+# Query_time: 0.000416  Lock_time: 0.000000 Rows_sent: 0  Rows_examined: 0
+SET timestamp=1451094253;
+;
+# User@Host: root[root] @ localhost []  Id:     1
+# Query_time: 0.000340  Lock_time: 0.000000 Rows_sent: 0  Rows_examined: 0
+SET timestamp=1451094253;
+;
+# User@Host: root[root] @ localhost []  Id:     1
+# Query_time: 0.000293  Lock_time: 0.000000 Rows_sent: 0  Rows_examined: 0
+SET timestamp=1451094253;
+;
+# User@Host: root[root] @ localhost []  Id:     1
+# Query_time: 0.000287  Lock_time: 0.000000 Rows_sent: 0  Rows_examined: 0
+SET timestamp=1451094253;
+;
+# User@Host: root[root] @ localhost []  Id:     1
+# Query_time: 0.000345  Lock_time: 0.000000 Rows_sent: 0  Rows_examined: 0
+SET timestamp=1451094253;
+;
+# User@Host: root[root] @ localhost []  Id:     1
+# Query_time: 0.000331  Lock_time: 0.000000 Rows_sent: 0  Rows_examined: 0
+SET timestamp=1451094253;
+;
+# User@Host: root[root] @ localhost []  Id:     1
+# Query_time: 0.000343  Lock_time: 0.000000 Rows_sent: 0  Rows_examined: 0
+SET timestamp=1451094253;
+;
+# User@Host: root[root] @ localhost []  Id:     1
+# Query_time: 0.000290  Lock_time: 0.000000 Rows_sent: 0  Rows_examined: 0
+SET timestamp=1451094253;
+;
+# User@Host: root[root] @ localhost []  Id:     1
+# Query_time: 0.000322  Lock_time: 0.000000 Rows_sent: 0  Rows_examined: 0
+SET timestamp=1451094253;
+;
+# User@Host: root[root] @ localhost []  Id:     1
+# Query_time: 0.000396  Lock_time: 0.000000 Rows_sent: 0  Rows_examined: 0
+SET timestamp=1451094253;
+;
+# User@Host: root[root] @ localhost []  Id:     1
+# Query_time: 0.000655  Lock_time: 0.000000 Rows_sent: 0  Rows_examined: 0
+SET timestamp=1451094253;
+;
+# User@Host: root[root] @ localhost []  Id:     1
+# Query_time: 0.000384  Lock_time: 0.000000 Rows_sent: 0  Rows_examined: 0
+SET timestamp=1451094253;
+;
+# User@Host: root[root] @ localhost []  Id:     1
+# Query_time: 0.000409  Lock_time: 0.000000 Rows_sent: 0  Rows_examined: 0
+SET timestamp=1451094253;
+;
+# User@Host: root[root] @ localhost []  Id:     1
+# Query_time: 0.000349  Lock_time: 0.000000 Rows_sent: 0  Rows_examined: 0
+SET timestamp=1451094253;
+;
+# User@Host: root[root] @ localhost []  Id:     1
+# Query_time: 0.000188  Lock_time: 0.000000 Rows_sent: 0  Rows_examined: 0
+SET timestamp=1451094253;
+;
+# User@Host: root[root] @ localhost []  Id:     1
+# Query_time: 0.000442  Lock_time: 0.000000 Rows_sent: 0  Rows_examined: 0
+SET timestamp=1451094253;
+;
+# User@Host: root[root] @ localhost []  Id:     1
+# Query_time: 0.000343  Lock_time: 0.000000 Rows_sent: 0  Rows_examined: 0
+SET timestamp=1451094253;
+;
+# Time: 151226  9:44:16
+# User@Host: root[root] @ localhost []  Id:     1
+# Query_time: 0.000538  Lock_time: 0.000076 Rows_sent: 5  Rows_examined: 5
+SET timestamp=1451094256;
+show variables like '%slow%';
+# Time: 151226  9:48:53
+# User@Host: root[root] @ localhost []  Id:     2
+# Query_time: 0.000128  Lock_time: 0.000000 Rows_sent: 0  Rows_examined: 0
+SET timestamp=1451094533;
+SET NAMES utf8mb4;
+# User@Host: root[root] @ localhost []  Id:     2
+# Query_time: 0.000053  Lock_time: 0.000000 Rows_sent: 0  Rows_examined: 0
+SET timestamp=1451094533;
+set autocommit=0;
+# User@Host: root[root] @ localhost []  Id:     2
+# Query_time: 0.000319  Lock_time: 0.000048 Rows_sent: 1  Rows_examined: 1
+SET timestamp=1451094533;
+SHOW VARIABLES LIKE 'sql_mode';
+# User@Host: root[root] @ localhost []  Id:     2
+# Query_time: 0.000026  Lock_time: 0.000000 Rows_sent: 1  Rows_examined: 0
+SET timestamp=1451094533;
+SELECT DATABASE();
+# User@Host: root[root] @ localhost []  Id:     2
+# Query_time: 0.000029  Lock_time: 0.000000 Rows_sent: 1  Rows_examined: 0
+SET timestamp=1451094533;
+SELECT @@tx_isolation;
+# User@Host: root[root] @ localhost []  Id:     2
+# Query_time: 0.001119  Lock_time: 0.000226 Rows_sent: 1  Rows_examined: 219
+SET timestamp=1451094533;
+show collation where `Charset` = 'utf8' and `Collation` = 'utf8_bin';
+# User@Host: root[root] @ localhost []  Id:     2
+# Query_time: 0.000435  Lock_time: 0.000000 Rows_sent: 1  Rows_examined: 0
+SET timestamp=1451094533;
+SELECT CAST('test plain returns' AS CHAR(60)) AS anon_1;
+# User@Host: root[root] @ localhost []  Id:     2
+# Query_time: 0.000032  Lock_time: 0.000000 Rows_sent: 1  Rows_examined: 0
+SET timestamp=1451094533;
+SELECT CAST('test unicode returns' AS CHAR(60)) AS anon_1;
+# User@Host: root[root] @ localhost []  Id:     2
+# Query_time: 0.000047  Lock_time: 0.000000 Rows_sent: 1  Rows_examined: 0
+SET timestamp=1451094533;
+SELECT CAST('test collated returns' AS CHAR CHARACTER SET utf8) COLLATE utf8_bin AS anon_1;
+# User@Host: root[root] @ localhost []  Id:     2
+# Query_time: 0.000038  Lock_time: 0.000000 Rows_sent: 1  Rows_examined: 0
+SET timestamp=1451094533;
+SELECT 'x' AS some_label;
+# User@Host: root[root] @ localhost []  Id:     2
+# Query_time: 0.000028  Lock_time: 0.000000 Rows_sent: 0  Rows_examined: 0
+SET timestamp=1451094533;
+rollback;
+# User@Host: root[root] @ localhost []  Id:     2
+# Query_time: 0.000285  Lock_time: 0.000101 Rows_sent: 11  Rows_examined: 22
+SET timestamp=1451094533;
+SELECT recommend_subcat.id AS recommend_subcat_id, recommend_subcat.sub_cat_id AS recommend_subcat_sub_cat_id, recommend_subcat.sort_order AS recommend_subcat_sort_order, recommend_subcat.icon AS recommend_subcat_icon 
+FROM recommend_subcat ORDER BY recommend_subcat.sort_order ASC, recommend_subcat.id DESC 
+ LIMIT 11;
+# User@Host: root[root] @ localhost []  Id:     2
+# Query_time: 0.000686  Lock_time: 0.000140 Rows_sent: 10  Rows_examined: 23
+SET timestamp=1451094533;
+SELECT item_sub_cat.id AS item_sub_cat_id, item_sub_cat.name AS item_sub_cat_name, item_sub_cat.`desc` AS item_sub_cat_desc, item_sub_cat.icon AS item_sub_cat_icon, item_sub_cat.cat_id AS item_sub_cat_cat_id, item_sub_cat.status AS item_sub_cat_status 
+FROM item_sub_cat 
+WHERE item_sub_cat.id IN (1, 2, 3, 5, 8, 9, 10, 11, 18, 20);
+# User@Host: root[root] @ localhost []  Id:     2
+# Query_time: 0.000154  Lock_time: 0.000098 Rows_sent: 1  Rows_examined: 1
+SET timestamp=1451094533;
+SELECT activity.id AS activity_id, activity.title AS activity_title, activity.`desc` AS activity_desc, activity.start_time AS activity_start_time, activity.end_time AS activity_end_time, activity.create_time AS activity_create_time 
+FROM activity 
+WHERE activity.start_time < '2015-12-26 09:48:53.191317' AND activity.end_time >= '2015-12-26 09:48:53.191317' 
+ LIMIT 1;
+# User@Host: root[root] @ localhost []  Id:     2
+# Query_time: 0.000662  Lock_time: 0.000087 Rows_sent: 3  Rows_examined: 6
+SET timestamp=1451094533;
+SELECT activity_item.id AS activity_item_id, activity_item.activity_id AS activity_item_activity_id, activity_item.item_id AS activity_item_item_id, activity_item.sort_order AS activity_item_sort_order, activity_item.price AS activity_item_price, activity_item.image AS activity_item_image 
+FROM activity_item 
+WHERE activity_item.activity_id = 1 ORDER BY activity_item.sort_order ASC, activity_item.id DESC 
+ LIMIT 11;
+# User@Host: root[root] @ localhost []  Id:     2
+# Query_time: 0.000162  Lock_time: 0.000061 Rows_sent: 11  Rows_examined: 22
+SET timestamp=1451094533;
+SELECT recommend_item.id AS recommend_item_id, recommend_item.item_id AS recommend_item_item_id, recommend_item.sort_order AS recommend_item_sort_order, recommend_item.image AS recommend_item_image, recommend_item.`desc` AS recommend_item_desc 
+FROM recommend_item ORDER BY recommend_item.sort_order ASC, recommend_item.id DESC 
+ LIMIT 11;
+# User@Host: root[root] @ localhost []  Id:     2
+# Query_time: 0.001123  Lock_time: 0.000124 Rows_sent: 10  Rows_examined: 11
+SET timestamp=1451094533;
+SELECT image_size.`key` AS image_size_key, image_size.width AS image_size_width, image_size.height AS image_size_height 
+FROM image_size 
+WHERE image_size.`key` IN ('subcaticon/1450664488.69', 'subcaticon/1449908541.44', 'subcaticon/1450664969.19', 'subcaticon/1449908560.23', 'subcaticon/1450663479.71', 'subcaticon/1449908584.6', 'subcaticon/1450665060.6', 'subcaticon/1450663883.51', 'subcaticon/1449908633.03', 'subcaticon/1449908649.5');
+# User@Host: root[root] @ localhost []  Id:     2
+# Query_time: 0.005714  Lock_time: 0.000091 Rows_sent: 13  Rows_examined: 13
+SET timestamp=1451094533;
+SELECT item.id AS item_id, item.orig_price AS item_orig_price, item.price AS item_price, item.sub_cat_id AS item_sub_cat_id, item.hospital_id AS item_hospital_id, item.image AS item_image, item.photos AS item_photos, item.title AS item_title, item.item_no AS item_item_no, item.support_choices AS item_support_choices, item.sold_count AS item_sold_count, item.has_fee AS item_has_fee, item.direct_buy AS item_direct_buy, item.status AS item_status, item.surgery_desc AS item_surgery_desc, item.doctor_desc AS item_doctor_desc, item.create_time AS item_create_time, item.use_time AS item_use_time, item.note AS item_note 
+FROM item 
+WHERE item.id IN (48, 2, 35, 1, 5, 6, 7, 10, 43, 16, 49, 50, 19);
+# User@Host: root[root] @ localhost []  Id:     2
+# Query_time: 0.000234  Lock_time: 0.000113 Rows_sent: 1  Rows_examined: 1
+SET timestamp=1451094533;
+SELECT hospital.id AS hospital_id, hospital.name AS hospital_name, hospital.city_id AS hospital_city_id, hospital.phone AS hospital_phone, hospital.`desc` AS hospital_desc, hospital.tags AS hospital_tags, hospital.addr AS hospital_addr, hospital.working_time AS hospital_working_time, hospital.long_lat AS hospital_long_lat, hospital.photos AS hospital_photos 
+FROM hospital 
+WHERE hospital.id IN (2);
+# User@Host: root[root] @ localhost []  Id:     2
+# Query_time: 0.000175  Lock_time: 0.000084 Rows_sent: 7  Rows_examined: 7
+SET timestamp=1451094533;
+SELECT period_pay_choice.id AS period_pay_choice_id, period_pay_choice.period_count AS period_pay_choice_period_count, period_pay_choice.period_fee AS period_pay_choice_period_fee 
+FROM period_pay_choice ORDER BY period_pay_choice.id DESC 
+ LIMIT 11;
+# User@Host: root[root] @ localhost []  Id:     2
+# Query_time: 0.000050  Lock_time: 0.000000 Rows_sent: 0  Rows_examined: 0
+SET timestamp=1451094533;
+rollback;
+# Time: 151226  9:49:45
+# User@Host: root[root] @ localhost []  Id:     2
+# Query_time: 0.003010  Lock_time: 0.000166 Rows_sent: 0  Rows_examined: 0
+SET timestamp=1451094585;
+DELETE FROM item_fav WHERE item_fav.user_id = 1 AND item_fav.item_id = 1;
+# User@Host: root[root] @ localhost []  Id:     2
+# Query_time: 0.000033  Lock_time: 0.000000 Rows_sent: 0  Rows_examined: 0
+SET timestamp=1451094585;
+commit;
+# User@Host: root[root] @ localhost []  Id:     2
+# Query_time: 0.000015  Lock_time: 0.000000 Rows_sent: 0  Rows_examined: 0
+SET timestamp=1451094585;
+rollback;
+# Time: 151226  9:50:45
+# User@Host: root[root] @ localhost []  Id:     2
+# Query_time: 0.000644  Lock_time: 0.000124 Rows_sent: 1  Rows_examined: 1
+SET timestamp=1451094645;
+SELECT admin_user.id AS admin_user_id, admin_user.name AS admin_user_name, admin_user.passwd AS admin_user_passwd, admin_user.cat AS admin_user_cat, admin_user.create_time AS admin_user_create_time 
+FROM admin_user 
+WHERE admin_user.name = 'xianpeng' 
+ LIMIT 1;
+# User@Host: root[root] @ localhost []  Id:     2
+# Query_time: 0.002934  Lock_time: 0.000172 Rows_sent: 1  Rows_examined: 2424
+SET timestamp=1451094645;
+SELECT count(user.id) AS count_1 
+FROM user;
+# User@Host: root[root] @ localhost []  Id:     2
+# Query_time: 0.000209  Lock_time: 0.000091 Rows_sent: 11  Rows_examined: 11
+SET timestamp=1451094645;
+SELECT user.id AS user_id, user.name AS user_name, user.avatar AS user_avatar, user.phone AS user_phone, user.passwd AS user_passwd, user.create_time AS user_create_time 
+FROM user ORDER BY user.id DESC 
+ LIMIT 11;
+# User@Host: root[root] @ localhost []  Id:     2
+# Query_time: 0.000839  Lock_time: 0.000081 Rows_sent: 10  Rows_examined: 10
+SET timestamp=1451094645;
+SELECT qr_code_user.id AS qr_code_user_id, qr_code_user.open_id AS qr_code_user_open_id, qr_code_user.qrcode_id AS qr_code_user_qrcode_id, qr_code_user.user_id AS qr_code_user_user_id, qr_code_user.sex AS qr_code_user_sex, qr_code_user.city AS qr_code_user_city, qr_code_user.headimgurl AS qr_code_user_headimgurl, qr_code_user.nickname AS qr_code_user_nickname, qr_code_user.location AS qr_code_user_location, qr_code_user.lnglat AS qr_code_user_lnglat, qr_code_user.create_time AS qr_code_user_create_time 
+FROM qr_code_user 
+WHERE qr_code_user.user_id IN (2432, 2433, 2434, 2435, 2436, 2437, 2438, 2439, 2440, 2431);
+# User@Host: root[root] @ localhost []  Id:     2
+# Query_time: 0.000663  Lock_time: 0.000108 Rows_sent: 10  Rows_examined: 10
+SET timestamp=1451094645;
+SELECT wechat_reg.id AS wechat_reg_id, wechat_reg.user_id AS wechat_reg_user_id, wechat_reg.open_id AS wechat_reg_open_id, wechat_reg.create_time AS wechat_reg_create_time 
+FROM wechat_reg 
+WHERE wechat_reg.user_id IN (2440, 2439, 2438, 2437, 2436, 2435, 2434, 2433, 2432, 2431);
+# User@Host: root[root] @ localhost []  Id:     2
+# Query_time: 0.003956  Lock_time: 0.000118 Rows_sent: 10  Rows_examined: 1837
+SET timestamp=1451094645;
+SELECT wechat_reg.open_id AS wechat_reg_open_id, count(wechat_reg.id) AS count_1 
+FROM wechat_reg 
+WHERE wechat_reg.open_id IN ('o56qvw6BV4Zjt7hHkQvcvNOvzV8Y', 'o56qvw1Z_AhOQPxPgpmhZkrjO1fY', 'o56qvw1VuOWKgP7Fe6TMQHjyIIS4', 'o56qvw6wD0DJ_5rcqqlD6yB57nHE', 'o56qvw33X8_ZCURqNOuGuGezIw7g', 'o56qvw8sc1XpOcBDp5LmefZPY2xA', 'o56qvw5MXYXbAnrUjB79JFSMRoIs', 'o56qvw55RoDFaa-COjW2Xhidux4U', 'o56qvw8AJS7myOtxIZZGrk_ymamw', 'o56qvw8lCLlZ4iHF2iYBtoeEZ4Ho') GROUP BY wechat_reg.open_id;
+# Time: 151226  9:50:46
+# User@Host: root[root] @ localhost []  Id:     2
+# Query_time: 0.003434  Lock_time: 0.000112 Rows_sent: 10  Rows_examined: 1817
+SET timestamp=1451094646;
+SELECT wechat_reg.id AS wechat_reg_id, wechat_reg.user_id AS wechat_reg_user_id, wechat_reg.open_id AS wechat_reg_open_id, wechat_reg.create_time AS wechat_reg_create_time 
+FROM wechat_reg 
+WHERE wechat_reg.open_id IN ('o56qvw6BV4Zjt7hHkQvcvNOvzV8Y', 'o56qvw1Z_AhOQPxPgpmhZkrjO1fY', 'o56qvw1VuOWKgP7Fe6TMQHjyIIS4', 'o56qvw6wD0DJ_5rcqqlD6yB57nHE', 'o56qvw33X8_ZCURqNOuGuGezIw7g', 'o56qvw8sc1XpOcBDp5LmefZPY2xA', 'o56qvw5MXYXbAnrUjB79JFSMRoIs', 'o56qvw55RoDFaa-COjW2Xhidux4U', 'o56qvw8AJS7myOtxIZZGrk_ymamw', 'o56qvw8lCLlZ4iHF2iYBtoeEZ4Ho');
+# User@Host: root[root] @ localhost []  Id:     2
+# Query_time: 0.002785  Lock_time: 0.000103 Rows_sent: 10  Rows_examined: 20
+SET timestamp=1451094646;
+SELECT qr_code_user.open_id AS qr_code_user_open_id, qrcode.promoter_id AS qrcode_promoter_id 
+FROM qr_code_user INNER JOIN qrcode ON qr_code_user.open_id IN ('o56qvw6BV4Zjt7hHkQvcvNOvzV8Y', 'o56qvw1Z_AhOQPxPgpmhZkrjO1fY', 'o56qvw1VuOWKgP7Fe6TMQHjyIIS4', 'o56qvw6wD0DJ_5rcqqlD6yB57nHE', 'o56qvw33X8_ZCURqNOuGuGezIw7g', 'o56qvw8sc1XpOcBDp5LmefZPY2xA', 'o56qvw5MXYXbAnrUjB79JFSMRoIs', 'o56qvw55RoDFaa-COjW2Xhidux4U', 'o56qvw8AJS7myOtxIZZGrk_ymamw', 'o56qvw8lCLlZ4iHF2iYBtoeEZ4Ho') AND qr_code_user.qrcode_id = qrcode.id;
+# User@Host: root[root] @ localhost []  Id:     2
+# Query_time: 0.000411  Lock_time: 0.000080 Rows_sent: 185  Rows_examined: 185
+SET timestamp=1451094646;
+SELECT promoter.id AS promoter_id, promoter.phone AS promoter_phone, promoter.name AS promoter_name, promoter.passwd AS promoter_passwd, promoter.follow_count AS promoter_follow_count, promoter.reg_count AS promoter_reg_count, promoter.dup_count AS promoter_dup_count, promoter.create_time AS promoter_create_time, promoter.create_by AS promoter_create_by, promoter.status AS promoter_status 
+FROM promoter;
+# User@Host: root[root] @ localhost []  Id:     2
+# Query_time: 0.000096  Lock_time: 0.000000 Rows_sent: 0  Rows_examined: 0
+SET timestamp=1451094646;
+rollback;
+# Time: 151226  9:51:42
+# User@Host: root[root] @ localhost []  Id:     2
+# Query_time: 0.000147  Lock_time: 0.000076 Rows_sent: 1  Rows_examined: 1
+SET timestamp=1451094702;
+SELECT admin_user.id AS admin_user_id, admin_user.name AS admin_user_name, admin_user.passwd AS admin_user_passwd, admin_user.cat AS admin_user_cat, admin_user.create_time AS admin_user_create_time 
+FROM admin_user 
+WHERE admin_user.name = 'xianpeng' 
+ LIMIT 1;
+# User@Host: root[root] @ localhost []  Id:     2
+# Query_time: 0.001108  Lock_time: 0.000088 Rows_sent: 1  Rows_examined: 2424
+SET timestamp=1451094702;
+SELECT count(user.id) AS count_1 
+FROM user;
+# User@Host: root[root] @ localhost []  Id:     2
+# Query_time: 0.000160  Lock_time: 0.000078 Rows_sent: 11  Rows_examined: 11
+SET timestamp=1451094702;
+SELECT user.id AS user_id, user.name AS user_name, user.avatar AS user_avatar, user.phone AS user_phone, user.passwd AS user_passwd, user.create_time AS user_create_time 
+FROM user ORDER BY user.id DESC 
+ LIMIT 11;
+# User@Host: root[root] @ localhost []  Id:     2
+# Query_time: 0.000485  Lock_time: 0.000235 Rows_sent: 10  Rows_examined: 10
+SET timestamp=1451094702;
+SELECT qr_code_user.id AS qr_code_user_id, qr_code_user.open_id AS qr_code_user_open_id, qr_code_user.qrcode_id AS qr_code_user_qrcode_id, qr_code_user.user_id AS qr_code_user_user_id, qr_code_user.sex AS qr_code_user_sex, qr_code_user.city AS qr_code_user_city, qr_code_user.headimgurl AS qr_code_user_headimgurl, qr_code_user.nickname AS qr_code_user_nickname, qr_code_user.location AS qr_code_user_location, qr_code_user.lnglat AS qr_code_user_lnglat, qr_code_user.create_time AS qr_code_user_create_time 
+FROM qr_code_user 
+WHERE qr_code_user.user_id IN (2432, 2433, 2434, 2435, 2436, 2437, 2438, 2439, 2440, 2431);
+# User@Host: root[root] @ localhost []  Id:     2
+# Query_time: 0.000275  Lock_time: 0.000099 Rows_sent: 10  Rows_examined: 10
+SET timestamp=1451094702;
+SELECT wechat_reg.id AS wechat_reg_id, wechat_reg.user_id AS wechat_reg_user_id, wechat_reg.open_id AS wechat_reg_open_id, wechat_reg.create_time AS wechat_reg_create_time 
+FROM wechat_reg 
+WHERE wechat_reg.user_id IN (2440, 2439, 2438, 2437, 2436, 2435, 2434, 2433, 2432, 2431);
+# User@Host: root[root] @ localhost []  Id:     2
+# Query_time: 0.003106  Lock_time: 0.000117 Rows_sent: 10  Rows_examined: 1837
+SET timestamp=1451094702;
+SELECT wechat_reg.open_id AS wechat_reg_open_id, count(wechat_reg.id) AS count_1 
+FROM wechat_reg 
+WHERE wechat_reg.open_id IN ('o56qvw6BV4Zjt7hHkQvcvNOvzV8Y', 'o56qvw1Z_AhOQPxPgpmhZkrjO1fY', 'o56qvw1VuOWKgP7Fe6TMQHjyIIS4', 'o56qvw6wD0DJ_5rcqqlD6yB57nHE', 'o56qvw33X8_ZCURqNOuGuGezIw7g', 'o56qvw8sc1XpOcBDp5LmefZPY2xA', 'o56qvw5MXYXbAnrUjB79JFSMRoIs', 'o56qvw55RoDFaa-COjW2Xhidux4U', 'o56qvw8AJS7myOtxIZZGrk_ymamw', 'o56qvw8lCLlZ4iHF2iYBtoeEZ4Ho') GROUP BY wechat_reg.open_id;
+# User@Host: root[root] @ localhost []  Id:     2
+# Query_time: 0.003376  Lock_time: 0.000120 Rows_sent: 10  Rows_examined: 1817
+SET timestamp=1451094702;
+SELECT wechat_reg.id AS wechat_reg_id, wechat_reg.user_id AS wechat_reg_user_id, wechat_reg.open_id AS wechat_reg_open_id, wechat_reg.create_time AS wechat_reg_create_time 
+FROM wechat_reg 
+WHERE wechat_reg.open_id IN ('o56qvw6BV4Zjt7hHkQvcvNOvzV8Y', 'o56qvw1Z_AhOQPxPgpmhZkrjO1fY', 'o56qvw1VuOWKgP7Fe6TMQHjyIIS4', 'o56qvw6wD0DJ_5rcqqlD6yB57nHE', 'o56qvw33X8_ZCURqNOuGuGezIw7g', 'o56qvw8sc1XpOcBDp5LmefZPY2xA', 'o56qvw5MXYXbAnrUjB79JFSMRoIs', 'o56qvw55RoDFaa-COjW2Xhidux4U', 'o56qvw8AJS7myOtxIZZGrk_ymamw', 'o56qvw8lCLlZ4iHF2iYBtoeEZ4Ho');
+# User@Host: root[root] @ localhost []  Id:     2
+# Query_time: 0.000502  Lock_time: 0.000139 Rows_sent: 10  Rows_examined: 20
+SET timestamp=1451094702;
+SELECT qr_code_user.open_id AS qr_code_user_open_id, qrcode.promoter_id AS qrcode_promoter_id 
+FROM qr_code_user INNER JOIN qrcode ON qr_code_user.open_id IN ('o56qvw6BV4Zjt7hHkQvcvNOvzV8Y', 'o56qvw1Z_AhOQPxPgpmhZkrjO1fY', 'o56qvw1VuOWKgP7Fe6TMQHjyIIS4', 'o56qvw6wD0DJ_5rcqqlD6yB57nHE', 'o56qvw33X8_ZCURqNOuGuGezIw7g', 'o56qvw8sc1XpOcBDp5LmefZPY2xA', 'o56qvw5MXYXbAnrUjB79JFSMRoIs', 'o56qvw55RoDFaa-COjW2Xhidux4U', 'o56qvw8AJS7myOtxIZZGrk_ymamw', 'o56qvw8lCLlZ4iHF2iYBtoeEZ4Ho') AND qr_code_user.qrcode_id = qrcode.id;
+# User@Host: root[root] @ localhost []  Id:     2
+# Query_time: 0.001655  Lock_time: 0.000090 Rows_sent: 185  Rows_examined: 185
+SET timestamp=1451094702;
+SELECT promoter.id AS promoter_id, promoter.phone AS promoter_phone, promoter.name AS promoter_name, promoter.passwd AS promoter_passwd, promoter.follow_count AS promoter_follow_count, promoter.reg_count AS promoter_reg_count, promoter.dup_count AS promoter_dup_count, promoter.create_time AS promoter_create_time, promoter.create_by AS promoter_create_by, promoter.status AS promoter_status 
+FROM promoter;
+# User@Host: root[root] @ localhost []  Id:     2
+# Query_time: 0.000099  Lock_time: 0.000000 Rows_sent: 0  Rows_examined: 0
+SET timestamp=1451094702;
+rollback;

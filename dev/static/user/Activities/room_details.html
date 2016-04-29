@@ -1,0 +1,680 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>我们正在参加美分分寝室设计大赛，赶紧为我投出你宝贵的一票吧！</title>
+		<link href="../css/mui.css" rel="stylesheet" />
+
+		<link href="css/style.css" rel="stylesheet" />
+		<link href="css/public.css" rel="stylesheet" />
+		<script src="../js/mui.min.js"></script>
+	</head>
+	<style type="text/css">
+		div.img {
+			top: -5%;
+			width: 100%;
+		}
+		
+		.mui-bar-tab {
+			border-top: 1px solid #c4c2c2;
+		}
+		
+		#canyu {
+			border-right: 1px solid #c4c2c2;
+		}
+		
+		@media only screen and (max-height: 568px) div.img {
+			top: -4% !important;
+		}
+		
+		.float {
+			width: 100%;
+		}
+		
+		.content {
+			overflow: hidden;
+			border-radius: 0 0 10px 10px;
+			box-shadow: 0 3px 4px #ccc;
+			background: #fff;
+		}
+		
+		.main {
+			padding-top: 30px;
+			margin-top: 10px;
+		}
+		
+		.foot-btn {
+			text-align: center;
+			margin-top: 20px;
+		}
+		
+		.foot-btn span {
+			display: inline-block;
+			width: 80px;
+			height: 80px;
+			background: red;
+			border-radius: 50%;
+		}
+		
+		.foot-btn span:nth-child(2) {
+			margin: 0 5%;
+			background: url(images/shar.png) no-repeat 0 0;
+			background-size: 100% 100%;
+		}
+		
+		.foot-btn span:nth-child(1) {
+			background: url(images/vote.png) no-repeat 0 0;
+			background-size: 100% 100%;
+		}
+		
+		.foot-btn span:nth-child(3) {
+			background: url(images/location-index.png) no-repeat 0 0;
+			background-size: 100% 100%;
+		}
+		
+		.txt {
+			margin-bottom: 10px;
+		}
+		
+		.mui-backdrop {
+			background-color: rgba(0, 0, 0, .6);
+			text-align: center;
+		}
+		
+		.mui-backdrop img {
+			width: 80%;
+			margin-top: 15%;
+		}
+		
+		.mui-backdrop .fl img {
+			width: 20px;
+		}
+		
+		.img span {
+			display: block;
+			width: 60%;
+			line-height: 33px;
+			height: 40px;
+			background: red;
+			color: #fff;
+			margin: 0 auto;
+			background: url(images/canyu.png) no-repeat 0 0;
+			background-size: 100% 100%;
+		}
+		
+		img.img {
+			display: none;
+		}
+		
+		.edit {
+			position: absolute;
+			width: 20px;
+			background: url(images/edit.png) no-repeat 0 0;
+			background-size: 100% 100%;
+			height: 20px;
+			right: 0;
+			top: 0;
+		}
+		
+		.photo li .img {
+			height: 130px;
+		}
+		
+		.display {
+			display: none;
+		}
+		
+		.progress {
+			border: 1px solid #ccc;
+			height: 10px;
+			width: 100%;
+			background: #fff;
+			border-radius: 10px;
+			overflow: hidden;
+			position: absolute;
+			bottom: 20px;
+			display: none;
+		}
+		
+		.progress div {
+			width: 0;
+			background: #7ac250;
+			height: 10px;
+		}
+	</style>
+
+	<body>
+		<div class="mui-content" style="height: auto;">
+			<div class="main">
+				<div class="img">
+					<!--<img src="images/canyu.png" alt="" />-->
+					<span></span>
+				</div>
+				<div class="content">
+					<div class="fl float">
+						<div class="title"> <span class="room_name"></span> <span class="mui-ellipsis room_id"></span>
+						</div>
+						<div class="ranking">
+							<p>排名<span class="ranking_num"></span>
+							</p>
+							<p>票数<span class="vote_num"></span>
+							</p>
+						</div>
+						<ul class="photo">
+							<li>
+
+								<img class="img" src="http://www.meifenfen.com/static/user/Activities/images/pink-pic.png"><span></span><i class="edit" cat-num="0"></i>
+								<div class="progress">
+									<div></div>
+								</div>
+							</li>
+							<li>
+								<img class="img" src="http://www.meifenfen.com/static/user/Activities/images/pink-pic.png"><span></span><i class="edit" cat-num="1"></i>
+								<div class="progress">
+									<div></div>
+								</div>
+							</li>
+							<li>
+								<img class="img" src="http://www.meifenfen.com/static/user/Activities/images/pink-pic.png"><span></span><i class="edit" cat-num="2"></i>
+								<div class="progress">
+									<div></div>
+								</div>
+							</li>
+							<li>
+								<img class="img" src="http://www.meifenfen.com/static/user/Activities/images/pink-pic.png"><span></span><i class="edit" cat-num="3"></i>
+								<div class="progress">
+									<div></div>
+								</div>
+							</li>
+						</ul>
+						<div class="txt"></div>
+					</div>
+				</div>
+
+				<div class="foot-btn">
+					<span class="vote"></span>
+					<span class="shar"></span>
+					<span class="index"></span>
+				</div>
+				<div class="mui-backdrop" style="display: none;">
+					<img src="images/mark_icon.png" class="img" alt="" />
+					<div class="from alert" id="ulit" style="display: none;">
+						<div class="header">
+							提示
+							<span class="close"></span>
+						</div>
+						<section>
+							<p>你要见的小主还没来呢！</p>
+						</section>
+					</div>
+					<div class="from alert" id="login" style="display: none;">
+						<div class="header">
+							提示
+							<span class="close"></span>
+						</div>
+						<section>
+							<p>小主需要先登录才可以投票！</p>
+							<button>去登录</button>
+						</section>
+					</div>
+					<div class="from vote-alert" style="display: none;">
+						<div class="header">
+							投票小妙招
+							<span class="close"></span>
+						</div>
+						<section>
+							<p>投票期间申请额度通过，就会收到小美送出的一次20票的投票机会哦！</p>
+							<button id="apply-ed">去申请额度</button>
+							<div id="lines" class="ulit" style="display: none;">
+								<span class="fl">
+							<img src="images/ok.png" alt="">
+							已获得
+						</span>
+								<span class="fr">已使用</span>
+							</div>
+							<p>投票期间完成一次分期整形就会收到小美送出的一次200票的投票机会哦</p>
+							<button id="submit">去下单</button>
+							<div id="success" class="ulit">
+								<span class="fl">
+							<img src="images/ok.png" alt="">
+							已获得
+						</span>
+								<span class="fr">已使用</span>
+							</div>
+							<p>直接投票，只记一票</p>
+							<button id="zhijie">直接投票</button>
+						</section>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="display" style="padding-bottom: 35px;">
+			<div class="rule">
+				<h3>活动说明</h3>
+			</div>
+			<ul class="list">
+				<li class="redcolr">【活动时间】</li>
+				<li>拉票时间：2016.03.01 12:00～2016.03.30 12:00
+					<br /> 颁奖日期：2016.03.30 12:00～2016.03.31 12:00
+				</li>
+
+				<li class="redcolr">【活动方式】</li>
+				<li>1、活动仅限上海高校在读女生参与，报名成功后请通过微信分享给朋友进行投票。</br>
+					2、活动截止后将于2016.03.31 10:00公布获奖名单和排名
+				</li>
+
+				<li class="redcolr">【参与方式】</li>
+				<li>步骤一：关注“美分分”微信公众号，并用手机号注册
+					<br /> 步骤二：点击朋友所分享链接，或通过美分分首页海报进入活动页面
+					<br /> 步骤三：填写报名信息并上传寝室美照参与投票
+					<br /> 步骤四：现在可以呼唤你的小伙伴出动为你投票啦 小美最喜欢伺候诚实的小主了，刷票的你走开！
+				</li>
+				<li class="redcolr">【投票规则】</li>
+				<li>
+					1、在投票截止日期前可通过分享链接，搜索手机号、编号和寝室花名参与投票
+					<br /> 2、每人每天有一次投票机会（关注美分分微信公众号并注册即可投票）
+					<br /> 3、凡在美分分公众号上，成功申请额度者1票相当于20票；预约分期整形并成功整形者1票相当于200票,每人只有一次机会
+				</li>
+				<li class="redcolr">【奖品设定】</li>
+				<li>
+					［最高人气奖］
+					<br /> 奖项名额3名，由累计得票数排名前3名的寝室获得 奖品：2000元现金红包+寝室每人200元美分分现金抵用券
+					<br /> ［最佳创意奖］
+					<br /> 奖项名额3名，由主办方从累计得票数排名前50名的寝室中选取
+					<br /> 奖品：800元现金红包+寝室每人200元现金抵用券
+					<br /> ［十佳最美寝室］
+					<br /> 奖项名额10名，由大众评审团从累计得票数排名前20名的寝室中选取（大众评审团由主协办方代表和各校学生代表共同组成） 奖品：500元现金红包+寝室每人100元现金抵用券
+					<br /> ［最美寝室入围奖］
+					<br /> 奖项名额50名，累计得票数排名前50名的寝室均可获得 奖品：价值300元寝室大礼包+寝室每人100元现金抵用卷
+					<br /> ［美分分参与奖］
+					<br /> 奖项名额不限名额，凡成功上传寝室照片的寝室均可获得 奖品：价值80元寝室大礼包+寝室每人50元现金抵用券
+				</li>
+				<li class="redcolr">
+					注：每组参赛寝室只有一次获奖机会，如同时满足两项获奖条件，则以获得的最高奖项为准
+					<br /> 所有奖项仅限上海在校女大学生寝室获取，其他一经发现取消获奖资格。
+				</li>
+				<li>
+					<p style="text-align: center;margin-top:3px;">活动最终解释权归美分分所有</p>
+				</li>
+			</ul>
+
+			<nav class="mui-bar mui-bar-tab" style="position:fixed;">
+				<a class="mui-tab-item mui-active" id="canyu" href="sign_up.html">
+					<span class="mui-tab-label icon"></span>
+					<span class="mui-tab-label">我要参与</span>
+
+				</a>
+				<a class="mui-tab-item mui-active" id="prize" href="jpgl.html">
+					<span class="mui-tab-label icon gift"></span>
+					<span class="mui-tab-label">获奖攻略</span>
+				</a>
+			</nav>
+		</div>
+		<p style="display: none;">
+			<input type="file" class="file0" />
+			<input type="file" class="file1" />
+			<input type="file" class="file2" />
+			<input type="file" class="file3" />
+		</p>
+	</body>
+	<script src="../js/jquery.min.js"></script>
+	<script src="../js/util.js"></script>
+	<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<script type="text/javascript" src="http://www.meifenfen.com/user/jssdk.js"></script>
+	<script>
+		var roomName; //定义寝室名字
+		var has_followed;//是否关注美分分
+		$('#login button').on('click', function() {
+			location.href = '/static/user/login.html?next=' + location.href;
+		})
+		$('.mui-backdrop ').on('click', function(event) {
+			if (event.target===this) {
+			    $('.mui-backdrop ').hide();
+			    return false;
+            } else {
+                //$(event.target).trigger('click');
+                return false;
+            }
+		});
+		$('.shar').on('click', function() {
+			$('.mui-backdrop').show();
+			$('.mui-backdrop img.img').show().siblings().hide();
+		});
+		$('.index').on('click', function() {
+			location.href = '/user/index/';
+		});
+		// 申请额度
+		$('#apply-ed').on('click', function() {
+			location.href = '/static/user/applyer-infor.html';
+		});
+		//下单
+		$('#submit').on('click', function() {
+			location.href = '/user/index';
+		});
+		// 分割线
+		var para = Common.UrlGet();
+		$.ajax({
+			xhrFields: {
+				withCredentials: true
+			},
+			url: 'http://' + getHostName() + '/user/get_room_detail/',
+			type: 'post',
+			dataType: 'json',
+			data: {
+				room_id: para.room_id
+			},
+			success: function(data) {
+				var room = data.room;
+				var privileges = data.privileges;
+				roomName = room.room_name;
+				has_followed=data.has_followed;
+				console.log(roomName);
+				//微信分享
+				wx.ready(function() {
+					wx.onMenuShareTimeline({
+						title: '我们正在参加美分分寝室设计大赛，赶紧为我投出你宝贵的一票吧！', // 分享标题
+						link: 'http://' + getHostName() + '/static/user/Activities/room_details.html?room_id=' + para.room_id, // 分享链接
+						imgUrl: 'http://www.meifenfen.com/static/user/Activities/images/propaganda.jpg', // 分享图标
+						success: function() {
+							console.log('success')
+								// 用户确认分享后执行的回调函数
+						},
+						cancel: function() {
+							console.log('cancel')
+								// 用户取消分享后执行的回调函数
+						}
+					});
+					wx.onMenuShareAppMessage({
+						title: '我们正在参加美分分寝室设计大赛，赶紧为我投出你宝贵的一票吧！', // 分享标题
+						link: 'http://' + getHostName() + '/static/user/Activities/room_details.html?room_id=' + para.room_id, // 分享链接
+						imgUrl: 'http://www.meifenfen.com/static/user/Activities/images/propaganda.jpg', // 分享图标     
+						desc: '美分分第一届上海女大学生寝室设计大赛！——美分分，为你加分，大学生分期去整形。', // 分享描述
+						success: function() {
+							console.log('success')
+								// 用户确认分享后执行的回调函数
+						},
+						cancel: function() {
+							console.log('cancel')
+								// 用户取消分享后执行的回调函数
+						}
+					});
+				});
+				if (!data.is_myself) {
+					document.title = '我们正在参加美分分寝室设计大赛，赶紧为我投出你宝贵的一票吧！';
+					$('.edit').hide();
+					$('.img').find('span').html('寝室靓照');
+					if (para.shar == undefined) {
+						$('.display').show();
+					}
+				} else {
+					document.title = '我们正在参加美分分寝室设计大赛，赶紧为我投出你宝贵的一票吧！';
+					$('.img').find('span').html('我的参与');
+				}
+				$('#canyu').on('touchstart', function() {
+					if (!getCookie('sign_user')) {
+						$('.mui-backdrop').show();
+						$('.mui-backdrop #login').show().siblings().hide();
+						return false;
+					} else {
+						location.href = 'sign_up.html';
+					}
+				})
+				$('#prize').on('click', function() {
+					location.href = 'jpgl.html';
+				});
+				for (var i = 0; i < $('input:file').length; i++) {
+					$('input:file').eq(i).attr('path', room.orig_pics[i]);
+				};
+				$('.vote').on('click', function() {
+					$('.mui-backdrop img.img').hide();
+					//判断是否登录;
+					if (!getCookie('sign_user')) {
+						$('.mui-backdrop').show();
+						$('#login').show();
+						$('.vote-alert').hide();
+						$('#ulit').hide();
+					}
+					if(!has_followed){
+						location.href='/user/room_about/';
+						return;
+					}
+					$('.mui-backdrop').show();
+                        $('.vote-alert').show();
+                        $('#login').hide();
+                        $('#ulit').hide();
+					if (privileges[0].status == 0) {
+						//0可以投票
+						$('#lines').show();
+						$('#lines .fr').html('可投票');
+						$('#lines .fr').css('background-image', 'url(images/button.png)').addClass('can');
+						$('#apply-ed').hide();
+					} else if (privileges[0].status == 1) {
+						//1已经投票
+						$('#lines').show();
+						$('#lines .fr').html('已投票');
+						$('#lines .fr').css('background-image', 'url(images/disb.png)').removeClass('can');
+						$('#apply-ed').hide();
+					} else {
+						//没权限快去申请
+						$('#lines').hide();
+					};
+					//下单的按钮
+					if (privileges[1].status == 0) {
+						//0可以投票
+						$('#success').show();
+						$('#success .fr').html('可投票');
+						$('#success .fr').css('background-image', 'url(images/button.png)').addClass('can');
+						$('#submit').hide();
+					} else if (privileges[1].status == 1) {
+						//1已经投票
+						$('#success').show();
+						$('#success .fr').html('已投票');
+						$('#success .fr').css('background-image', 'url(images/disb.png)').removeClass('can');
+						$('#submit').hide();
+					} else {
+						//没权限快去申请
+						$('#success').hide();
+					};
+				});
+				$('#lines .can').on('click', function() {
+					touPiao(1);
+				});
+				$('#success .can').on('click', function() {
+					touPiao(2);
+				})
+				$('#zhijie').off('click'); //解除之前的绑定;
+				$('#zhijie').on('click', function() {
+					if (privileges[2].status == 1) {
+						$('.vote-alert').hide();
+						$('#ulit').show();
+						$('#ulit .header').html('投票失败 <span class="close"></span>	');
+						$('#ulit p').html('小主一天只能投一次呢，明天可以再投哦！');
+						$('.close').on('click', function() {
+                            $('.mui-backdrop').hide();
+                        })
+					} else {
+						//还没投票请求投票接口;
+						touPiao(3)
+					}
+				});
+				//render 渲染dom
+				$('.title .room_name').html(room.room_name);
+				$('.title .room_id').html(room.apply_no);
+				$('.ranking .ranking_num').html(room.rank);
+				$('.ranking .vote_num').html(room.vote_count);
+				for (var i = 0, len = room.pic_list.length; i < len; i++) {
+					var el = room.pic_list[i];
+					if (el) {
+						$('img').eq(i).attr('src', el);
+					} else {
+						$('img').eq(i).attr('src', 'http://www.meifenfen.com/static/user/Activities/images/room_b.jpg')
+					}
+				}
+				var w = $('.photo li').width();
+				$('.photo li img').height(w + 'px');
+				$('.txt').html(data.note);
+				//分割线
+				//				vone_list(room, '.content');
+				function vone_list(id, name) {
+					var chlid_str = '';
+					if (id.pic_list.length == 4) {
+						for (var k = 0; k < id.pic_list.length; k++) {
+							chlid_str += '<li><img class="img" src="' + id.pic_list[k] + '"><span></span><i class="edit" cat-num="' + k + '"></i></li>'
+						}
+					} else {
+						for (var k = 0; k < id.pic_list.length; k++) {
+							chlid_str += '<li><img class="img" src="' + id.pic_list[k] + '"><span></span><i class="edit" cat-num="' + k + '"></i></li>'
+						}
+						chlid_str += '<li><img class="img" src="http://www.meifenfen.com/static/user/Activities/images/pink-pic.png"><span></span><i class="edit" cat-num="3"></i></li>'
+					}
+					var str_li = '<div class="fl float">\
+							<div class="title">\
+								<span>' + id.room_name + '</span>\
+								<span class="mui-ellipsis">' + id.apply_no + '</span>\
+							</div>\
+							<div class="ranking">\
+								<p>\
+									排名<span>' + id.rank + '</span>\
+								</p>\
+								<p>\
+									票数<span>' + id.vote_count + '</span>\
+								</p>\
+							</div>\
+							<ul class="photo">\
+								' + chlid_str + '</ul>\
+								<div class="txt">' + data.note + '</div>\
+							</div>\
+							';
+					$(name).append(str_li);
+				};
+			}
+		});
+		//close 
+		$(document).on('tap', '.close', function() {
+			$('.mui-backdrop').hide();
+		})
+		$(document).on('tap', 'i', function() {
+			var index = $(this).attr('cat-num');
+			$(".file" + index).click();
+		});
+		$('input:file').on('change', function() {
+			var index = $(this).index();
+			$('.progress').eq(index).show();
+
+			function callback() {
+				var str = [];
+				for (var i = 0; i < $('input:file').length; i++) {
+					var el = $('input:file').eq(i).attr('path');
+					if (el == undefined) {
+						el = '';
+					}
+					str.push(el);
+					str.join(',');
+				};
+				str = str.join(',');
+				console.log(str);
+				$.ajax({
+					xhrFields: {
+						withCredentials: true
+					},
+					url: 'http://' + getHostName() + '/user/add_room_pics/',
+					type: 'post',
+					dataType: 'json',
+					data: {
+						room_id: para.room_id,
+						pics: str
+					},
+					success: function(data) {}
+				});
+			}
+			upload($(this)[0], $('img.img').eq(index), callback);
+		});
+		//上传图片方法
+		var upload = function(_file, btn, callback) {
+			if (_file.files.length === 0) {
+				return;
+			}
+			var data = new FormData();
+			data.append('file', _file.files[0]);
+			data.append('image_cat', 'avatar')
+			var request = new XMLHttpRequest();
+			request.withCredentials = true;
+			request.onreadystatechange = function() {
+				if (request.readyState == 4) {
+					try {
+						window.r = request.response;
+						var resp = JSON.parse(request.response);
+						btn.parent().find('.progress').hide(); //进度条；
+						btn.siblings('.close').show();
+						btn.attr('src', resp.fullpath)
+						$(_file).attr('path', resp.image);
+						callback();
+					} catch (e) {
+						var resp = {
+							status: 'error',
+							data: 'Unknown error occurred: [' + request.responseText + ']'
+						};
+					}
+					console.log(resp.status + ': ' + resp.data);
+				}
+			};
+			request.upload.addEventListener('progress', function(e) {
+				console.log(parseInt(100 * e.loaded / e.total));
+				btn.parent().find('.progress div').css('width', parseInt(100 * e.loaded / e.total) + '%');
+				//		$('.mask').find('span').html(parseInt(100*e.loaded/e.total)+'%')
+			}, false);
+			request.open('POST', 'http://' + getHostName() + '/user/upload_image/?');
+			request.send(data);
+		};
+
+		function touPiao(v) {
+			var room_id = $('.btn.act').attr('cat-id');
+			$.ajax({
+				xhrFields: {
+					withCredentials: true
+				},
+				url: 'http://' + getHostName() + '/user/vote_room/',
+				type: 'post',
+				dataType: 'json',
+				data: {
+					room_id: para.room_id,
+					source: v
+				},
+				success: function(data) {
+					alert(data.msg);
+					if (data.code == 0) {
+						location.href = '';
+					}
+				},
+				error: function() {
+					alert('网络出现小差');
+				}
+			});
+		};
+		var item_comment_img_preview = function() {
+			var obj = this;
+			if (!obj.getAttribute('src')) {
+				console.log('image not ready');
+				return;
+			}
+			console.log('preview item comment image');
+			console.log(obj.getAttribute('src'));
+			var current = obj.getAttribute('src');
+			var img_tags = $('.photo img');
+			var image_list = [];
+			for (var i = 0; i < img_tags.length; i++) {
+				image_list.push($(img_tags[i]).attr('src'));
+			}
+			wx.previewImage({
+				current: current,
+				urls: image_list,
+			});
+		};
+		$(document).on('tap', '.photo img', item_comment_img_preview);
+		//图片预览;
+	</script>
+
+</html>

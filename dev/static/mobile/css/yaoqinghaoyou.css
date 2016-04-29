@@ -1,0 +1,17 @@
+.action1{
+	 width:18.75rem;
+	 height:30.175rem;
+	 background:url(../image/yaoqinghaoyou.png) no-repeat;
+	 -webkit-background-size: cover;
+	 background-size: cover;
+	 position: relative;
+}
+.action1 img{
+	width:6.05rem;
+	height:1.95rem;	
+	position: absolute;
+	left:50%;
+	transform:translateX(-50%);
+	-webkit-transform:translateX(-50%);
+	top:18.175rem;
+}

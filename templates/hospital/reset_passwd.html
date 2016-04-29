@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>修改密码</title>
+		<script src="/static/hospital/js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<link href="/static/hospital/css/mui.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="/static/hospital/css/iconfont.css"/>
+		<style type="text/css">
+		    .mui-input-group .mui-input-row{
+		    	height: 46px;
+		    }
+			.mui-input-row label ~ input,.mui-input-row label ~ select{
+				margin-top: 4px;
+				width: 70%;
+				text-align: left;
+				/*border: 1px solid red;*/
+				font-size: 14px;
+				color: #9B9B9B;
+			}
+			.mui-input-row label ~ select{
+				position: relative;
+				left: -3px;
+			}
+			.mui-input-row label {
+				width: 100px;
+				padding: 16px 0 10px 20px;
+				/*border: 1px solid red;*/
+			}
+			.mui-input-row label i{
+				font-size: 22px;
+				color: #9B9B9B;
+			}
+			#get-btn{
+				position: absolute;
+				top: 4px;
+				right: 14px;
+				width: 100px;
+			}
+			.top-wrold{
+				text-align: center;
+				line-height: 50px;
+				font-size: 16px;
+			}
+			input {
+                color: black !important;
+            }
+		</style>
+
+	</head>
+
+	<body>
+		<div class="mui-content">
+			<h4 class="top-wrold">修改密码</h4>
+			<form id='resetpasswdform' class="mui-input-group">
+				<div class="mui-input-row">
+					<label>
+						旧密码
+					</label>
+					<input type="tel" maxlength="11" id='passwd' name='passwd' placeholder="请输入旧密码">
+				</div>
+				<div class="mui-input-row" style="position: relative;">
+					<label>
+						新密码
+					</label>
+					<input type="text" name='new_passwd' id='new_passwd' placeholder="请输入新密码">
+				</div>
+				<div class="mui-input-row no-after-line">
+					<label>
+						确认新密码
+					</label>
+					<input type="text" name='new_passwd_two' id='new_passwd_two' placeholder="请再次输入新密码">
+				</div>
+			</form>
+                <button onclick="formSubmit()" class="mui-btn mui-btn-negative mui-btn-block">确认修改</button>
+
+		</div>
+        <script type="text/javascript" src="/static/hospital/js/jquery.min.js" ></script>
+
+		<script type="text/javascript">
+            function formSubmit(){
+                var passwd = $('#passwd').val()
+                var new_passwd = $('#new_passwd').val()
+                var new_passwd_two = $('#new_passwd_two').val()
+                if(new_passwd!=new_passwd_two) {
+                    return alert('两次输入密码不一致');
+                }
+                //document.getElementById("resetpasswdform").submit()
+                $.ajax({
+                    type:"POST",
+                    url:"/hospital/reset_passwd_post/",
+                    data:{
+                        passwd: passwd,
+                        new_passwd: new_passwd,
+                        },
+                    //返回数据的格式
+                    datatype: "html",//"xml", "html", "script", "json", "jsonp", "text".
+                    //在请求之前调用的函数
+                    beforeSend:function(){},
+                    //成功返回之后调用的函数             
+                    success:function(data){
+                        if(data.code!=0) {
+                            alert(data.msg);
+                        } else {
+                            alert(data.msg);
+                            window.location = '/hospital/login/'
+                        }
+                        window.data = data;
+                    },
+                    //调用执行后调用的函数
+                    complete: function(XMLHttpRequest, textStatus){
+                       //alert(XMLHttpRequest.responseText);
+                       //alert(textStatus);
+                        //HideLoading();
+                    },
+                    //调用出错执行的函数
+                    error: function(){
+                        //请求出错处理
+                    }         
+                });
+
+            }
+        </script>
+	</body>
+</html>

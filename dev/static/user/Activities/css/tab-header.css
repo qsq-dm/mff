@@ -1,0 +1,52 @@
+/*tab头部样式	*/
+/*.mui-segmented-control .mui-control-item.mui-active {
+	color: #FF6565;
+	background: #FFF;
+	border-bottom: 2px solid #FF6565;
+}
+
+.mui-content {
+	padding-bottom: 50px;
+}
+
+.mui-segmented-control {
+	border: none;
+	border-bottom: 1px solid #ECECEC;
+	border-radius: 0;
+	background: #FFF;
+}
+
+.mui-segmented-control .mui-control-item {
+	border-left: none;
+}
+
+.mui-segmented-control .mui-control-item {
+	color: #000;
+}*/
+/*头部样式结束*/
+
+.mui-segmented-control .mui-control-item.mui-active {
+	color: #FF6565;
+	background: transparent;
+	/*border-bottom: 2px solid #FF6565;*/
+}
+
+.mui-content {
+	padding-bottom: 40px;
+}
+
+.mui-segmented-control {
+	border: none;
+	border-bottom: 1px solid #ECECEC;
+	border-radius: 0;
+	background: #FFF;
+}
+
+.mui-segmented-control .mui-control-item {
+	border-left: none;
+	overflow: inherit;
+}
+
+.mui-segmented-control .mui-control-item {
+	color: #000;
+}

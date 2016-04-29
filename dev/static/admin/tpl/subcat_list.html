@@ -1,0 +1,101 @@
+
+
+<div class='app-content'>
+
+    <h1>子分类列表</h1>
+
+    <toggle-switch ng-model="filters.is_recommend"  on-label='推荐' off-label='全部' knob-label='' on-change='routeTo(1)'></toggle-switch>
+    <p class="lead">
+        
+    </p>
+    <hr>
+ <div id="images-list-values" class='cat-choose'>
+        <ul as-sortable="sortableOptions" ng-model="itemCatids">
+            <li ng-repeat=" cat_id  in itemCatids" as-sortable-item class="as-sortable-item" on-finish-render="ngRepeatFinished">
+                <div as-sortable-item-handle class="as-sortable-item-handle gallery-box cat-grid" ng-class='{active: cat_id==filters.cat_id}' ng-click='choose(cat_id)' ng-controller="ngItemCat">
+                    <div class="">
+                        {{iditemMap[cat_id].name}}
+                    </div>
+                    <span class='icon-cat-edit' ng-click='editCat($event, cat_id)'><i class="fa fa-pencil"></i></span>
+                    <span class='icon-cat-add' ng-click='goAddSubCat($event, cat_id)' ><i class="fa fa-plus-square-o fa-3"></i></span>
+                </div>
+            </li>
+            
+        </ul>
+
+
+    </div>
+        <a href='#/index/new_itemcat' style='display:block;padding:5px;font-size:20px;text-decoration: underline;'>添加分类</a>
+
+    <div class='cat-choose' ng-controller="ngItemCat" style='display:none;'>
+        <div class='cat-grid' ng-repeat='cat in optionsData' ng-class='{active: cat.id==filters.cat_id}' ng-click='choose(cat.id)'>
+            {{cat.name}}
+            <span class='icon-cat-edit' ng-click='editCat($event, cat.id)'><i class="fa fa-pencil"></i></span>
+            <span class='icon-cat-add' ng-click='goAddSubCat($event, cat.id)' ><i class="fa fa-plus-square-o fa-3"></i></span>
+        </div>
+        <a href='#/index/new_itemcat' style='display:block'>添加分类</a>
+    </div>
+    <div>
+        <table class="table table-hover" ng-if="true" style='margin:0'>
+          <thead>
+            <tr>
+              <th>序号</th>
+              <th>名称</th>
+              <th>分类</th>
+              <th>状态</th>
+              <th ng-if='filters.is_recommend'>排序</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="info in infos">
+              <td>{{info.id}}</td>
+              <td>
+                <a href='#/index/item_list?sub_cat_id={{info.id}}'>
+                    {{info.name}}
+                </a>
+              </td>
+              <td>
+                <a href='#/index/itemcat_edit/{{cat.id}}' ng-repeat='cat in info.cat_list'>
+                    {{cat.name}}
+                </a>
+              </td>
+              <td>
+                  <span ng-if='info.status==1'><i class="fa fa-check"></i></span>
+                  <span ng-if='info.status==0'><i class="fa fa-remove"></i></span>
+              </td>
+              <td ng-if='filters.is_recommend'>
+                <order-field action='"/admin/set_recommend_subcat_order/"' item='info'></order-field>
+              </td>
+              <td class='item-actions'>
+                <button class='action-btn btn-normal' ng-click='Recommend(info.id, !info.is_recommend)'  ng-if='filters.is_recommend&&info.is_recommend'>取消推荐</button> 
+                <button class='action-btn btn-normal' ><a href='#/index/itemsubcat_edit/{{info.id}}'>编辑</a></button>
+                <a href='#/index/subcat_recommend_edit/{{info.id}}' ng-if='info.is_recommend'>编辑推荐</a>
+                <a href='#/index/subcat_recommend_edit/{{info.id}}' ng-if='!info.is_recommend'>加入推荐</a>
+
+                <button class='action-btn btn-danger' ng-if='info.status==1' ng-click='setStatus(info.id, 0)'>下线</button>
+                <button class='action-btn' ng-if='info.status==0' ng-click='setStatus(info.id, 1)'>上线</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <nav>
+        <ul class="pagination" ng-if="page_info.total>1">
+            <li>
+              <a href="#" aria-label="Previous" ng-click='getPage(1)'>
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+            <li ng-repeat="page in page_info.pages">
+                <a ng-click='getPage(page)'>{{page}}</a>
+            </li>
+            <li>
+              <a href="#" aria-label="Next" ng-click='getPage(page_info.total)'>
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+    </div>
+
+</div>

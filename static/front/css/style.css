@@ -1,0 +1,270 @@
+.three-pic {
+	width: 100%;
+	overflow: hidden;
+	background: #FFF;
+	padding: 10px 0;
+}
+.three-pic li {
+	width: 33.33%;
+	float: left;
+	/*padding: 8px;*/
+	
+	text-align: center;
+}
+.three-pic li img {
+	width: 90%;
+}
+.color-red .iconfont {
+	font-size: 20px;
+}
+.mui-table-view-cell.h-ad {
+	height: 200px;
+	width: 50%;
+	float: left;
+	border-right: 1px solid #D8D8D8;
+	position: relative;
+	background: url(../img/ad-big-pic.png) no-repeat 93% 70%;
+	background-size: 45%;
+	padding-left: 6px;
+}
+.mui-table-view-cell.s-ad {
+	height: 100px;
+	width: 50%;
+	float: left;
+}
+.mui-table-view-cell.s-ad.s-ad-top{
+	background: url(../img/ad-sm-pic1.png) no-repeat 105% 90%;
+	background-size: 45%;
+	padding-left: 4px;
+	padding-top: 4px;
+}
+.mui-table-view-cell.s-ad.s-ad-botm{
+	background: url(../img/ad-sm-pic2.png) no-repeat 102% 90%;
+	background-size: 30%;
+	padding-left: 4px;
+	padding-top: 4px;
+}
+.month-pay {
+	background: url(../img/mouth-bg.png) no-repeat center;
+	background-size: 100% 100%;
+	margin-bottom: 14px;
+}
+.month-pay-big {
+	height: 40px;
+	width: 180px;
+}
+.month-pay-sm{
+	height: 30px;
+	width: 140px;
+}
+.month-pay-big div {
+	float: left;
+	height: 40px;
+	line-height: 40px;
+}
+.month-pay-sm div {
+	float: left;
+	height: 30px;
+	line-height: 30px;
+}
+.month-pay .tit {
+	width: 30%;
+	color: #FFF;
+	text-align: center;
+}
+.month-pay .num {
+	width: 70%;
+	padding-left: 10px;
+}
+.month-pay .num b {
+	font-size: 18px;
+}
+
+.free-mark {
+	height: 40px;
+	width: 40px;
+	position: absolute;
+	top: -2px;
+	right: -2px;
+}
+.recommend {
+	background: #FFF;
+	padding: 0 10px;
+	margin-top: 14px;
+	width: 100%;
+}
+.recommend h4 {
+	line-height: 40px;
+}
+.recommend .img-cont,
+.recommend .img-cont .big-img {
+	width: 100%;
+	position: relative;
+	border-radius: 6px;
+	overflow: hidden;
+}
+.recommend h5 {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	line-height: 30px;
+	background: rgba(0, 0, 0, .3);
+	width: 100%;
+	padding: 0 12px;
+	color: #FFF;
+	border-bottom-right-radius: 6px;
+	border-bottom-left-radius: 6px;
+}
+/*产品详情*/
+
+.check-stages {
+	width: 100%;
+	overflow: hidden;
+	padding: 10px;
+	text-align: center;
+	background: #FFF;
+}
+.check-stages .text-cont {
+	height: 52px;
+	width: 45%;
+	border: 1px solid #D8D8D8;
+	text-align: center;
+	font-size: 12px;
+	padding-top: 4px;
+	position: relative;
+	float: left;
+	margin: 4px 6px;
+}
+.check-stages .text-cont .iconfont {
+	position: absolute;
+	top: -3px;
+	right: -2px;
+	font-size: 18px;
+	color: #FF6565;
+	display: none;
+}
+.check-stages .text-cont.active {
+	border: 1px solid #FF6565;
+	color: #FF6565;
+}
+.check-stages .text-cont.active .iconfont {
+	display: inline-block;
+}
+.aptitude {
+	display: inline-block;
+	text-align: center;
+	padding: 2px 6px;
+	border: 1px solid #41CABC;
+	border-radius: 20px;
+	margin-top: 6px;
+}
+.how-to-use {
+	padding: 0 14px;
+}
+.how-to-use .size-big,
+.how-to-use h5 {
+	line-height: 30px;
+	font-size: 16px;
+}
+.use-process {
+	width: 100%;
+	overflow: hidden;
+}
+.use-process li {
+	width: 25%;
+	text-align: center;
+	float: left;
+	height: 90px;
+	position: relative;
+}
+.use-process .circle {
+	display: inline-block;
+	height: 45px;
+	line-height: 45px;
+	width: 45px;
+	border-radius: 30px;
+}
+.use-process .circle i {
+	font-size: 24px;
+}
+.use-process .pointo {
+	position: absolute;
+	top: 10px;
+	right: -10px;
+	font-size: 26px;
+}
+.user-judge {
+	width: 100%;
+	overflow: hidden;
+	padding: 14px;
+	border-bottom: 1px solid #D8D8D8;
+}
+.user-judge .fl {
+	width: 15%;
+	height: 100px;
+	text-align: center;
+}
+.user-judge .fl img {
+	height: 45px;
+	width: 45px;
+	border-radius: 30px;
+}
+.user-judge .fr {
+	width: 85%;
+}
+.user-judge .fr .show-pic {
+	height: 80px;
+	width: 80px;
+}
+.btn-cont{
+	text-align: center;
+	padding: 15px 0;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	background: #FFF;
+	border-top: 1px solid #DDD;
+}
+.btn-cont button,.btn-cont a{
+	padding: 11px 0;
+	width: 44%;
+}
+.btn-cont .mui-btn-negative{
+	margin-left: 3%;
+}
+.btn-cont a
+/*牙齿美白*/
+#select_tit,
+#select_tit li {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+#select_tit li {
+	width: 33.333%;
+	float: left;
+	text-align: center;
+	height: 44px;
+	line-height: 44px;
+	border-bottom: 1px solid #DDDDDD;
+	border-top: 1px solid #DDDDDD;
+	background-image: url(../img/iconfont-xiasanjiao.png);
+	background-repeat: no-repeat;
+	background-position: 95% center;
+	background-size: 10px;
+}
+#select_tit .active {
+	background-image: url(../img/iconfont-shangsanjiao.png);
+}
+#select_tit a {
+	display: block;
+	width: 100%;
+	height: 36px;
+	line-height: 36px;
+	margin-top: 4px;
+	color: #AEABA6;
+}
+#select_tit .bord {
+	border-right: 1px solid #DDDDDD;
+}

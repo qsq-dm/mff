@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>个人信息</title>
+		<script src="js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<link href="css/mui.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="css/iconfont.css"/>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="css/popover.css"/>
+		<script type="text/javascript" charset="utf-8">
+			mui.init();
+		</script>
+		<style type="text/css">
+		    .mui-input-group .mui-input-row{
+		    	height: 46px;
+		    }
+			.mui-input-row label ~ input,.mui-input-row label ~ select{
+				margin-top: 4px;
+				width: 65%;
+				text-align: left;
+				/*border: 1px solid red;*/
+				font-size: 14px;
+				color: #9B9B9B;
+			}
+			.mui-input-row label ~ select{
+				position: relative;
+				left: -3px;
+			}
+			.mui-input-row label ~ i{
+				position: absolute;
+				top: 12px;
+				right: 5%;
+				color: #3A3A3A;
+				font-size: 12px;
+			}
+			.mui-input-row label {
+				width: 110px;
+				padding: 15px 0 10px 12px;
+				/*margin-top: 8px;*/
+				/*border: 1px solid red;*/
+			}
+			.mui-input-row label i{
+				font-size: 22px;
+			}
+			
+
+		</style>
+	</head>
+	<body>
+		<div class="mui-content">
+			<div class="limit-cont">
+				<div class="blue-bg">
+					<span class="size-big-xl">￥6000</span>
+					<span>起消费额度</span>
+				</div>
+				<p class="has-lr-padded" style="padding-left: 14px;">只需简单2步</p>
+				<ul class="limit-process">
+					<li>
+						<span class="circle bg-blue">1</span>
+						填写基本信息
+					</li>
+					<li>
+						<span class="circle bg-no">2</span>
+						上传手持证件照片
+					</li>
+				</ul>
+			</div>
+			<form class="mui-input-group">
+				<div class="mui-input-row">
+					<label>
+						姓名
+					</label>
+					<input type="text" value="" placeholder="请输入你的姓名" id='name'>
+				</div>
+				<div class="mui-input-row" style="position: relative;">
+					<label>
+						身份证号
+					</label>
+					<input type="text" value="" placeholder="请输入你的身份证号" id='cardNum'>
+				</div>
+				<div class="mui-input-row">
+					<label>
+						学校名称
+					</label>
+					<select class="select-infor" name="college" id="school">
+						<option value="">请选择你就读学校名称</option>
+						<option value="">哈佛大学</option>
+						<option value="">麻省理工学院</option>
+					</select>
+					<i class="iconfont">&#xe639;</i>
+				</div>
+				<div class="mui-input-row">
+					<label>
+						入学时间
+					</label>
+					<select class="select-infor" name="college" id='entrance'>
+						<option value="">请选择你入学时间</option>
+						<option value="2011">2011年</option>
+						<option value="2012">2012年</option>
+						<option value="2013">2013年</option>
+						<option value="2014">2014年</option>
+						<option value="2015">2015年</option>						
+						<option value="2016">2016年</option>
+						<option value="2017">2017年</option>
+					</select>
+					<i class="iconfont">&#xe639;</i>
+				</div>
+				<div class="mui-input-row">
+					<label>
+						毕业时间
+					</label>
+					<select class="select-infor" name="college" id='graduation'>
+						<option value="">请选择你毕业时间</option>
+						<option value="2016">2016年</option>
+						<option value="2017">2017年</option>
+						<option value="2018">2018年</option>
+						<option value="2019">2019年</option>
+						<option value="2020">2020年</option>
+						<option value="2021">2021年</option>
+					</select>
+					<i class="iconfont">&#xe639;</i>
+				</div>
+				<div class="mui-input-row">
+					<label>
+						学历
+					</label>
+					<select class="select-infor" name="college" id='xueli'>
+						<option value="">请选择你的学历</option>
+						<option value="">本科</option>
+						<option value="">大专</option>
+						<option value="">高中</option>
+						<option value="">中专</option>
+						<option value="">初中</option>
+						<option value="">小学</option>
+					</select>
+					<i class="iconfont">&#xe639;</i>
+				</div>
+				<div class="mui-input-row">
+					<label>
+						专业
+					</label>
+					<input type="text" value="" placeholder="请输入你的专业" id='professional'>
+				</div>
+				<div class="mui-input-row">
+					<label>
+						学号
+					</label>
+					<input type="text" value="" placeholder="请输入你的学号" id='StudentNum'>
+				</div>
+				<div class="mui-input-row">
+					<label>
+						宿舍详细地址
+					</label>
+					<input type="text" value="" placeholder="请输入你的宿舍地址" id='address'>
+				</div>
+				<div class="mui-input-row">
+					<label>
+						学信网账号
+						<i id="apply-pop" class="iconfont">&#xe629;</i>
+					</label>
+					<input type="text" value="" placeholder="请输入你的学信网账号" id='account'>
+				</div>
+				<div class="mui-input-row">
+					<label>
+						学信网密码
+					</label>
+					<input type="text" value="" placeholder="请输入你的学信网密码" id='passwd'>
+				</div>
+				<div class="mui-input-row">
+					<label>
+						父或母联系电话
+					</label>
+					<input type="tel" value="" placeholder="请输入你的父母联系号码" id='eldersPhone'>
+				</div>
+			</form>
+			<button class="mui-btn mui-btn-negative mui-btn-block" id='nextStep'>下一步</button>
+			<!--弹出层开始-->
+			<div id="dialogBg"></div>
+			<div id="apply-dialog" class="animated dialog">
+				<p class="color-black">
+					学信网（www.chsi.com.cn）是教育部指定
+					的学籍查询唯一网站，为方便核实学籍信息
+					需您提供本人在学信网的账号密码，以加快
+					额度申请审核通过。另，如您还未有账号密
+					码可以前往学信网注册获得，所提供的账号
+					密码美分分会严格保密。
+				</p>
+				<ul>
+					<li>
+						<a class="close-pop">
+							取消
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							去注册
+						</a>
+					</li>
+				</ul>
+			</div>
+			<!--弹出层结束-->
+		</div>
+		<script type="text/javascript" src="js/jquery.min.js" ></script>
+		<script src='js/util.js'></script>
+		<script src='js/applyer-infor.js'></script>
+		<script type="text/javascript">
+			var w,h;
+			function getSrceenWH(){
+				w = $(window).width();
+				h = $("html").height();
+				$('#dialogBg').width(w).height(h);
+			}
+			
+			window.onresize = function(){  
+				getSrceenWH();
+			}  
+			$(window).resize();  
+			
+			$(function(){
+				getSrceenWH();
+				//显示弹框
+				$('#apply-pop').click(function(){
+					$('#dialogBg').fadeIn(300);
+					$('#apply-dialog').removeClass('animated').addClass('animated dialog'+"bounceIn"+'').fadeIn();
+				});
+				
+				//关闭弹窗
+				$('.close-pop').click(function(){
+					$('#dialogBg').fadeOut(300,function(){
+						$('#apply-dialog').removeClass('animated').addClass('animated dialog'+'bounceOutUp'+'').fadeOut();
+					});
+				});
+			});
+		</script>
+	</body>
+</html>

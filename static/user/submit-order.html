@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>提交订单</title>
+    <script src="js/mui.min.js"></script>
+    <link href="css/mui.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="css/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="css/popover.css"/>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?61b678558a59e95c85431d0243d592ef";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+    </script>
+    <style>
+    	html{
+    		min-height: 100%;
+    	}
+    	.sub-top{
+    		text-align: center;
+    		padding: 15px 0;
+    		border-bottom: 1px solid #D8D8D8;
+    	}
+    	.sub-top .icon-success{
+    		font-size: 35px;
+    		color: #73BA49;
+    	}
+    	.mui-table-view .mui-media-object {
+			height: 60px;
+			max-width: 60px;
+		}
+		.mui-btn.mui-btn-outlined.mui-btn-primary{
+			border-radius: 20px;
+			padding: 3px 20px 1px 20px;
+			margin-top: 6px;
+			border: 1px solid #00abec;
+			color: #00abec;
+		}
+		.mui-badge{
+			background: none;
+			padding: 0;
+			color: #ffa200;
+		}
+		.mui-table-view.lower-table-view .mui-table-view-cell{
+			padding: 6px 15px 0 15px;
+			font-size: 12px;
+			color: #9B9B9B;
+		}
+		.mui-table-view.lower-table-view .mui-table-view-cell.mui-active{
+			background: #FFF;
+		}
+		.mui-table-view.lower-table-view{
+			padding-bottom: 6px;
+		}
+		.operation-cont{
+			background: #F4F4F4;
+			position: fixed;
+			bottom: 0;
+			left: 0;
+			display: none;
+			z-index: 100;
+			height:296px;
+			overflow: hidden;
+		}
+		.operation-cont ul,.operation-cont{
+			width: 100%;
+			margin: 0;
+			padding: 0;
+		}
+		.operation-cont ul li{
+			position: relative;
+		}
+		.operation-cont ul .mui-media{
+			padding: 4px 15px 6px;
+		}
+		.operation-cont ul .mui-media .size-sm{
+			line-height: 14px;
+			margin-top: -2px;
+		}
+		.operation-cont ul i{
+			position: absolute;
+			top: 11px;
+			right: 14px;
+		}
+		.operation-cont .mui-btn-block{
+			width: 100%;
+			margin: 0;
+			border: 0;
+			margin-top: 4px;
+			border-top: 1px solid #D8D8D8;
+			position: fixed;
+			bottom: 0;	
+			border-radius: 0;
+		}
+		.FQ,#SF{
+			display: none;
+		}
+		.select-operation{
+			height: 258px;
+			overflow: scroll;
+		}
+		.select-operation .mui-media{
+			border-bottom: #D8D8D8 solid 1px;
+		}
+		li.mui-table-view-cell:after{
+			height: 0;
+		}
+		ul.mui-table-view:after{
+			height: 1px;
+		}
+		ul.select-operation:after{
+			height:0;
+		}
+    </style> 
+</head>
+<body>
+	<div class="mui-content">
+	    <div class="sub-top bg-white" style='display:none;' id='through'>
+	    	<i class="iconfont icon-success">&#xe63d;</i>
+	    	<h5 class="color-black">额度申请提交成功，你可以提交订单啦</h5>
+	    </div>
+	    <div class="sub-top bg-white" id='audit' style='display:none;'>
+	    	<h5 class="color-black">您未开通额度，在线简单两步即可申请</h5>
+	    	<button class="mui-btn mui-btn-outlined mui-btn-primary" id='apply-now'>马上申请</button>
+	    </div>
+	    <ul class="mui-table-view has-m-top">
+			<li class="mui-table-view-cell mui-media">
+				<a>
+					<img class="mui-media-object mui-pull-left" src="img/pic1.png" id='userImg'/>
+					<div class="mui-media-body">
+						<p class='title' style='color:#333'>最新华丽美版Ulthera 还你紧致童颜</p>
+						<p class='mui-ellipsis'>
+							<span id='hospitalName'>上海春夏秋冬外科整形医院</span>
+						</p>
+						<p class='mui-ellipsis'>
+							售价：<span class="color-red" id='now-price'>￥600</span>
+							医院价：<span class="line-throu" id='old-price'>￥1000</span>
+						</p>
+					</div>
+				</a>
+			</li>
+		</ul>
+		<ul class="mui-table-view has-m-top">
+			<li class="mui-table-view-cell" id='djq'>
+				<a id="pop-btn" class="mui-navigate-right">
+					代金券
+					<span class="mui-badge">
+						
+						<span id="num">无可用代金券</span>
+					</span>
+				</a>
+			</li>
+		</ul>
+		<ul class="mui-table-view lower-table-view has-m-top">
+			<li class="mui-table-view-cell no-after-line">
+				订单金额
+				<span class="mui-pull-right" id='payPrice'></span>
+			</li>
+			<li class="mui-table-view-cell no-after-line" id='DJQdetail' style="display: none;">
+				代金券
+				<span class="mui-pull-right" id='vouchers'></span>
+			</li>
+			<li class="mui-table-view-cell no-after-line FQ">
+				分期金额
+				<span class="mui-pull-right" id='installment'></span>
+			</li>
+			<li class="mui-table-view-cell no-after-line FQ">
+				分期月数
+				<span class="mui-pull-right" id='period'></span>
+			</li>
+			<li class="mui-table-view-cell no-after-line FQ">
+				分期月供
+				<span class="mui-pull-right" id='monthPay'></span>
+			</li>
+		</ul>
+		<ul class="mui-table-view" id='SF'>
+			<li class="mui-table-view-cell mui-media">
+				<a>
+					<div class="mui-media-body">
+						需首付：
+						<span class="color-red mui-pull-right" id='firstPay'>￥200</span>
+						<p class="size-sm" id='desc'>
+						</p>
+					</div>
+				</a>
+			</li>
+		</ul>
+		<ul class="mui-table-view" id='needPay' style='display: none;'>
+			<li class="mui-table-view-cell mui-media">
+				<a>
+					<div class="mui-media-body">
+						应付：
+						<span class="color-red mui-pull-right">￥200</span>
+						<p class="size-sm" id='desc'>
+						</p>
+					</div>
+				</a>
+			</li>
+		</ul>
+		<button class="mui-btn mui-btn-block mui-btn-negative" id='confirm_order'>提交</button>
+		<div id="dialogBg"></div>
+		<div class="operation-cont">
+			<div style='padding:4px 15px 6px;border-bottom:1px #D8D8D8 solid;line-height: 33px;background:#fff; z-index:100;position: fixed;bottom:252px;left: 0;width:100%;'>请选择代金券</div>
+			<ul class="mui-table-view select-operation" style="padding-top:43px;">
+				<!--<li class="mui-table-view-cell">
+					请选择代金券
+				</li>-->
+				<li class="mui-table-view-cell mui-media" style="display: none;" id='none'>
+					<span class="color-red" style="line-height:33px;">
+						<span class="coupon-num" cou="0">不使用代金券</span>
+					</span>
+				    <i class="iconfont mui-pull-right">&#xe63e;</i>
+				</li>					
+			</ul>
+			<div class="noJudge" style="text-align: center;position: absolute;top:50px;width:100%;display: none;">
+				<img src="img/icon-no-repay.png" style="width: 20%;margin-top: 10px;">
+				<p>暂无代金券</p>
+				<p>美丽分期，为自己加分</p>
+			</div>	
+			<button class="mui-btn mui-btn-block">确定</button>
+		</div>		
+	</div>
+</body>
+</html>
+<script src='/static/user/js/util.js'></script>
+<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript" src="http://www.meifenfen.com/user/jssdk.js"></script>
+<script src='/static/user/js/jquery.min.js'></script>
+<script>			
+ var para=Common.UrlGet();
+ var coupon_id=0;
+ var status;
+
+    $('#apply-now').on('click',function(){
+		sessionStorage.setItem('apply_from_item_pay_item_id',para.item_id);
+    	sessionStorage.setItem('apply_from_item_pay_choice_id',para.period_choice_id);
+    	location.href='/static/user/applyer-infor.html'
+	})
+	$.ajax({
+		xhrFields: {
+		withCredentials: true
+		  },
+		type:"post",
+		url:"http://"+getHostName()+"/user/order_preview/?"+$.param(para),
+		dataType:'json',
+		success:function(data){
+			coupon_id=data.coupon_id
+			var coupon_list=data.coupon_list;
+			//分期ID 等会0的时候 并且需首付大于零的时候 首付显示  默认隐藏
+			if(para.period_choice_id==0 &&data.need_pay>0){
+				$('#needPay').show();
+				$('#needPay span').html('￥'+data.need_pay);
+			}else{
+				$('#needPay').hide();
+			}
+			//分期ID大于并且分期数 大于零的时候 分期显示;
+			  	if(para.period_choice_id>0 && data.credit_amount>0){
+		  		$('.FQ').show();
+		  	}
+			  	//分期ID大于零  首付大于零 首付详情显示
+			if(data.need_pay>0 && para.period_choice_id>0){
+				$('#SF').show()
+			};
+			
+			$('#desc').html('(首付金额＝总价－你的可用额度'+data.credit_amount_can_use+'元)')
+			//代金券列表大于零的时候代金券显示;
+			if(coupon_list.length>0){
+				$('#djq').show();
+				$('#DJQdetail').show();
+			}
+			if(coupon_list.length==0){
+				$('.noJudge').show();
+			}else{
+				$('#none').show();
+				$('.noJudge').hide()
+			}
+			for(var i=0;i<coupon_list.length;i++){
+				var str=$('<li class="mui-table-view-cell mui-media"><span class="color-red"><span class="coupon-num" cou='+coupon_list[i].id+'>'+coupon_list[i].title+'</span></span><p class="size-sm">'+coupon_list[i].cat_str+'，'+coupon_list[i].remain_str+'</p><i class="iconfont mui-pull-right">&#xe63e;</i></li>')
+				if(coupon_list[i].status==1){
+					str.removeClass('mui-media');
+					str.find('i').html('&#xe627;')
+				}
+				if(coupon_id==coupon_list[i].id){
+					str.addClass('active');
+					str.find('i').html('&#xe627;')
+					$('#num').html(coupon_list[i].title);
+				};
+				$('.select-operation').append(str);
+			}
+			var hospital=data.hospital;
+			var item=data.item;
+			var coupon_list=data.coupon_list;
+			var monthPay=data.period_amount+data.period_fee;
+
+			$('.title').html(item.title);
+			$('#old-price').html(item.orig_price);
+			$('#now-price').html(item.price);
+			$('#hospitalName').html(hospital.name);
+			$('#userImg').attr('src',item.image);
+			$('#payPrice').html('￥'+data.total);
+			$('#installment').html('￥'+data.credit_amount);
+			$('#period').html(data.period_count+'个月');
+			$('#vouchers').html('-￥'+data.coupon_amout);
+			$('#monthPay').html('￥'+data.period_total+"(含服务费￥"+data.period_fee+")");
+			$('#firstPay').html(data.need_pay);
+			//下面状态判断顶部的 申请 去申请 等待审核的显示;
+			status=data.credit_status
+			if(data.credit_status==0 && para.period_choice_id!=0){
+				$('#audit').show();
+			}else if(data.credit_status==1){
+				if(sessionStorage.getItem('apply_from_item_pay_item_id')&&sessionStorage.getItem('apply_from_item_pay_choice_id')){
+					$('#through').show()
+				}
+			}else if(data.credit_status==3){				
+				$('#audit').show();
+				
+			}
+			if(para.period_choice_id==0){
+				$('#audit').hide();
+			}
+			
+		},
+		error:function(){
+			alert('网络出现小差，请稍后再试！')	
+		}		
+	});
+	//提交按钮
+	$('#confirm_order').on('click',function(){
+		if(coupon_id==undefined){
+			coupon_id=0;
+		}
+		if((status==0 ||status==3)&&para.period_choice_id!=0){
+			alert('请去申请额度');
+			return;
+		}
+		if(!getCookie('sign_user')){
+			sessionStorage.setItem('reg_pay_item_id',para.item_id);
+	    	sessionStorage.setItem('reg_pay_choice_id',para.period_choice_id);
+	    	location.href='/static/user/login.html'
+	    	return
+		}
+		$.ajax({
+			xhrFields: {withCredentials: true},
+			type:"post",
+			url:"http://"+getHostName()+"/user/confirm_order/?",
+			dataType:'json',
+			data:{
+				period_choice_id:para.period_choice_id,
+				item_id:para.item_id,
+				coupon_id:coupon_id
+			},success:function(data){
+				if(data.code==0){
+					location.href='http://'+getHostName()+'/user/order_pay/?order_id='+data.order_id
+				}else{
+					alert(data.msg)
+				}
+			},error:function(){
+				alert('网络出现小差，请稍后再试！');
+			}
+		});
+	})
+//显示隐藏	
+var w, h;
+function getSrceenWH() {
+	w = $(window).width();
+	h = $("html").height();
+	$('#dialogBg').width(w).height(h);
+}
+window.onresize = function() {
+	getSrceenWH();
+}
+$(window).resize();
+	getSrceenWH();
+	$("#pop-btn").on("tap", function() {
+		$(".operation-cont").css("display", "block");
+		$("#dialogBg").fadeIn(300);
+	});
+
+	$(document).on("tap",".select-operation .mui-media",function() {
+		$(".select-operation .mui-media").removeClass("active").find("i").html("&#xe63e;");
+		$(this).addClass("active").find("i").html("&#xe627;");
+		//					$("#dialogBg").fadeOut(300);
+		//					$(".operation-cont").css("display","none");
+		$("#num").html($(this).find(".coupon-num").html());
+	});
+
+	$(".operation-cont .mui-btn-block").on("tap", function() {
+		$("#dialogBg").fadeOut(300);
+		$(".operation-cont").css("display", "none");
+		coupon_id=$('.mui-media.active .coupon-num').attr('cou');
+		console.log(coupon_id)
+	});
+	
+//优惠券显示隐藏;	
+$(".operation-cont .mui-btn-block").on('tap', function() {
+	//没有选择的时候优惠券ID传个O
+	if(!coupon_id){
+		coupon_id=0;
+	}
+	
+	//选择优惠券时再次请求接口;	
+	$.ajax({
+		xhrFields: {withCredentials: true},
+		type: "post",
+		url: "http://"+getHostName()+"/user/order_preview/?item_id="+para.item_id+"&period_choice_id="+para.period_choice_id+"&coupon_id="+coupon_id,
+		dataType: 'json',
+		success: function(data) {
+			
+			var hospital = data.hospital;
+			var item = data.item;
+			var coupon_list = data.coupon_list;
+			var monthPay = data.period_amount + data.period_fee;
+			///新加的
+			if(para.period_choice_id==0 &&data.need_pay>0){
+				$('#needPay').show();
+				$('#needPay span').html('￥'+data.need_pay);
+			}else{
+				$('#needPay').hide();
+			}
+			if(para.period_choice_id>0 && data.credit_amount>0){
+		  		$('.FQ').show();
+		  	}else{
+		  		$('.FQ').hide();
+		  	}
+			if(data.need_pay>0 && para.period_choice_id>0){
+				$('#SF').show()
+			}else{
+				$('#SF').hide()
+			}
+			$('#desc').html('(首付金额＝总价－你的可用额度'+data.credit_amount_can_use+'元)')
+//			if(coupon_list.length>0){
+//				$('#djq').show();
+//				$('#DJQdetail').show();
+//			}else{
+//				$('#djq').hide();
+//				$('#DJQdetail').hide();
+//			}
+			if(coupon_list.length==0){
+				$('.noJudge').show();
+			}else{
+				$('#none').show();
+				$('.noJudge').hide()
+			}
+//			
+			
+			$('#needPay span').html('￥'+data.need_pay);
+			$('.title').html(item.title);
+			$('#old-price').html(item.orig_price);
+			$('#now-price').html(item.price);
+			$('#hospitalName').html(hospital.name);
+			$('#userImg').attr('src', item.image);
+			$('#payPrice').html('￥' + data.total);
+			$('#installment').html('￥' + data.credit_amount);
+			$('#period').html(data.period_count + '个月');
+			$('#vouchers').html('-￥' + data.coupon_amout);
+			$('#monthPay').html('￥' + data.period_total + "(含服务费￥" + data.period_fee + ")");
+			$('#firstPay').html(data.need_pay);
+			//新加的		
+		},
+		error: function() {
+			alert('网络出现小差，请稍后再试！')
+		}
+	});
+}) 	
+	
+</script>

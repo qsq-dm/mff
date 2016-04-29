@@ -1,0 +1,467 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8" />
+		<title>设置问题</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="/static/user/css/mui.css" />
+		<link rel="stylesheet" type="text/css" href="/static/user/redpack/css/common.css" />
+		<style type="text/css">
+			html,
+			body {
+				min-height: 100%;
+				background: #ff3a41;
+				padding-bottom: 10px;
+			}
+			
+			.mui-content {
+				background: #ff3a41;
+			}
+			
+			.banner img {
+				width: 100%;
+				display: block;
+			}
+			
+			.contianer {
+				margin: 10px;
+				background: #fff0ff;
+				/*height: 300px;*/
+				border-radius: 10px;
+				box-sizing: border-box;
+				padding: 10px 5px;
+			}
+			
+			.title {
+				text-align: center;
+				color: #ff6770;
+				font-weight: bold;
+				font-size: 16px;
+			}
+			/*.title:nth-last-child(1){
+				padding-bottom: 10px;
+			}*/
+			
+			.title img {
+				width: 30px;
+			}
+			
+			.main {
+				padding: 10px;
+				box-sizing: border-box;
+			}
+			
+			.warp {
+				border: 2px solid #ff6770;
+				border-radius: 5px;
+			}
+			
+			.warp p {
+				line-height: 40px;
+				text-align: center;
+				color: #ff6770;
+				position: relative;
+			}
+			
+			.main p:nth-child(1) {
+				border-bottom: 1px dashed #ff6770;
+			}
+			
+			.warp p img {
+				vertical-align: middle;
+				height: 14px;
+				margin-left: 5px;
+				position: absolute;
+				right: 30%;
+				top: 13px;
+			}
+			
+			.warp p .posi {}
+			/*//输入答案 问题*/
+			
+			.warp input {
+				border: none;
+				width: 80%;
+				height: 30px;
+				margin: 0;
+				background: #fff0ff;
+				text-align: center;
+				font-size: 14px;
+			}
+			
+			.warp input::-webkit-input-placeholder {
+				color: #ff6770;
+				text-align: center;
+				font-size: 14px;
+			}
+			
+			#input::-webkit-input-placeholder {
+				color: #ff6770;
+				text-align: center;
+				font-size: 8px;
+			}
+			
+			.red {
+				height: 50px;
+			}
+			
+			.red li {
+				float: left;
+				width: 18.4%;
+				height: 50px;
+				background: yellow;
+				margin-right: 2%;
+				background: url(images/redpack.png) no-repeat 0 0;
+				background-size: 100% 100%;
+				text-align: center;
+				position: relative;
+			}
+			
+			.red li span {
+				color: #fff;
+				display: block;
+				margin-top: 5px;
+			}
+			
+			.red li:nth-last-child(1) {
+				margin: 0;
+			}
+			
+			#input {
+				height: 20px;
+				width: 80%;
+				margin-top: 5px;
+				border: none;
+				padding: 0;
+				font-size: 10px;
+			}
+			
+			.red li.act:before {
+				content: '';
+				width: 15px;
+				height: 15px;
+				background: url(images/red-bg.png) no-repeat 0 0;
+				background-size: contain;
+				position: absolute;
+				right: 2px;
+				bottom: 4px;
+			}
+			
+			.red li.act {
+				border: 2px #3ecabc solid;
+				border-radius: 7px;
+			}
+			
+			.list {
+				box-sizing: border-box;
+				padding: 0 10px;
+				max-height: 300px;
+				overflow-y: scroll;
+			}
+			
+			.list li {
+				line-height: 30px;
+				border: #ff3a41 1px solid;
+				border-radius: 10px;
+				margin-top: 10px;
+				color: #ff3a41;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+				overflow: hidden;
+			}
+			/*蒙版*/
+			
+			.content {
+				padding: 10px 0;
+				height: 350px;
+				top: 50%;
+				margin-top: -160px;
+			}
+			
+			.mui-btn-block {
+				width: 60%;
+				border: none;
+				background: url(images/button-yellow.png) no-repeat 0 0;
+				background-size: 100% 100%;
+				margin: 25px auto 0;
+				color: #ff3a41;
+			}
+			
+			@media only screen and (max-height:480px) {
+				.mui-content {
+					padding-bottom: 30px;
+				}
+			}
+			
+			.content .img {
+				top: -45px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="mui-content">
+			<div class="banner">
+				<img src="images/start_redpack.jpg" alt="" />
+			</div>
+			<div class="contianer">
+				<div class="title">
+					<img src="images/red-left.png" alt="" /> 设置一个劲爆问题
+					<img src="images/red-right.png" alt="" />
+				</div>
+				<div class="main">
+					<div class="warp">
+						<p id="alert"><span>选择问题</span> <img src="images/iocn-rigth.png" alt="" /></p>
+						<p>
+							<input type="text" maxlength="25" placeholder="自定义问题" id="wenti" />
+							<img src="images/write.png" alt="" class="posi" />
+						</p>
+					</div>
+				</div>
+				<div class="title">
+					<img src="images/red-left.png" alt="" /> 真实的答案
+					<img src="images/red-right.png" alt="" />
+				</div>
+				<div class="main">
+					<div class="warp">
+						<p style="border:none;">
+							<input type="text" maxlength="25" placeholder="填写答案" id="daan" />
+							<img src="images/write.png" alt="" class="posi" />
+						</p>
+					</div>
+				</div>
+				<div class="title" style="padding-bottom: 10px;">
+					<img src="images/red-left.png" alt="" /> 看答案所需要红包
+					<img src="images/red-right.png" alt="" />
+				</div>
+				<ul class="red">
+					<li price='1' cat_id="1"><span>1元</span></li>
+					<li price='2.8' cat_id="1"><span>2.8元</span></li>
+					<li price='5.8' cat_id="1"><span>5.8元</span></li>
+					<li class="is_mon" cat_id="2"><span style="margin:0;">随机</span><span style="display: block;margin-top: -6px;">(1~5)</span></li>
+					<li cat_id="3">
+						<input type="text" placeholder="输入金额" id="input" class="size-sm" />
+					</li>
+				</ul>
+			</div>
+			<!--蒙版-->
+			<div class="mui-backdrop">
+				<div class="content">
+					<img src="images/icon-houzi.png" class="img" alt="" />
+					<span class="close"></span>
+					<ul class="list">
+
+					</ul>
+					<p class="ding" style="margin-top: 10px;">没有你想问的问题？快去自定义吧！</p>
+
+				</div>
+			</div>
+
+			<button class="mui-btn mui-btn-block" id="sub">确认</button>
+		</div>
+		<script src="/static/user/js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="/static/user/js/jquery.min.js"></script>
+		<script src="/static/user/js/util.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			$('#alert').on('click', function() {
+				$('.mui-backdrop').show();
+			})
+			$('.close').on('click', function() {
+				$('.mui-backdrop').hide();
+			})
+			$('.red li').on('click', function() {
+				//  	alert($(this).index())
+				$(this).addClass('act').siblings().removeClass('act');
+			});
+			//获取问题接口
+			$.ajax({
+				xhrFields: {
+					withCredentials: true
+				},
+				type: "get",
+				url: "http://" + getHostName() + "/user/question_list/ ",
+				dataType: 'json',
+				success: function(data) {
+					var infos = data.infos;
+					for (var i = 0; i < infos.length; i++) {
+						var str = '<li cat_id=' + infos[i].id + '>' + infos[i].content + '</li>';
+						$('.list').append(str);
+					};
+					$(".list li").on('click', function() {
+						$('.mui-backdrop').fadeOut(500);
+						var cat_id = $(this).attr('cat_id');
+						$('#alert').find('span').html($(this).text());
+						$('#alert').find('span').attr('cat_id', cat_id);
+						$('#alert').find('img').hide();
+						$('#wenti').val('');
+					});
+				},
+				error: function() {}
+			});
+			$('#wenti').blur(function() {
+				if ($('#wenti').val().length > 0) {
+					$('#alert').find('span').html("选择问题");
+					$('#alert').find('img').show();
+					$(this).siblings().hide()
+				} else {
+					$(this).siblings().show()
+				}
+			});
+			$('#wenti').focus(function() {
+				$(this).siblings().hide();
+			})
+			$('#daan').blur(function() {
+				if ($('#daan').val().length > 0) {
+					$(this).siblings().hide()
+				} else {
+					$(this).siblings().show()
+				}
+			})
+			$('#input').blur(function() {
+				//判断是不是0开头
+				var val=$('#input').val().substring(0,1)				
+				if(val==0){
+					alert("红包金额必须在1到200内");
+					return;
+				};				
+				//判断只能是数字
+				if(!isFloat($('#input').val())){
+					alert('金额只能是数字且最多保留两位小数');
+					return;
+				}
+				if ($('#input').val().length > 0) {
+					if ($('#input').val() > 200 || $('#input').val() < 1) {
+						//							$('#input').val('');
+						alert('红包在1元到200元之间');
+						$(this).parent().attr('price', '0');
+					} else {
+						$(this).parent().attr('price', $('#input').val())
+					}
+				} else {
+					//						$(this).siblings().show()
+				}
+			});
+			$('#daan').focus(function() {
+				$(this).siblings().hide();
+			})
+			//提交问题接口
+			$('#sub').on('click', function() {
+				var question_id;
+				var question;
+				var is_custom; //是否自定义问题; 
+				if ($('#alert span').text() == "选择问题") {
+					if ($('#wenti').val()) {
+						question = $('#wenti').val();
+						question_id = 0;
+						is_custom = 1;
+					} else {
+						alert('请选择问题');
+						return;
+					}
+				} else {
+					question = $('#alert span').text();
+					question_id = $('#alert span').attr('act_id');
+					is_custom = 0;
+				}
+				//				console.log(is_custom);
+				//选择问题；				
+				var answer; //答案
+				if ($('#daan').val().length == 0) {
+					alert('请输入答案');
+					return;
+				} else {
+					answer = $('#daan').val();
+				};
+				var price;
+				var is_random; //随机
+				//				if($('.red .act').length>0){					
+				//					if($('.red .act').hasClass('is_mon')){
+				//						is_random=1;
+				//					}else{
+				//						is_custom=0;
+				//						price=$('.red .act').attr('price');
+				//					}
+				//					
+				//				}else{
+				//					alert('请选择查看答案需要红包');
+				//					return;
+				//				}
+				//				
+				//红包类型
+				var act = $('.red .act');
+				if (act.length > 0) {
+					var num = act.attr('cat_id');
+					//					console.log(num);
+					if (num == 1) {
+						price = act.attr('price')
+						is_random = 0;
+						//num等于1 固定类型;
+					} else if (num == 2) {
+						is_random = 1;
+						//num2是固定类型;
+						price = 0;
+						console.log(is_random);
+					} else if (num == 3) {
+						is_random = 0;
+						//num==3是输入金额
+						if ($('#input').val()) {
+							price = act.attr('price');
+						} else {
+							alert("请输入金额");
+							return;
+						}
+					}
+				} else {
+					alert('请选择查看答案需要红包');
+					return;
+				}
+				$.ajax({
+					xhrFields: {
+						withCredentials: true
+					},
+					type: "post",
+					url: "http://" + getHostName() + "/user/new_question_post/",
+					dataType: 'json',
+					data: {
+						question_id: question_id,
+						question: question,
+						answer: answer,
+						is_random: is_random,
+						is_custom: is_custom,
+						price: price
+					},
+					success: function(data) {
+						if (data.code == 0) {
+							alert(data.msg);
+							location.href = "/user/question_detail/?user_question_id=" + data.user_question_id;
+						} else {
+							alert(data.msg);
+						}
+					},
+					error: function() {}
+				});
+			})
+			
+			$('.ding').on('click',function(){
+
+				$('.mui-backdrop').fadeOut(500);
+				$('#wenti').focus();
+			});
+//判断是不是浮点方法
+			function isFloat(str) {
+				if (isInt(str))
+					return true;
+				var reg = /^(-|\+)?\d+(\.\d(\d)?)?$/;
+				return reg.test(str);
+			}
+//判断是不是整数
+			function isInt(str) {
+				var reg = /^(-|\+)?\d+$/;
+				return reg.test(str);
+			}
+		</script>
+	</body>
+
+</html>

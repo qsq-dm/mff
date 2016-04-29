@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=0, width=device-width, height=device-height">
+    </head>
+    <title>上传</title>
+    <style>
+        .uploaded-img {
+            max-height: 150px;
+            margin: 30px;
+        }
+    </style>
+
+    <body>
+        <div id='container'>
+            <button type="file" class="btn btn-default" id='qiniuuploads'>上传</button>
+        </div>
+
+
+
+        <div id='img_uploaded'>
+        
+        </div>
+        <script type="text/javascript">
+            var uploadToken     = '{{token}}';
+        </script>
+        <script type="text/javascript" src="/static/vendor/jquery-2.1.1.min.js"></script> 
+        <script type="text/javascript" src="/static/js/qiniu.js"></script>
+        <script type="text/javascript" src="/static/js/ui.js"></script>
+        <script type="text/javascript" src="/static/js/plupload.full.min.js"></script>
+        <script type="text/javascript" src="/static/js/qiniu_upload.js"></script>
+
+
+    </body>
+
+</html>

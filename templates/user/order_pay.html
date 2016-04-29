@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>提交订单</title>
+    <script src="/static/user/js/mui.min.js"></script>
+    <link href="/static/user/css/mui.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="/static/user/css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/user/css/iconfont.css"/>
+    <script type="text/javascript" charset="utf-8">
+        mui.init();
+    </script>
+    <style type="text/css">
+        .mui-badge{
+            background: none;
+            padding: 0;
+            color: #ffa200;
+        }
+        .mui-table-view.lower-table-view .mui-table-view-cell{
+            padding: 6px 15px 0 15px;
+            font-size: 12px;
+            color: #9B9B9B;
+        }
+        .mui-table-view.lower-table-view .mui-table-view-cell.mui-active{
+            background: #FFF;
+        }
+        .mui-table-view.lower-table-view{
+            padding-bottom: 6px;
+        }
+        .iconfont.weixin-pay{
+            color: #05B410;
+        }
+        .mui-table-view-cell:after {
+            left: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="mui-content">
+        <ul class="mui-table-view" style="margin-top: 0;">
+            <li class="mui-table-view-cell">
+                <span class="color-grey">请选择支付方式</span>
+            </li>
+            <li class="mui-table-view-cell no-after-line">
+                <i class="iconfont weixin-pay">&#xe640;</i>
+                微信支付
+                <i class="iconfont mui-pull-right color-red">&#xe627;</i>
+                <!--未选择-->
+                <!--<i class="iconfont mui-pull-right color-grey">&#xe63e;</i>-->
+            </li>
+        </ul>
+        <ul class="mui-table-view has-m-top">
+            <li class="mui-table-view-cell no-after-line">
+                实付金额
+                <span class="mui-pull-right color-red">￥{{order.price}}</span>
+            </li>
+        </ul>
+        <button class="mui-btn mui-btn-block mui-btn-negative" onclick='payWechat()'>提交</button>
+    </div>
+
+        <script type="text/javascript">
+            function payWechat(){
+                WeixinJSBridge.invoke(
+                 'getBrandWCPayRequest', {
+                     "appId" : "{{wx_pay_params['appId']}}",     //公众号名称，由商户传入     
+                     "timeStamp": "{{wx_pay_params.timeStamp}}",         //时间戳，自1970年以来的秒数     
+                     "nonceStr" : "{{wx_pay_params.nonceStr}}", //随机串     
+                     "package" : "{{wx_pay_params.package}}",     
+                     "signType" : "{{wx_pay_params.signType}}",         //微信签名方式:     
+                     "paySign" : "{{wx_pay_params.paySign}}" //微信签名 
+                 },
+                function(res){    
+                    a = JSON.stringify(res)
+                    //alert(a);
+                    if(res.err_msg == "get_brand_wcpay_request:ok" ){
+                      //alert('支付成功');
+                      window.location = '/user/order_pay_success/?order_id={{order.id}}';
+                      return true;
+                    }else(res.err_msg=='get_brand_wcpay_request:cancel' || res.err_msg=='get_brand_wcpay_request:fail')
+                    {
+                      alert('未支付成功')
+                      return false
+                    }
+                }
+             ); 
+          }
+        </script>
+
+</body>
+</html>
+
+

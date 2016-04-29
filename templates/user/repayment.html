@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=0, width=device-width, height=device-height">
+    </head>
+    <title>还款</title>
+    <style>
+    
+    </style>
+
+    <body>
+        <h1>支付{{order.price}}元</h1>
+
+        <button type="submit" class="btn btn-default" id='pay-btn' onclick='payWechat()'>确认支付</button>
+
+        <script type="text/javascript">
+            function payWechat(){
+                WeixinJSBridge.invoke(
+                 'getBrandWCPayRequest', {
+                     "appId" : "{{wx_pay_params['appId']}}",     //公众号名称，由商户传入     
+                     "timeStamp": "{{wx_pay_params.timeStamp}}",         //时间戳，自1970年以来的秒数     
+                     "nonceStr" : "{{wx_pay_params.nonceStr}}", //随机串     
+                     "package" : "{{wx_pay_params.package}}",     
+                     "signType" : "{{wx_pay_params.signType}}",         //微信签名方式:     
+                     "paySign" : "{{wx_pay_params.paySign}}" //微信签名 
+                 },
+                function(res){    
+                    a = JSON.stringify(res)
+                    alert(a);
+                    if(res.err_msg == "get_brand_wcpay_request:ok" ){
+                      alert('还款成功');
+                      window.location = '/user/order_detail?order_id={{order.id}}';
+                      return true;
+                    }else(res.err_msg=='get_brand_wcpay_request:cancel' || res.err_msg=='get_brand_wcpay_request:fail')
+                    {
+                      alert('未支付成功')
+                      return false
+                    }
+                }
+             ); 
+          }
+        </script>
+    </body>
+
+</html>

@@ -1,0 +1,365 @@
+	<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>个人信息</title>
+		<script src="/static/user/js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<link href="/static/user/css/mui.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="/static/user/css/iconfont.css"/>
+		<link rel="stylesheet" type="text/css" href="/static/user/css/style.css"/>
+		<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?f232e4e56216f4d1ac7bcccaa630f2f3";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+		<script type="text/javascript" charset="utf-8">
+			mui.init();
+		</script>
+		<style type="text/css">
+		    .mui-input-group .mui-input-row{
+		    	height: 46px;
+		    }
+			.mui-input-row label ~ input,.mui-input-row label ~ select{
+				margin-top: 4px;
+				width: 65%;
+				text-align: left;
+				font-size: 14px;
+				color: #9B9B9B;
+			}
+			.mui-input-row label ~ select{
+				position: relative;
+				left: -3px;
+			}
+			.mui-input-row label ~ i{
+				position: absolute;
+				top: 12px;
+				right: 5%;
+				color: #3A3A3A;
+				font-size: 12px;
+			}
+			.mui-input-row label {
+				width: 110px;
+				padding: 15px 0 10px 12px;
+			}
+			.mui-input-row label i{
+				font-size: 22px;
+			}
+			.apply-pic-cont .pic-cont{
+				width: 100%;
+				margin: auto;
+				overflow: hidden;
+				padding: 14px 0;
+				text-align: center;
+				padding-left: 10%;
+				position: relative;
+			}
+			.apply-pic-cont .pic-cont li{
+				width: 45%;
+				float: left;
+				text-align: center;
+			}
+			.apply-pic-cont .pic-cont li img{
+				height: 100px;
+				width: 100px;
+			}
+			.agree{
+				margin-top: 14px;
+				padding-left: 4%;
+			}
+			.mask{
+				display: none;
+			}
+			.act{
+				
+			}
+			.load-cont{
+			height: 10px;
+			width: 80%;
+			border: 1px solid #ECECEC;
+			position: absolute;
+			bottom: 30px;
+			left: 6%;
+			border-radius: 10px;
+			background: #FFF;
+		}
+		.del{
+			position: absolute;
+		    top: -9px;
+		    left: 50%;
+		    margin-left: -62px;
+		    font-size: 25px;
+		    display: none;
+		}
+		ul li{
+			position: relative;
+		}
+		.parent{
+			position:relative;
+		}
+		.load-cont {
+		    height: 9px;
+		    width: 95px;
+		    border: 1px solid #ECECEC;
+		    position: absolute;
+		    bottom: 30px;
+		    left: 50%;
+		    margin-left: -47px;
+		    border-radius: 10px;
+		    display: none;
+		    background: #FFF;}
+		    .load-bar-inner{
+		    	width: 0%;
+		    }
+		</style>
+	</head>
+
+	<body>
+		<div class="mui-content">
+			<div class="limit-cont">
+				<div class="blue-bg">
+					<span class="size-big-xl">￥10000</span>
+					<span>起消费额度</span>
+				</div>
+				<p class="has-lr-padded" style="padding-left: 14px;">只需简单2步</p>
+				<ul class="limit-process">
+					<li>
+						<span class="circle bg-no">1</span>
+						填写基本信息
+					</li>
+					<li>
+						<span class="circle bg-blue">2</span>
+						上传手持证件照片
+					</li>
+				</ul>
+			</div>
+			<div class="apply-pic-cont bg-white">
+				 <ul class="mui-table-view has-m-top no-after-line has-after-line has-l-padded">
+					<li class="mui-table-view-cell">
+						照片要求能看清证件信息及本人
+					</li>
+				</ul>
+				<ul class="pic-cont has-after-line has-l-padded">
+					<li onclick="$('#idCard').click();">
+						<div class='parent'>
+							<img id='btn1' src="/static/user/img/apply-plus-pic1.png"></img>
+							<div class="load-cont">
+								<div class="load-bar">
+									<div class="load-bar-inner" data-loading="0" ></div>
+								</div>
+							</div>
+						</div>
+						
+						<h4>手持身份证</h4>
+						<i class="iconfont del">&#xe625;</i>
+						<p class="size-sm">（需上传手持正面）</p>
+				
+					</li>
+					<li>
+						<img src="/static/user/img/apply-show-pic1.png"/>
+						<h4>示例</h4>
+					</li>
+				</ul>
+				<ul class="pic-cont has-after-line">
+					<li onclick="$('#studentCard').click();">
+						<div class='parent'>
+							<img id='btn2' src="/static/user/img/apply-plus-pic1.png"></img>
+							<div class="load-cont">
+								<div class="load-bar">
+									<div class="load-bar-inner" data-loading="0"></div>
+								</div>
+							</div>
+						</div>						
+						<h4>手持学生证</h4>
+						<i class="iconfont del">&#xe625;</i>
+						<p class="size-sm">（需打开学籍信息页）</p>
+					</li>
+					<li>
+						<img src="/static/user/img/apply-show-pic2.png"/>
+						<h4>示例</h4>
+					</li>
+				</ul>
+			</div>
+			<p style='display: none;'><input id='idCard' type="file" id="file1" name="file" /></p>
+			<p style='display: none;;'><input id='studentCard' type="file" id="file1" name="file" /></p>
+			<div class="agree">
+				<i id="agree" class="iconfont color-grey">&#xe607;</i>
+				提交申请即同意
+				<a class="color-black" href="/static/user/SXXY.html" style='color:#007aff;'>《美分分授信协议》</a>
+			</div>
+			<button class="mui-btn mui-btn-negative mui-btn-block" id='submit'>提交申请</button>
+		</div>
+		<div class="mask" style='position: fixed;left: 0;right:0;top:0;bottom: 0;margin:auto;background: rgba(0,0,0,0.3);'>
+			<p style='width:30%;position: absolute;top:40%;left:50%;margin-left:-15%;'>
+				<img style='width:100%;' src="/static/user/img/loading.gif" alt="" />
+				<span style='color:red;position: absolute;top:40%;width:100%;text-align: center;font-size:20px;'>10%</span>
+			</p>
+			
+		</div>
+<script src='/static/user/js/jquery.min.js'></script>
+<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript" src="http://www.meifenfen.com/user/jssdk.js"></script>	
+<script src='/static/user/js/util.js'></script>
+<script>
+	//第一次进来把代码请求的接口
+	$.ajax({
+		xhrFields: {withCredentials: true},
+		type:"post",
+		url:"http://"+getHostName()+"/user/my_apply/?",
+		dataType:'json',
+		success:function(data){
+			var data=data.data;
+			//当接口值不为空的情况下执行下面代码
+			if(data.id_card_photo || data.stu_card_photo){
+				$('#btn1').attr({'src':data.id_card_photo});
+				$('#idCard').attr('path',data.id_card_photo_key);
+				$('#studentCard').attr('path',data.stu_card_photo_key);
+				$('#btn2').attr({'src':data.stu_card_photo});
+				$('.del').show()
+			}
+
+		},
+		error:function(){
+			
+		}
+	});
+
+
+
+
+				$('.del').eq(0).on('touchstart',function(event){
+//					event.stopPropagation();
+					
+					event.preventDefault()//阻止浏览器默认事件
+					$('#btn1').attr('src','/static/user/img/apply-plus-pic1.png');
+					$('#idCard').removeAttr('path');
+					$(this).hide();
+				})
+				$('.del').eq(1).on('touchstart',function(event){
+					event.stopPropagation();
+					event.preventDefault()//阻止浏览器默认事件
+					$('#btn2').attr('src','/static/user/img/apply-plus-pic1.png');
+					$('#studentCard').removeAttr('path');
+					$(this).hide();
+				})
+				$("#idCard").change(function() {
+					upload($(this)[0], $('#btn1'),$('.load-cont').eq(0),$('.load-bar-inner').eq(0));
+					$('.del').eq(0).show()
+					$('.load-cont').eq(0).show()
+					
+				});
+				$("#studentCard").change(function() {
+					upload($(this)[0], $('#btn2'),$('.load-cont').eq(1),$('.load-bar-inner').eq(1));
+					$('.del').eq(1).show()
+					$('.load-cont').eq(1).show()
+					
+				});
+				
+var upload = function(_file,btn,jind,jindChild){
+
+    if(_file.files.length === 0){
+        return;
+    }    	
+    var data = new FormData();
+    data.append('file', _file.files[0]);
+	data.append('image_cat', 'apply')
+    var request = new XMLHttpRequest();
+    request.onreadystatechange = function(){
+        if(request.readyState == 4){
+            try {window.r = request.response;
+                var resp = JSON.parse(request.response);
+               	$('.mask').hide();
+               	jind.hide()
+                btn.attr('src', resp.fullpath)
+                $(_file).attr('path',resp.image)
+            } catch (e){
+                var resp = {
+                    status: 'error',
+                    data: 'Unknown error occurred: [' + request.responseText + ']'
+                };
+            }
+            console.log(resp.status + ': ' + resp.data);
+        }
+    };
+
+    request.upload.addEventListener('progress', function(e){
+        console.log(parseInt(100*e.loaded/e.total));
+        $('.mask').find('span').html(parseInt(100*e.loaded/e.total)+'%')
+        jindChild.css('width',parseInt(100 * e.loaded / e.total) + '%')
+    }, false);
+
+    request.open('POST', 'http://'+getHostName()+'/user/upload_image/?');
+    request.send(data);
+}
+			//	同意并接受
+			var oAgree=document.getElementById('agree');
+			var onOff=true;
+			$('#agree').click(function(){
+				if(onOff){
+					$('#agree').html('&#xe61a;');
+					$('#agree').css('color','#FF4200')
+					$('#agree').addClass('act')
+					onOff=false;
+				}else{
+					$('#agree').html('&#xe607;');
+					$('#agree').css('color','#9B9B9B')
+					$('#agree').removeClass('act')
+					onOff=true;
+				}
+			});
+$('#agree').trigger('click');
+var item_id=sessionStorage.getItem('apply_from_item_pay_item_id');
+var choice_id=sessionStorage.getItem('apply_from_item_pay_choice_id');
+$('#submit').on('click',function(){
+	var id_card_photo=$('#idCard').attr('path');
+	var stu_card_photo=$('#studentCard').attr('path');
+	if(id_card_photo && stu_card_photo){
+		if($('#agree').hasClass('act')){
+				$.ajax({
+				type:"post",
+				url:"http://"+getHostName()+"/user/apply_photo_post/?",
+				dataType:'json',
+				data:{
+					id_card_photo:id_card_photo,
+					stu_card_photo:stu_card_photo
+				},
+				success:function(data){
+					if(data.code==0){
+						if(item_id&&choice_id){
+							location.href='/static/user/submit-order.html?item_id='+item_id+"&period_choice_id="+choice_id;
+						}else{
+							location.href='/user/menu_credit_apply/';
+						}
+						
+					}
+				},
+				error:function(){
+					alert('网络出现小差请稍后再试');
+				}
+			});
+		}else{
+			alert('请确定《美分分授信协议》');
+		}
+		
+	}else{
+		alert('请上传你的身份证以及学生证');
+	}
+});
+$('.color-black').on('click',function(){
+	sessionStorage.setItem('btn1',$('#btn1').attr('src'))
+	sessionStorage.setItem('btn2',$('#btn2').attr('src'))
+})
+$(function(){
+	if(sessionStorage.getItem('btn1')){
+		$('#btn1').attr('src',sessionStorage.getItem('btn1'))
+		$('#btn2').attr('src',sessionStorage.getItem('btn2'))
+	}
+})
+</script>
+	</body>
+</html>

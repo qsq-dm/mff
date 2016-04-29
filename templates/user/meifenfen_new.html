@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="format-detection"content="telephone=no"/>	
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>美分分</title>
+    <script src="/static/user/js/mui.min.js"></script>
+    <script src="/static/user/js/jquery.min.js"></script>
+    <script src="/static/user/js/swiper.min.js"></script>
+    <link href="/static/user/css/mui.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="/static/user/css/swiper.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/user/css/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/user/css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/user/css/popover.css"/>
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+    </script>
+ <style type="text/css">
+    	html{
+    		min-height: 100%;
+    	}
+    	h4{
+    	    text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+    		margin-top: 0;
+    		margin-bottom: 0;
+    		/*line-height: 20px;*/
+    	}
+    	.ad-big-pic{
+    		position: absolute;
+    		bottom: 0;
+    		right: 10px;
+    		height: 150px;
+    		width: 90px;
+    		z-index: 1;
+    	}
+    	.h-ad p,.h-ad h4,.s-ad p,.s-ad h4{
+    		line-height: 20px;
+    	}
+    	.h-ad .month-pay-sm{
+    		margin-top: 20px;
+    	}
+    	.line{
+    		width: 100%;
+    		height: 1px;
+    		background: #ECECEC;
+    		margin:10px 0;
+    	}
+    	.mui-table-view-cell.h-ad h4 {
+            width: 100%;
+        }
+        .mui-table-view-cell.h-ad p {
+            font-size: 12px;
+        }
+        .mui-table-view-cell.s-ad.s-ad-top h4 {
+            width: 100%;
+        }
+        .mui-table-view-cell.s-ad.s-ad-botm h4 {
+            width: 100%;
+        }
+    	.city-btn{
+    		display: inline-block;
+    		color: #FFF;
+    		position: absolute;
+    		top: 10px;
+    		left: 10px;
+    		z-index: 98;
+    		font-size: 16px;
+    	}
+    	#city-dialog{
+    		/*height: 400px;
+    		width: 300px;
+    		margin: -200px 0 0 -150px;*/
+    		overflow-y: scroll;
+    		padding-bottom: 50px;
+    		position: absolute;
+    		top: 0;
+    		left: 0;
+    		border-radius: 0;
+    	}
+    	.icon-close.iconfont{
+    		font-size: 25px;
+    		color: #9B9B9B;
+    		position: absolute;
+    		top: 6px;
+    		right: 6px;
+    		font-size: 30px;
+    		z-index: 100;
+    	}
+    	.swiper-pagination-bullet-active {
+    	    background: white !important;
+    	}
+    	.mui-table-view-cell:after {
+    	    background: #E9EAEC !important;
+    	}
+    	.mui-table-view:after {
+            background: #E9EAEC !important;
+        }
+        li.mui-table-view-cell.no-after:after {
+            height: 0;
+        }
+        .recommend h4 {
+            font-weight: 600;
+            font-size: 15px;
+            margin-bottom: 5px;
+            margin-top: 0px;
+            color: #5D5B5B;
+        }
+        .recommend h5 {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .mui-icon.index{
+            background: url(/static/user/img/index0.png) no-repeat center center;
+            background-size:100% 100%;
+        }
+        .mui-active .mui-icon.index{
+            background: url(/static/user/img/index.png) no-repeat center center;
+            background-size:100% 100%;          
+        }
+        .mui-icon.item{
+            background: url(/static/user/img/item0.png) no-repeat center center;
+            background-size:100% 100%;
+        }
+        .mui-active .mui-icon.item{
+            background: url(/static/user/img/item.png) no-repeat center center;
+            background-size:100% 100%;          
+        }
+        .mui-icon.wo{
+            background: url(/static/user/img/wo0.png) no-repeat center center;
+            background-size:100% 100%;
+        }
+        .mui-active .mui-icon.wo{
+            background: url(/static/user/img/wo.png) no-repeat center center;
+            background-size:100% 100%;          
+        }
+
+
+    </style>
+    <script>
+        $(document).ready(function () {
+        var swiper = new Swiper('.swiper-container', {
+            pagination: '.swiper-pagination',
+            paginationClickable: true,
+            autoplayDisableOnInteraction: false,
+            autoplay : 3000,
+            loop: true
+        });
+        });
+    </script>
+    <style type="text/css">
+        .swiper-container {
+            width: 100%;
+            max-height: 240px;
+        }
+        .swiper-container img {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+	<div class="mui-content" style="padding-bottom: 50px;">
+		<a class="city-btn" href="/user/meifenfen_city/">
+				<i class="iconfont"></i>
+				<span id='city-name'>
+				    {% if city_name %}
+				    {% else %}
+				        上海
+				    {% endif %}
+				</span>
+		</a>
+
+        <div class="swiper-container swiper-container-horizontal">
+            <div class="swiper-wrapper">
+                {% for banner in banners %}
+                    <div class="swiper-slide swiper-slide-active" onclick='location="{{banner["link"]}}"'style="width: 100%;"><img src="{{banner['image']}}" width="100%" /></div>
+                {% endfor %}
+            </div>
+            <!-- Add Pagination -->
+            <div class="swiper-pagination swiper-pagination-clickable">
+                <span class="swiper-pagination-bullet"></span>
+                <span class="swiper-pagination-bullet"></span>
+                <span class="swiper-pagination-bullet"></span>
+                <span class="swiper-pagination-bullet"></span>
+                <span class="swiper-pagination-bullet"></span>
+            </div>
+        </div>
+
+        <ul class="entrance-pic">
+            <li>
+                <a href="/static/user/project.html?item_api=1" class="zxm">
+                
+                </a>
+                <p class="color-black">找项目</p>
+            </li>
+            <li>
+                <a href="/static/user/cyy.html" class="cyy">
+    
+                </a>
+                <p class="color-black">查医院</p>
+            </li>
+            <li>
+                <a href="/user/menu_credit_apply/" class="edsq">
+    
+                </a>
+                <p class="color-black">申请额度</p>
+            </li>
+            <li>
+                <a href="/static/user/newcoupon.html" class="mryhq">
+    
+                </a>
+                <p class="color-black">代金券</p>
+            </li>           
+        </ul>
+        {% if (activity_items[:3])|length==3 %}
+              <style>
+                  .mui-table-view-cell.h-ad {
+                      background: url({{activity_items[0]['image']}}) no-repeat 100% 100% !important;
+                      background-size: 100% !important;
+                      background-position: 100% 100%;
+                  }
+                  .mui-table-view-cell.s-ad-top {
+                      background: url({{activity_items[1]['image']}}) no-repeat 100% 100%  !important;
+                      background-size:  100% !important;
+                      background-position: 100% 100%;
+                      
+                  }
+                  .mui-table-view-cell.s-ad-botm {
+                      background: url({{activity_items[2]['image']}}) no-repeat 100% 100%  !important;
+                      background-size:  100% !important;
+                      background-position: 100% 100%;
+                  }
+                  @media only screen and (min-width:375px){
+                      li.mui-table-view-cell.h-ad{
+                        background-size: 90% !important; 
+                      }
+                    }
+                    @media only screen and (min-width:414px){
+                      li.mui-table-view-cell.h-ad{
+                        background-size: 85% !important; 
+                      }
+                    }
+              </style>
+        <ul class="mui-table-view has-m-top" style="overflow: hidden;">
+            <li class="mui-table-view-cell">
+                {{activity['title']}}
+                <span class="mui-pull-right color-red">
+                    <i class="iconfont">&#xe60d;</i>
+                    <i style='font-style:normal;' id='at'></i>
+                </span>
+            </li>
+            <li class="mui-table-view-cell h-ad list meifenfen-item" item-id={{activity_items[0]['item']['id']}}>
+                <h4 class="color-black">{{activity_items[0]['item']['title']}}</h4>
+                <span class="color-red" style='margin-top:10px;margin-bottom:10px;display:block'>￥{{activity_items[0]['price']}}</span>
+                <p class="size-sm">原价:<span class="line-throu">￥{{activity_items[0]['item']['orig_price']}}</span></p>
+                <div class="month-pay  month-pay-sm">
+                    <div class="tit">月供</div>
+                    <div class="num size-sm" id='yuegong'>
+                        <b style='color:#FF6565;'>￥{{activity_items[0]['item']['period_money']}}</b>
+                        <span style='color:#FF6565;'>x {{activity_items[0]['item']['period_count']}}</span>
+                    </div>
+                </div>
+                {% if not activity_items[0]['item']['has_fee'] %}
+                    <img class="free-mark" src="/static/user/img/free.png"/>
+                {% endif %}
+            </li>
+            <li class="mui-table-view-cell s-ad s-ad-top list meifenfen-item" item-id={{activity_items[1]['item']['id']}}>
+                <h4 class="color-black">{{activity_items[1]['item']['title']}}</h4>
+                <p class="size-sm"><span class="color-red">￥{{activity_items[1]['price']}}</span>原价:<span class="line-throu">￥{{activity_items[1]['item']['orig_price']}}</span></p>
+                <span class="size-sm period">月供：{{activity_items[1]['item']['period_money']}}x{{activity_items[1]['item']['period_count']}}</span>
+                {% if not activity_items[1]['item']['has_fee'] %}
+                    <img class="free-mark" src="/static/user/img/free.png"/>
+                {% endif %}
+            </li>
+            <li class="mui-table-view-cell s-ad s-ad-botm list meifenfen-item" item-id={{activity_items[2]['item']['id']}}>
+                <h4 class="color-black">{{activity_items[2]['item']['title']}}</h4>
+                <p class="size-sm"><span class="color-red">￥{{activity_items[2]['price']}}</span>原价:<span class="line-throu">￥{{activity_items[2]['item']['orig_price']}}</span></p>
+                <span class="size-sm period">月供：{{activity_items[2]['item']['period_money']}}x{{activity_items[2]['item']['period_count']}}</span>
+                {% if not activity_items[1]['item']['has_fee'] %}
+                    <img class="free-mark" src="/static/user/img/free.png"/>
+                {% endif %}
+            </li>
+        </ul>
+        {% endif %}
+        {% if tutorials | length==2 %}
+        <ul class="mui-table-view has-m-top" style="overflow: hidden;">
+            <li class="mui-table-view-cell no-after-line">
+                <a href="/static/user/meigonglve.html" class="mui-navigate-right">
+                    <img src="/static/user/img/tag.png" alt="" / style="vertical-align: middle;height: 15px;">
+                    <span class="tag" id='tag1'>原理</span>
+                    <span class="tag" id="tag2">手法</span>
+                    <span class="tag" id="tag3">案列</span>
+                    <span class="tag" id="tag4">达人说</span>
+                    <span class="" style="position: absolute;right: 30px;color:#999;">美攻略<span>
+                </span></span></a>                              
+            </li>
+            <li class="pull-left w50" style="">
+                <a href="/static/user/mgl-detail.html?tutorial_id={{tutorials[0]['id']}}">
+                    <img src="{{tutorials[0]['image']}}" alt="" />
+                    <div><span style="margin-right: 10px;">{{tutorials[0]['create_time']}}</span></div>
+                </a>
+            </li>
+            <li class="pull-left w50" style="">
+                <a href="/static/user/mgl-detail.html?tutorial_id={{tutorials[1]['id']}}">
+                    <img src="{{tutorials[1]['image']}}" alt="" />
+                    <div><span style="margin-right: 10px;">{{tutorials[1]['create_time']}}</span></div>
+                </a>
+            </li>
+        </ul>
+        {% endif %}
+        {% if recommend_hospitals| length==3 %}
+        <ul class="mui-table-view has-m-top no-before-line">
+            <li class="mui-table-view-cell no-after-line">
+                <a href="/static/user/cyy.html" class="mui-navigate-right close">
+                    优选医院<span class="mui-pull-right" style="margin-right: 17px;color:#999;">全部医院<span>
+                </a>                                
+            </li>
+            <li class="mui-table-view-cell h-list" >
+                {% for recommend_hospital in recommend_hospitals %}
+                    <div class="h-cell" {% if loop.index==3 %}style="margin: 0;"{% endif %} >
+                        <a href="/user/hospital_detail/?hospital_id={{recommend_hospital['hospital']['id']}}">
+                        <img src="{{recommend_hospital['hospital']['image']}}" alt="" />
+                        <div>
+                            
+                            <i>{{recommend_hospital['hospital']['rate']}}</i>
+                        </div>
+                        <span>{{recommend_hospital['tag']}}</span>
+                        </a>
+                        <p class="mui-ellipsis color-black">{{recommend_hospital['hospital']['name']}}</p>   
+                    </div>
+                {% endfor %}
+            </li>
+        </ul>
+        {% endif %}
+        {% if [] %}
+		<ul class="three-pic">
+		    {% for i in recommend_sub_cats %}
+			<li>
+				<a href="/user/item_list.html?sub_cat_id={{i['id']}}">
+					<img src="{{i['image']}}"/>
+				</a>
+			</li>
+			{% endfor %}
+		</ul>
+		{% endif %}
+		
+		<div class="recommend">
+			<li class="mui-table-view-cell no-after" >
+                分分推荐
+            </li>
+
+			{% for recommend in recommend_items %}
+    			<div class="img-cont meifenfen-item" item-id={{recommend['item']['id']}}>
+    				<img class="big-img" src="{{recommend['image']}}"/>
+    				<h5>{{recommend['desc']}}</h5>
+    				{% if not recommend['item']['has_fee'] %}
+    				    <img class="free-mark" src="/static/user/img/free.png"/>
+    				{% endif %}
+    			</div>
+    			<h4 class='title'>{{recommend['item']['title']}}</h4>
+    			<div class="month-pay  month-pay-sm">
+    				<div class="tit">月供</div>
+    				<div class="num color-red">
+    					<b class='orig'>￥{{recommend['item']['period_money']}}</b>
+    					<span class='price'>x {{recommend['item']['period_count']}}</span>
+    				</div>
+    			</div>
+    			<div class="line"></div>
+			{% endfor %}
+
+		</div>
+		<!--弹出层开始-->		
+			<!--弹出层结束-->
+		<nav class="mui-bar mui-bar-tab">
+          <a class="mui-tab-item mui-active" href="#mff" id='index'>
+                <span class="mui-icon index">
+                    <!--<i class="iconfont">&#xe616;</i>-->
+                    <i class=''></i>
+                </span>
+                <span class="mui-tab-label">美分分</span>
+            </a>
+            <a class="mui-tab-item" href="#project" id='project'>
+                <span class="mui-icon item">
+                    <!--<i class="iconfont">&#xe600;</i>-->
+                </span>
+                <span class="mui-tab-label">项目</span>
+            </a>
+            <a class="mui-tab-item" href="#trial" id='trial'>
+                <span class="mui-icon trial">
+                    <!--<i class="iconfont">&#xe600;</i>-->
+                </span>
+                <span class="mui-tab-label">免费试用</span>
+            </a>
+            <a class="mui-tab-item" href="#me" id='me'>
+                <span class="mui-icon wo">
+                    <!--<i class="iconfont">&#xe60e;</i>-->
+                </span>
+                <span class="mui-tab-label">我</span>
+            </a>
+        </nav>
+	</div>
+
+    <script src='/static/user/js/util.js'></script>
+    <script src='/static/js/baidumap.js'></script>
+    <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script type="text/javascript" src="http://www.meifenfen.com/user/jssdk.js"></script>
+	<script>
+	$(function(){
+		$('#index').on('tap',function(){
+			location.href='/user/index/'
+		})
+		$('#project').on('tap',function(){
+			location.href='/static/user/project.html#10'
+		})
+		$('#me').on('tap',function(){
+			location.href='/static/user/my-not-reg.html'
+		})
+		$('#trial').on('tap',function(){
+            location.href='/static/user/trial.html#10'
+        })
+		$('.meifenfen-item').on('click',function() {
+            location.href='/static/user/detail.html?item_id='+$(this).attr('item-id');
+        })
+		var timeList = "{{activity.end_time}}".split(' ');;
+		var riqi=timeList[0].split('-');
+          console.log(riqi[0])
+          var time=riqi[1]+'/'+riqi[2]+'/'+riqi[0]+' '+timeList[1];
+		var end = new Date(time);
+              var _second = 1000;
+              var _minute = _second * 60;
+              var _hour = _minute * 60;
+              var _day = _hour * 24;
+              var timer;
+              function showRemaining() {
+                  var now = new Date();
+                  var distance = end - now;
+                  if (distance < 0) {
+                      clearInterval(timer);
+                      // document.getElementById('countdown').innerHTML = 'EXPIRED!';
+                      $('#at').html('活动已经结束');
+                      return;
+                  }
+                  var days = Math.floor(distance / _day);
+                  var hours = Math.floor((distance % _day) / _hour);
+                  var minutes = Math.floor((distance % _hour) / _minute);
+                  var seconds = Math.floor((distance % _minute) / _second);
+                  $('#at').html('仅剩'+days + '天'+hours+'时'+minutes+'分'+seconds+'秒')
+                  console.log() ;
+              }
+              timer = setInterval(showRemaining, 1000);
+
+        function getLocation(){
+          if (navigator.geolocation)
+            {
+            navigator.geolocation.getCurrentPosition(showPosition);
+            }
+          else{
+            alert("Geolocation is not supported by this browser.");
+            }
+        }
+        function location_callback(data) {
+            var city_code = data['city_code'];
+            var city_name  = data['city_name'];
+            //alert(city_code);
+            //alert(city_name);
+            setCookie('city_code', city_code);
+            setCookie('city_name', city_name);
+            $('#city-name').html(city_name);
+        }
+        function showPosition(position) {
+            //alert(position)
+            lnglatToLocation(position.coords.latitude, position.coords.longitude, location_callback);
+        }
+        if(!getCookie('city_code')) {
+           getLocation();
+        } else {
+           //alert(getCookie('city_name'));
+           $('#city-name').html(getCookie('city_name'));
+        }
+	})
+		
+	</script>
+	<script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?61b678558a59e95c85431d0243d592ef";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+    
+    
+    wx.ready(function(){
+    
+        wx.onMenuShareTimeline({
+    
+            title: '美分分，为你加分，大学生分期去整形', // 分享标题
+    
+            link: 'http://www.meifenfen.com/user/index/', // 分享链接
+    
+            imgUrl: 'http://www.meifenfen.com/static/hospital/img/logo.png', // 分享图标
+    
+            success: function () {
+    
+                console.log('success')
+    
+                // 用户确认分享后执行的回调函数
+    
+            },
+    
+            cancel: function () {
+    
+                console.log('cancel')
+    
+                // 用户取消分享后执行的回调函数
+    
+            }
+    
+        });
+    
+        wx.onMenuShareAppMessage({
+    
+            title: '美分分，为你加分，大学生分期去整形', // 分享标题
+    
+            desc: '专业医院、优选项目、先行赔付，信用额度1万起，在线即可申请。', // 分享描述
+    
+            link: 'http://www.meifenfen.com/user/index/', // 分享链接
+    
+            imgUrl: 'http://www.meifenfen.com/static/hospital/img/logo.png', // 分享图标
+    
+            success: function () {
+    
+                console.log('success')
+    
+                // 用户确认分享后执行的回调函数
+    
+            },
+    
+            cancel: function () {
+    
+                console.log('cancel')
+    
+                // 用户取消分享后执行的回调函数
+    
+            }
+    
+        });
+    
+    });
+
+    </script>
+
+</body>
+</html>

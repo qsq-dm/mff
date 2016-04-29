@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>提交订单</title>
+    <script src="/static/user/js/mui.min.js"></script>
+    <link href="/static/user/css/mui.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="/static/user/css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/user/css/iconfont.css"/>
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+    </script>
+    <style type="text/css">
+    	.sub-top{
+    		text-align: center;
+    		padding: 15px 0;
+    		border-bottom: 1px solid #D8D8D8;
+    	}
+    	.sub-top .icon-success{
+    		font-size: 35px;
+    		color: #73BA49;
+    	}
+    	.mui-table-view .mui-media-object {
+			height: 60px;
+			max-width: 60px;
+		}
+		.mui-btn.mui-btn-outlined.mui-btn-primary{
+			border-radius: 20px;
+			padding: 3px 20px 1px 20px;
+			margin-top: 6px;
+			border: 1px solid #00abec;
+			color: #00abec;
+		}
+		.mui-badge{
+			background: none;
+			padding: 0;
+			color: #ffa200;
+		}
+		.mui-table-view.lower-table-view .mui-table-view-cell{
+			padding: 6px 15px 0 15px;
+			font-size: 12px;
+			color: #9B9B9B;
+		}
+		.mui-table-view.lower-table-view .mui-table-view-cell.mui-active{
+			background: #FFF;
+		}
+		.mui-table-view.lower-table-view{
+			padding-bottom: 6px;
+		}
+    </style>
+</head>
+<body>
+	<div class="mui-content">
+	    <div class="sub-top bg-white" style='display:none;' id='through'>
+	    	<i class="iconfont icon-success">&#xe63d;</i>
+	    	<h5 class="color-black">额度申请提交成功，你可以提交订单啦</h5>
+	    </div>
+	    <div class="sub-top bg-white" id='audit' style='display:none;'>
+	    	<h5 class="color-black">您未开通额度，在线简单两步即可申请</h5>
+	    	<button class="mui-btn mui-btn-outlined mui-btn-primary" id='apply-now'>马上申请</button>
+	    </div>
+	    <ul class="mui-table-view has-m-top">
+			<li class="mui-table-view-cell mui-media">
+				<a>
+					<img class="mui-media-object mui-pull-left" src="img/pic1.png" id='userImg'/>
+					<div class="mui-media-body">
+						<p class='title' style='color:#333'>最新华丽美版Ulthera 还你紧致童颜</p>
+						<p class='mui-ellipsis'>
+							<span id='hospitalName'>上海春夏秋冬外科整形医院</span>
+						</p>
+						<p class='mui-ellipsis'>
+							售价：<span class="color-red" id='now-price'>￥600</span>
+							医院价：<span class="line-throu" id='old-price'>￥1000</span>
+						</p>
+					</div>
+				</a>
+			</li>
+		</ul>
+		<ul class="mui-table-view has-m-top">
+			<li class="mui-table-view-cell no-after-line">
+				<a class="mui-navigate-right">
+					代金券
+					<span class="mui-badge">￥100</span>
+				</a>
+			</li>
+		</ul>
+		<ul class="mui-table-view lower-table-view has-m-top">
+			<li class="mui-table-view-cell no-after-line">
+				订单金额
+				<span class="mui-pull-right" id='payPrice'>￥680</span>
+			</li>
+			<li class="mui-table-view-cell no-after-line">
+				代金券
+				<span class="mui-pull-right" id='vouchers'>￥180</span>
+			</li>
+			<li class="mui-table-view-cell no-after-line">
+				分期金额
+				<span class="mui-pull-right" id='installment'>￥380</span>
+			</li>
+			<li class="mui-table-view-cell no-after-line">
+				分期月数
+				<span class="mui-pull-right" id='period'>3个月</span>
+			</li>
+			<li class="mui-table-view-cell no-after-line">
+				分期月借
+				<span class="mui-pull-right" id='monthPay'>￥126.54 (含服务费￥22)</span>
+			</li>
+		</ul>
+		<ul class="mui-table-view">
+			<li class="mui-table-view-cell mui-media">
+				<a>
+					<div class="mui-media-body">
+						需首付：
+						<span class="color-red mui-pull-right" id='firstPay'>￥200</span>
+						<p class="size-sm">
+							(首付金额＝总价－你的可用额度234元)
+						</p>
+					</div>
+				</a>
+			</li>
+		</ul>
+		<button class="mui-btn mui-btn-block mui-btn-negative" id='confirm_order'>提交</button>
+	</div>
+</body>
+</html>
+<script src="/static/user/js/zepto.min.js"></script>
+<script src='/static/user/js/util.js'></script>
+<script>
+	
+    var para=Common.UrlGet();
+    $('#apply-now').on('click',function(){
+		sessionStorage.setItem('apply_from_item_pay_item_id',para.item_id);
+    	sessionStorage.setItem('apply_from_item_pay_choice_id',para.choice_id);
+    	location.href='/static/user/B-applyer-infor.html'
+	})
+	$.ajax({
+		type:"post",
+		url:"http://www.meifenfen.com/user/order_preview/?item_id=1&period_choice_id=1"+token,
+		dataType:'json',
+		success:function(data){
+			var hospital=data.hospital;
+			var item=data.item;
+			var coupon_list=data.coupon_list;
+			var monthPay=data.period_amount+data.period_fee;
+			$('.title').html(item.title);
+			$('#old-price').html(item.orig_price);
+			$('#now-price').html(item.price);
+			$('#hospitalName').html(hospital.name);
+			$('#userImg').attr('src',item.image);
+			$('#payPrice').html('￥'+data.total);
+			$('#installment').html('￥'+data.credit_amount);
+			$('#period').html(data.period_count+'个月');
+			$('#vouchers').html('￥'+data.coupon_amout);
+			$('#monthPay').html('￥'+monthPay+"(含服务费￥"+data.period_fee+")");
+			$('#firstPay').html(data.need_pay);
+			if(data.credit_status==0){
+				$('#audit').show();
+			}else if(data.credit_status==1){
+				if(sessionStorage.getItem('apply_from_item_pay_item_id')&&sessionStorage.getItem('apply_from_item_pay_choice_id')){
+					$('#through').show()
+				}
+			}else if(data.credit_status==3){
+				
+				$('#audit').show();
+			}
+			
+		},
+		error:function(){
+			alert('网络出现小差，请稍后再试！')	
+		}		
+	});
+	$('#confirm_order').on('click',function(){
+		$.ajax({
+			type:"post",
+			url:"http://www.meifenfen.com/user/confirm_order/",
+			dataType:'json',
+			data:{
+				period
+			},
+		});
+	})
+</script>

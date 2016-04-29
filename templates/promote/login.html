@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>登入</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="/static/promote/css/base.css" rel="stylesheet">
+<link href="/static/promote/css/login.css" rel="stylesheet">
+
+</head>
+<body>
+    <div class="content">
+    	<h1>美分分后台推广管理系统</h1>
+    	<div class="form">
+    		<div class="tel">
+    			<label for="">账号</label>
+    			<input type="text" id='login-name-val' placeholder='请输入账号'>
+    		</div>
+    		<div class="tel">
+    			<label for="">密码</label>
+    			<input type="text" id='login-passwd-val' placeholder='请输入密码'>
+    		</div>
+    		<button onclick='login()'>登录</button>
+    	</div>
+    </div>
+
+
+<script type="text/javascript" src="/static/vendor/jquery-2.1.1.min.js"></script>
+
+<script>
+
+     var login = function() {
+        var data = {
+            'name' : $('#login-name-val').val(),
+            'passwd': $('#login-passwd-val').val(),
+            };
+        $.post("/promote/login_post/", data,
+           function(data){
+             if(data.code==0) {
+                //alert("登录成功");
+                window.location='/promote/';
+             } else {
+                alert(data.msg);
+             }
+           });
+        return false;
+    };
+</script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<div class="row"><div class="col-lg-12">
+    <div class="page-header">
+        <h1>短信验证码</h1>
+        <p class="lead">获取短信验证码  及  清空短信次数</p>
+    </div>
+</div></div>
+
+
+<style>
+.sms-vcode-banner {
+    margin-top:10px;
+    padding:15px;
+    width:36%;
+    border-radius: 8px;
+}
+</style>
+<form class="form-inline" style='margin-bottom:3px;' name='SmsVcodeForm'>
+  <div class="form-group">
+    <label>手机</label>
+    <input type="text" name='phone' ng-model="phone" ng-class="SmsVcodeForm.phone.$touched && !SmsVcodeForm.phone.$valid? 'phone-invalid':'phone-valid'" class="form-control" id="phone-number" placeholder="11位手机号" required phone /><span class='label label-danger' ng-if="SmsVcodeForm.phone.$touched && !SmsVcodeForm.phone.$valid">11位手机号!</span>
+  </div>
+</form>
+  <button type="submit" ng-click="getVcode(1)" class="btn btn-default">查询注册验证码</button>
+  <button type="submit" ng-click="getVcode(2)" class="btn btn-default">查询重置密码验证码</button>
+  <button type="submit" ng-click="resetVcodeSent()" class="btn btn-default">清空发送记录</button>
+
+<div>
+    <p ng-if='vcode' class="sms-vcode-banner bg-primary">
+        已发送次数 {{count}}
+        <br>
+        当前验证码 {{vcode}}
+    </p>
+</div>

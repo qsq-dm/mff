@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html style='width:100%;height:100%'>
+
+	<head>
+		<meta charset="utf-8">
+		{% block title %}
+		
+		{% endblock %}
+		
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<script src="/static/user/js/mui.min.js"></script>
+		<link rel="stylesheet" href="/static/user/css/mui.css">
+        <link rel="stylesheet" type="text/css" href="/static/user/css/style.css" />
+        <link rel="stylesheet" type="text/css" href="/static/user/css/loading.css" />
+		<link rel="stylesheet" type="text/css" href="/static/user/css/popover.css"/>
+		<link rel="stylesheet" type="text/css" href="/static/user/css/iconfont.css"/>
+		<style type="text/css">
+		
+			.item-subcat-icon {
+			    display: none;
+			}
+			.tab-vertical li {
+                background: #F3F4F6;
+                border-left: 3px solid white;
+            }
+            .icon-bg {
+                height: 20px;
+                   margin: 0 auto;
+                display: inline-block;
+                width: 16px;
+                height: 16px;
+                content: "";
+                background-size: 100% !important;
+            }
+            .icon-bg-0 {
+                background: url(/static/user/img/tuijian_hui.png) no-repeat 0 0;
+            }
+            .item-cat-left-icon.active > .icon-bg-0 {
+                background: url(/static/user/img/tuijian_hong.png) no-repeat 0 0 !important;
+                background-size: 100% !important;
+            }
+            .icon-bg-1 {
+                background: url(/static/user/img/pifu_hui.png) no-repeat 0 0;
+            }
+            .item-cat-left-icon.active > .icon-bg-1 {
+                background: url(/static/user/img/pifu_hong.png) no-repeat 0 0 !important;
+                background-size: 100% !important;
+            }
+            .icon-bg-2 {
+                background: url(/static/user/img/yanbu_hui.png) no-repeat center center;
+            }
+            .item-cat-left-icon.active > .icon-bg-2 {
+                background: url(/static/user/img/yanbu_hong.png) no-repeat center center !important;
+                background-size: 100% !important;
+            }
+            .icon-bg-3 {
+                background: url(/static/user/img/bibu_hui.png) no-repeat 0 0;
+            }
+            .item-cat-left-icon.active > .icon-bg-3 {
+                background: url(/static/user/img/bibu_hong.png) no-repeat 0 0 !important;
+                background-size: 100% !important;
+            }
+            .icon-bg-4 {
+                background: url(/static/user/img/maofa_hui.png) no-repeat 0 0;
+            }
+            .item-cat-left-icon.active > .icon-bg-4 {
+                background: url(/static/user/img/maofa_hong.png) no-repeat 0 0 !important;
+                background-size: 100% !important;
+            }
+            .icon-bg-5 {
+                background: url(/static/user/img/weizhengxing_hui.png) no-repeat 0 0;
+            }
+            .item-cat-left-icon.active > .icon-bg-5 {
+                background: url(/static/user/img/weizhengxing_hong.png) no-repeat 0 0 !important;
+                background-size: 100% !important;
+            }
+            .icon-bg-6 {
+                background: url(/static/user/img/yachi_hui.png) no-repeat 0 0;
+            }
+            .item-cat-left-icon.active > .icon-bg-6 {
+                background: url(/static/user/img/yachi_hong.png) no-repeat 0 0 !important;
+                background-size: 100% !important;
+            }
+            .icon-bg-7 {
+                background: url(/static/user/img/xingti_hui.png) no-repeat 0 0;
+            }
+            .item-cat-left-icon.active > .icon-bg-7 {
+                background: url(/static/user/img/xingti_hong.png) no-repeat 0 0 !important;
+                background-size: 100% !important;
+            }
+            .icon-bg-8 {
+                background: url(/static/user/img/pf-hui.png) no-repeat center center;
+                background-size: 100% 100% !important;
+            }
+            .item-cat-left-icon.active > .icon-bg-8 {
+                background: url(/static/user/img/pf-hong.png) no-repeat center center !important;
+                background-size: 100% 100% !important;
+            }
+            .icon-bg-9 {
+                background: url(/static/user/img/banyongjiu-hui.png) no-repeat 0 0;
+                background-size: 100% 100% !important
+            }
+            .item-cat-left-icon.active > .icon-bg-9 {
+                background: url(/static/user/img/banyongjiu-hong.png) no-repeat 0 0 !important;
+                background-size: 100% 100% !important
+            }
+		</style>
+	</head>
+	<body>
+		<div class="mui-content">
+			<ul id="select_tit">
+				<li id="drop1" class="drop-btn">
+					<a class="bord">
+						<span>{{subcat['name']}}</span>
+						<i class="iconfont color-grey">&#xe604;</i>
+					</a>
+				</li>
+				<li id="drop2" class="drop-btn">
+					<a class="bord">
+						<span>{{sort_type_obj['name']}}</span>
+						<i class="iconfont color-grey">&#xe604;</i>
+					</a>
+				</li>
+				<li id="drop3" class="drop-btn">
+					<a class="bord" style="border: 0;">
+						<span>{{city['name']}}</span>
+						<i class="iconfont color-grey">&#xe604;</i>
+					</a>
+				</li>
+			</ul>
+			{% block content %}
+			<div class="noCoupon" style="text-align: center;display: none;">
+                    <img src="/static/user/img/icon-no-repay.png" style="width: 20%;margin-top: 50px;">
+                    <p>暂无项目</p>
+                    <p>美分分，为你加分，大学生分期去整形</p>
+            </div>
+			<div class="mui-card" style="padding: 1px;display:none">
+				 <ul class="mui-table-view item-list" style="margin-top: 0;">
+					<li class="mui-table-view-cell no-after-dotted mui-media" style='display: none;'>
+						<a href="A-hospital-detail.html">
+							<img class="mui-media-object mui-pull-left" src="">
+							<div class="mui-media-body">
+								<h4>最新华丽美版Ulthera 还你紧致童颜</h4>
+								<p class='mui-ellipsis'>
+									<span>上海春夏秋冬外科整形医院</span>
+								</p>
+								<p class='mui-ellipsis'>
+									售价：<span class="color-red">￥600</span>
+									医院价：<span class="line-throu">￥1000</span>
+								</p>
+							</div>
+							<div class="month-pay  month-pay-sm">
+							<div class="tit">月供</div>
+							<div class="num">
+								<p class="color-red">
+									<b>￥50</b>
+									<span>x 12</span>
+								</p>
+							</div>
+						</div>
+						</a>
+					</li>
+					<li class="mui-table-view-cell mui-media" style='display: none;'>
+						<a href="A-hospital-detail.html">
+							<img class="mui-media-object mui-pull-left" src="">
+							<div class="mui-media-body">
+								<h4>最新华丽美版Ulthera 还你紧致童颜</h4>
+								<p class='mui-ellipsis'>
+									<span>上海春夏秋冬外科整形医院</span>
+								</p>
+								<p class='mui-ellipsis'>
+									售价：<span class="color-red">￥600</span>
+									医院价：<span class="line-throu">￥1000</span>
+								</p>
+							</div>
+							<div class="month-pay  month-pay-sm">
+							<div class="tit">月供</div>
+							<div class="num">
+								<p class="color-red">
+									<b>￥50</b>
+									<span>x 12</span>
+								</p>
+							</div>
+						</div>
+						</a>
+					</li>
+				</ul>
+				
+			</div>
+			{% endblock %}
+			
+			<div class="loader-inner ball-pulse" style='text-align: center;display: none;'>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+            </div>
+			<div class="tit" style='text-align: center;padding:10px;display: none;'>没有更多</div>
+			<div id="dialogBg"></div>
+			<div id="drop-list1" class="self-clear-flow drop-list">
+				<ul class="tab-vertical fl">
+				    {% for thecat in data %}
+
+    				    <li class='item-cat-left-icon item-cat-left-icon-{{thecat["id"]}} {%if subcat["cat_id"]==thecat["id"]%}active{% endif %}' cat-id="{{thecat['id']}}">
+                            <i class="iconfont icon-bg icon-bg-{{thecat['id']}}"></i>
+                            <p class="size-sm color-black">{{thecat['name']}}</p>
+                        </li>
+
+				    {% endfor %}
+
+		    	</ul>
+		    	<div class="fr operation-cont bg-white">
+		    		<ul class="mui-table-view select-operation no-after-line">
+
+		    		        {% for thesubcat in all_sub_cats %}
+		    		            <li subcat-id={{thesubcat['id']}}
+		    		             cat-id='{{thesubcat['cat_id']}}'
+		    		            class="mui-table-view-cell
+		    		             {%if thesubcat["id"]==subcat["id"]%}active{% endif %} item-subcat-icon item-subcat-icon-{{thesubcat['id']}}
+		    		             {% for the_cat_id in thesubcat['cat_id_list'] %}
+		    		                item-cat-{{the_cat_id}}
+		    		             {% endfor %}
+		    		               no-after-dotted">
+                                    {{thesubcat['name']}}
+                                    <i class="iconfont mui-pull-right">
+                                    
+                                    {%if thesubcat["id"]==subcat["id"]%}&#xe627;{% else %} &#xe63e;{% endif %}
+
+                                    </i>
+                                </li>
+		    		        {% endfor %}
+					</ul>
+		    	</div>
+
+			</div>
+			<ul id="drop-list2" class="mui-table-view drop-list">
+			    {% for order_choice in order_choices %}
+			    <li class='mui-table-view-cell order-choice {%if sort_type_obj["id"]==order_choice["id"] %}active{% endif %}' order-choice-id="{{order_choice['id']}}">
+                    <span>{{order_choice['name']}}</span>
+                    <i class="iconfont mui-pull-right">
+                    {%if sort_type_obj["id"]==order_choice["id"] %}&#xe627;{% else %} &#xe63e;{% endif %}
+                    </i>
+                </li>
+			    {% endfor %}
+
+			</ul>
+			<ul id="drop-list3" class="mui-table-view drop-list">
+			    {% for thecity in citys %}
+			        <li class='mui-table-view-cell city-choice {%if city["id"]==thecity["id"] %}active{% endif %}' city-id="{{thecity['id']}}">
+                        <span>{{thecity['name']}}</span>
+                        <i class="iconfont mui-pull-right">
+                        {%if city["id"]==thecity["id"] %}&#xe627;{% else %} &#xe63e;{% endif %}
+                        </i>
+                    </li>
+			    {% endfor %}
+			</ul>
+		</div>
+		<script type="text/javascript" src="/static/user/js/jquery.min.js" ></script>
+        <script src='/static/user/js/util.js'></script>
+        {% block bottomscript %}
+        {% endblock %}
+
+        <script>
+               $('.item-cat-left-icon').click(function () {
+                    var cat_id = $(this).attr('cat-id');
+                    $('.item-subcat-icon').hide();
+                    $('.item-cat-'+cat_id).show();
+                    $('.tab-vertical').attr('cat-id', cat_id);
+                    
+               })
+               $(document).ready(function(){
+                   if(Common.UrlGet()['sub_cat_id']) {
+                        if(Common.UrlGet()['cat_id']) {
+                            cat_id  = Common.UrlGet()['cat_id'];
+                        }
+                        else {
+                            var cat_id = $('.item-subcat-icon-'+Common.UrlGet()['sub_cat_id']).attr('cat-id');
+                        }
+                        console.log(cat_id);
+                            console.log(Common.UrlGet()['sub_cat_id']);
+                        $('.item-cat-left-icon-'+cat_id).click();
+                        
+                   }else{
+                        $('.item-cat-left-icon-0').click();
+                   }
+               });
+               //$('.item-cat-left-icon-0').click();
+               function getQueryArg(subcat_id, order_id, city_id) {
+                    var order_id = order_id || $('.order-choice.active').attr('order-choice-id') ;;
+                    var sub_cat_id = subcat_id || $('.item-subcat-icon.active').attr('subcat-id') ;
+                    var city_id = city_id || $('.city-choice.active').attr('city-id');
+                    var cat_id = parseInt($('.tab-vertical').attr('cat-id')||0);
+                    var param = {
+                    }
+                    if(order_id) {
+                        param['sort_type'] =  order_id;
+                    } if (sub_cat_id>0) {
+                        param['sub_cat_id'] = sub_cat_id;
+                    } if (city_id) {
+                        param['city_id'] = city_id;
+                    } if (cat_id>=0) {
+                        param['cat_id']  = cat_id;
+                    }
+                    return $.param(param);
+               }
+               function goto(subcat_id, order_id, city_id) {
+                    window.location = location.pathname+'?'+getQueryArg(subcat_id, order_id, city_id);
+               }
+               $('.item-subcat-icon').click(function () {
+                    var subcat_id = $(this).attr('subcat-id');
+                    console.log(subcat_id)
+                    setTimeout(goto(subcat_id, undefined, undefined), 100);
+               });
+               $('.order-choice').click(function () {
+                    var order_id = $(this).attr('order-choice-id');
+                    console.log(order_id)
+                    setTimeout(goto(undefined, order_id, undefined), 100);
+               });
+               $('.city-choice').click(function () {
+                    var city_id = $(this).attr('city-id');
+                    console.log(city_id)
+                    setTimeout(goto(undefined, undefined, city_id), 100);
+               });
+        </script>
+	</body>
+</html>
+
+
+

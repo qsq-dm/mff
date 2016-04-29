@@ -1,0 +1,118 @@
+
+
+<div class='app-content item-edit-page'>
+    <h1 ng-if='!is_edit'>添加商品</h1>
+    <h1 ng-if='is_edit'>编辑商品</h1>
+
+    <hr/>
+
+  <form id='itemform' ng-submit='addItem()'>
+
+      <div class="form-group">
+        <label for="">商品名称</label>
+        <input type="text" name='title' ng-model='item.title' class="form-control" placeholder="名称">
+      </div>
+
+
+      <div class="form-group">
+        <label for="">免手续费</label>
+        <label class="radio-inline">
+          <input type="radio" ng-model="item.has_fee"  name='has_fee' value="1">否
+        </label>
+        <label class="radio-inline">
+          <input type="radio" ng-model="item.has_fee"  name='has_fee' value="0">是
+        </label>
+      </div>
+
+
+      <div class="form-group">
+        <label for="">直接购买</label>
+        <label class="radio-inline">
+          <input type="radio" ng-model="item.direct_buy"  name='direct_buy' value="0">否
+        </label>
+        <label class="radio-inline">
+          <input type="radio" ng-model="item.direct_buy"  name='direct_buy' value="1">是
+        </label>
+      </div>
+
+     <label for="">支持分期选项</label>
+     <div class="form-group" ng-controller='ngPeriodChoice'>
+       <span class='form-inline' ng-repeat='choice in optionsData'>
+         <input type="checkbox" value="{{choice.id}}" ng-checked="item.support_choices.indexOf('{{choice.id}}') > -1" name='support_choice_list'>
+         {{choice.period_count}}期{{choice.period_fee}}%费率
+       </span>
+     </div>
+
+     <div class="form-group">
+        <label for="">现价</label>
+        <input type="text" name='price' ng-model='item.price' class="form-control" placeholder="现价">
+      </div>
+     <div class="form-group">
+        <label for="">原价</label>
+        <input type="text" name='orig_price' ng-model='item.orig_price' class="form-control" placeholder="原价">
+      </div>
+     <div class="form-group">
+        <label for="">项目编号</label>
+        <input type="text" name='item_no' ng-model='item.item_no' class="form-control" placeholder="项目编号">
+      </div>
+
+      <div class="form-group">
+        <label for="">医院</label>
+        <select class="form-group" ng-controller="ngHospital"
+            chosen
+            allow-single-deselect="true"
+            data-placeholder="选择医院"
+            no-results-text="'没找到医院'"
+            ng-model="item.hospital_id"
+            ng-options="o.id as o.name for o in optionsData"
+            style="width:200px;">
+            <option value=""></option>
+        </select>
+        <input type="text" name='hospital_id' ng-model='item.hospital_id' style='display:none;'>
+      </div>
+      <div class="form-group">
+        <label for="">商品子分类</label>
+        <select class="form-group" ng-controller="ngItemSubcat"
+            chosen
+            multiple
+            allow-single-deselect="true"
+            data-placeholder="选择子分类"
+            no-results-text="'没找到'"
+            ng-model="item.sub_cat_id_list"
+            ng-options="o.id as o.name for o in optionsData"
+            style="width:200px;">
+            <option value=""></option>
+        </select>
+        <input type="text" name='sub_cat_id' ng-model='item.sub_cat_id' style='display:none;'>
+        <input type="text" name='sub_cat_ids' ng-model='item.sub_cat_id_list.join(",")' style='display:none;'>
+      </div>
+
+
+      <div class="form-group">
+          <label for="">商品小图</label>
+          <image-field fieldname='"image"' image='item.image'></image-field>
+      </div>
+
+      <div class="form-group">
+          <label for="">商品图片列表</label>
+          <images-field images='item.photos' fieldname='"photos"'></images-field>
+      </div>
+
+      <label for="">医生介绍</label>
+      <text-angular  name='doctor_desc' ng-model="item.doctor_desc"></text-angular>
+      <label for="">项目介绍</label>
+      <text-angular  name='surgery_desc' ng-model="item.surgery_desc"></text-angular>
+
+       <div class="form-group">
+        <label for="">使用时间</label>
+        <textarea name='use_time' ng-model='item.use_time' class="form-control" placeholder="使用时间" />
+      </div>
+      <div class="form-group">
+        <label for="">特别提醒</label>
+        <textarea name='note' ng-model='item.note' class="form-control" placeholder="特别提醒" />
+      </div>
+      <button type="submit" class="btn btn-default" >提交</button>
+  </form>
+   
+
+</div>

@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>收红包记录</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<link rel="stylesheet" type="text/css" href="/static/user/css/mui.css"/>
+	<link rel="stylesheet" type="text/css" href="/static/user/redpack/css/common.css"/>
+	<link rel="stylesheet" href="/static/user/css/loading.css" />
+</head>
+<style type="text/css">
+	html,body{
+		height: 100%;
+		background:#ff3a41;
+	}
+	.mui-content{
+		background:#ff3a41;
+		padding-bottom:10px;
+	}
+	.warp{
+		margin:10px 10px 0;
+		background: #fff0ff;
+		box-sizing: border-box;
+		padding:10px;
+		border-radius: 5px;
+	}
+	.warp .box{
+		border:2px solid #ff3a41;
+		box-sizing: border-box;
+		padding: 10px;
+		border-radius: 5px;
+		
+	}
+	.line{
+		/*border-top:1px dashed red;*/
+		margin-top:10px;
+		background: url(images/line.png) no-repeat 0 center,url(images/line.png) no-repeat right center;
+		text-align: center;
+		background-size:32%;
+		color: #ff3a41;
+	}
+	.list li{
+		line-height: 40px;
+		margin-bottom: 10px;
+		text-align:left;
+		
+	}
+	.list li img{
+		width: 40px;
+		height: 40px;
+		border-radius:50%;
+		vertical-align: middle;
+	}
+	.list li .ml{
+		margin-left: 10px;
+	}
+	.problem{
+		background: url(images/iocn-rigth.png) no-repeat right center;
+		background-size: auto 15px;
+	}
+	.problem span{
+		margin-left: 5px;
+	}
+	.problem a{
+		color: #ff3a41;
+	}
+	.problem h4{
+		color:#ff3a41;
+		font-weight: bold;
+		font-size: 16px;
+	}
+	.btn{
+		text-align: center;
+	}
+	.txet{
+		text-align:center;
+		color:#ccc;
+		padding:15px;
+	}
+	
+	.mui-backdrop{
+		display: none;
+	}
+	.list{
+		max-height: 250px;
+		overflow-y: scroll;
+	}
+	.list .pad img{
+		width:30px;
+		height:30px;
+		border-radius:50%;
+
+	}
+	.list .pad{
+		box-sizing:border-box;
+		padding:0 15px;
+		margin:0;
+	}
+	.content .img{
+		top:-40px;
+	}
+	.content{
+		padding-top:20px;
+		padding-bottom:15px;
+	}
+	
+</style>
+<body>
+	<div class="mui-content">	
+		<div class="loader-inner ball-pulse" style='text-align: center;display:none;position: fixed;width:100%;top:45%;'>
+	          <div></div>
+	          <div></div>
+	          <div></div>
+		</div>
+		<div class="mui-backdrop">
+			<div class="content">
+				<img src="images/icon-houzi.png" class="img" alt="" />
+				<span class="close"></span>
+				<ul class="list list-pop">
+
+				</ul>
+			</div>
+		</div>
+	</div>
+	<script src="/static/user/js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/static/user/js/jquery.min.js"></script>
+	<script src="../js/util.js"></script>
+	<script type="text/javascript">
+		mui.init();
+		$('.close').on('click',function(){
+			$('.mui-backdrop').hide();
+		})
+
+		$(document).on('click',".mui-btn",function(){
+			var user_question_id=$(this).attr("cat_id");
+			$.ajax({
+				xhrFields: {withCredentials: true},
+				type: "post",
+				url: "http://" + getHostName() + "/user/question_viewers/",
+				dataType: 'json',
+				data: {
+					user_question_id:user_question_id									
+				},
+				success: function(data) {
+					var infos=data.infos;
+					$('.mui-backdrop').show();
+					$('.list-pop').find('li').remove();
+					for(var i=0;i<infos.length;i++){
+						var str='<li class="pad"><img src="'+infos[i].qr_user.headimgurl+'" alt="" /><span class="ml size-sm">'+infos[i].qr_user.nickname+'</span><span class="fr size-sm">'+infos[i].price+'元</span></li>'
+						$('.list-pop').append(str);
+					}
+
+				},error:function(){
+
+				}
+			})
+		})
+		var has_more;
+		var offset=undefined;
+//定义offset 加载跟多;
+load_More()
+
+function load_More(){
+	if(offset){
+		var Url="http://" + getHostName() + "/user/my_questions/?offset="+offset
+	}else{
+		var Url="http://" + getHostName() + "/user/my_questions/"
+	};
+
+	$.ajax({
+		xhrFields: {withCredentials: true},
+		type: "get",
+		url: Url,
+		dataType: 'json',
+		success: function(data) {
+			var infos = data.infos;
+			has_more=data.has_more;
+			offset=data.offset;
+			for(var i=0;i<infos.length;i++){
+				var li='';
+				var txet='';
+				var btn="";
+				if (infos[i].latest_viewers.length==0) {
+					txet='<div class="txet">暂无人查看</div>';
+				}
+				if(infos[i].view_count<=2){
+					btn='';
+				}else{
+					btn='<div class="btn"><button class="mui-btn mui-btn-danger" cat_id="'+infos[i].id+'">查看更多</button></div>';
+				}						
+				for(var x=0;x<infos[i].latest_viewers.length;x++){
+					var ding=infos[i].latest_viewers[x];						
+					if (infos[i].latest_viewers.length==0) {
+
+
+					}else{
+						li+='<li><img src="'+ding.qr_user.headimgurl+'" alt="" /><span class="ml">'+ding.qr_user.nickname+'</span><span class="fr">'+ding.price+'元</span></li>';
+					}
+
+				}
+				var red_price;
+				if (infos[i].is_random==1) {
+					red_price='随机';
+				}else{
+					red_price=infos[i].price+'元';
+				}
+				var str='<div class="warp"><div class="box"><div class="problem"><a href="/user/question_detail/?user_question_id='+infos[i].id+'"><h4>'+infos[i].question+'</h4><div>答案:<span>'+infos[i].answer+'</span></div><div>红包:<span>'+red_price+'</span></div></a></div><div class="line">'+infos[i].view_count+'人查看答案</div><ul class="list">'+li+''+txet+''+btn+'</ul></div></div>';
+				$('.mui-content').append(str);	
+
+			}
+
+		},
+		error: function(){
+
+		}
+	});	
+
+}
+
+
+//查看更多是请求接口
+
+//加载更多
+window.onscroll = function () { 
+	if (getScrollTop() + getClientHeight() == getScrollHeight()) { 
+		if (has_more) {
+			load_More();
+		};
+
+	} 
+} 
+
+
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+.bg1{
+	width:100%;
+	height:100%;
+	opacity: 0.5;
+	position: fixed;
+	top:0;
+	left:0;
+	background:#000;
+	z-index: 1000;
+}
+.share{
+	width:18.75rem;
+	height:11.35rem;
+	background:url(../image/share1.png) no-repeat;
+	-webkit-background-size: cover;
+	background-size: cover;
+	z-index: 10000;
+	position: fixed;
+	
+	top:0;
+	left:0;
+}
+.action1{
+	 width:18.75rem;
+	 height:30.175rem;
+	 background:url(../image/yaoqinghaoyou.png) no-repeat;
+	 -webkit-background-size: cover;
+	 background-size: cover;
+	 position: relative;
+}
+.action1 img{
+	width:6.05rem;
+	height:1.95rem;	
+	position: absolute;
+	left:50%;
+	transform:translateX(-50%);
+	-webkit-transform:translateX(-50%);
+	top:18.175rem;
+}
+.hide{
+	display: none;
+}

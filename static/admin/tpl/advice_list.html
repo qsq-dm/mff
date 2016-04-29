@@ -1,0 +1,61 @@
+
+
+<div class='app-content'>
+
+    <h1>反馈列表</h1>
+
+    <hr>
+
+    <div>
+        <table class="table table-hover" ng-if="true" style='margin:0'>
+          <thead>
+            <tr>
+              <th>序号</th>
+              <th>联系方式</th>
+              <th>用户</th>
+              <th>内容</th>
+              <th>时间</th>
+              <th>备注</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="info in infos">
+              <td>{{info.id}}</td>
+              <td>{{info.contact}}</td>
+              <td>
+                <a href='#/index/user_detail/{{info.user.id}}'>{{info.user.name}}</a>
+              </td>
+              <td>{{info.content}}</td>
+              <td>{{info.create_time}}</td>
+              <td>{{info.remark}}</td>
+              <td class='item-actions'>
+                <a href='#/index/advice_detail/{{info.id}}'>详情</a>
+                <button class='action-btn btn-danger' ng-click='remark(info)'>备注</button>
+          
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <nav>
+            <ul class="pagination item-pagination" ng-if="page_info.total>1">
+                <li>
+                  <a href="#" aria-label="Previous" ng-click='routeTo(1)'>
+                    <span aria-hidden="true">&laquo;</span>
+                  </a>
+                </li>
+                <li ng-repeat="page in page_info.pages" ng-class="[{active: currentpage==page}]">
+                    <a ng-click='routeTo(page)' ng-if='page>0'>{{page}}</a>
+                    <span ng-if='!(page>0)' style='color:gray;'>...</span>
+                </li>
+                <li>
+                  <a href="#" aria-label="Next" ng-click='routeTo(page_info.total)'>
+                    <span aria-hidden="true">&raquo;</span>
+                  </a>
+                </li>
+            </ul>
+            <span ng-if='total' class='page-item-count'>共{{total}}条</span>
+        </nav>
+    </div>
+
+</div>

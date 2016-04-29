@@ -1,0 +1,72 @@
+{% extends 'user/list_filters.html' %}
+
+{% block title %}
+        <title>{{subcat['name']}}      </title>
+
+{% endblock %}
+
+{% block content %}
+            <div class="noCoupon" style="text-align: center;display: none;">
+                    <img src="/static/user/img/icon-no-repay.png" style="width: 20%;margin-top: 50px;">
+                    <p>暂无项目</p>
+                    <p>美分分，为你加分，大学生分期去整形</p>
+            </div>
+            <div class="mui-card" style="padding: 1px;display:none">
+                 <ul class="mui-table-view item-list" style="margin-top: 0;">
+                    <li class="mui-table-view-cell no-after-dotted mui-media" style='display: none;'>
+                        <a href="A-hospital-detail.html">
+                            <img class="mui-media-object mui-pull-left" src="">
+                            <div class="mui-media-body">
+                                <h4>最新华丽美版Ulthera 还你紧致童颜</h4>
+                                <p class='mui-ellipsis'>
+                                    <span>上海春夏秋冬外科整形医院</span>
+                                </p>
+                                <p class='mui-ellipsis'>
+                                    售价：<span class="color-red">￥600</span>
+                                    医院价：<span class="line-throu">￥1000</span>
+                                </p>
+                            </div>
+                            <div class="month-pay  month-pay-sm">
+                            <div class="tit">月供</div>
+                            <div class="num">
+                                <p class="color-red">
+                                    <b>￥50</b>
+                                    <span>x 12</span>
+                                </p>
+                            </div>
+                        </div>
+                        </a>
+                    </li>
+                    <li class="mui-table-view-cell mui-media" style='display: none;'>
+                        <a href="A-hospital-detail.html">
+                            <img class="mui-media-object mui-pull-left" src="">
+                            <div class="mui-media-body">
+                                <h4>最新华丽美版Ulthera 还你紧致童颜</h4>
+                                <p class='mui-ellipsis'>
+                                    <span>上海春夏秋冬外科整形医院</span>
+                                </p>
+                                <p class='mui-ellipsis'>
+                                    售价：<span class="color-red">￥600</span>
+                                    医院价：<span class="line-throu">￥1000</span>
+                                </p>
+                            </div>
+                            <div class="month-pay  month-pay-sm">
+                            <div class="tit">月供</div>
+                            <div class="num">
+                                <p class="color-red">
+                                    <b>￥50</b>
+                                    <span>x 12</span>
+                                </p>
+                            </div>
+                        </div>
+                        </a>
+                    </li>
+                </ul>
+                
+            </div>
+{% endblock %}
+            
+{% block bottomscript %}
+        <script src='/static/user/js/tooth-beauty.js'></script> 
+{% endblock %}
+

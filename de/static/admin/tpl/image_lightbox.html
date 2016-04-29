@@ -1,0 +1,93 @@
+
+<div class="dialog-contents">
+
+    <form class='modal-form img-lightbox' ng-submit="Ok()" >
+    <div class='custom-modal-header'>
+        <h4>大图 <button class='rotate-btn' ng-click='rotateImg()'>旋转</button></h4>
+    </div>
+    <div class='img-all'>
+        <img ng-src='{{image}}'></img>
+    </div>
+    </form>
+</div>
+
+<style>
+.rotate-btn {
+    border-radius: 5px;
+    margin-left: 10px;
+}
+img {
+    transform-origin: top left; /* IE 10+, Firefox, etc. */
+    -webkit-transform-origin: top left; /* Chrome */
+    -ms-transform-origin: top left; /* IE 9 */
+}
+img.rotate90 {
+    transform: rotate(90deg) translateY(-100%);
+    -webkit-transform: rotate(90deg) translateY(-100%);
+    -ms-transform: rotate(90deg) translateY(-100%);
+}
+img.rotate180 {
+    transform: rotate(180deg) translate(-100%,-100%);
+    -webkit-transform: rotate(180deg) translate(-100%,-100%);
+    -ms-transform: rotate(180deg) translateX(-100%,-100%);
+}
+img.rotate270{
+    transform: rotate(270deg) translateX(-100%);
+    -webkit-transform: rotate(270deg) translateX(-100%);
+    -ms-transform: rotate(270deg) translateX(-100%);
+}
+
+.custom-modal-header {
+    padding: 5px;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.modal-form {
+    padding: 0px;
+    margin: 0px;
+}
+
+.dialog-contents {
+    width: 100%;
+}
+.dialog-contents img {
+    width: 90%;
+    margin: 0 auto;
+    display: -webkit-box;
+
+}
+
+form {
+    margin: 0 auto !important;
+}
+
+.ngdialog-content {
+    width: 90% !important;
+    overflow: hidden;
+    height: auto;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-radius: 5px;
+    position: absolute;
+    display: block;
+}
+.img-all {
+    display:block;
+    height: 100%;
+    overflow: scroll;
+}
+.img-all img {
+}
+.ngdialog-close {
+    position: absolute;
+    top: 0px;
+    color: gray;
+    right: 10px;
+    font-size: 30px;
+}
+
+</style>
+

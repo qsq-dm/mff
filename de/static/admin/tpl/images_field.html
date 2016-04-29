@@ -1,0 +1,30 @@
+
+<div >
+    <div id='images-container'>
+        <button type="file" class="btn btn-default" id='qiniuuploads'>选择图片</button>
+        <input type='text' style='display: none;' name='{{fieldname}}' ng-model='format_images(image_list)' />
+    </div>
+    
+    <style>
+
+    
+    </style>
+
+    <div id="images-list-values">
+        <ul as-sortable="sortableOptions" ng-model="image_list">
+            <li ng-repeat=" file  in image_list" as-sortable-item class="as-sortable-item" on-finish-render="ngRepeatFinished">
+                <div as-sortable-item-handle class="as-sortable-item-handle gallery-box" >
+                    <div class="">
+                        <img ng-src="{{file}}" />
+                    </div>
+                    <div class="btn-group">
+                        <a class="btn btn-xs btn-danger" ng-click="remove(file)">
+                        删除
+                        </a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+</div>

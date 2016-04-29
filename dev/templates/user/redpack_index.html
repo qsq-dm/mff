@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>是大学生一定要点进来，不点后悔！</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="/static/user/css/mui.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/user/redpack/css/common.css"/>
+</head>
+<style type="text/css">
+	html,body{
+		height: 100%;
+		background:#ff3a41;
+	}
+	.contianer .img{
+		width: 100%;
+		display: block;
+	}
+	.header_pic{
+		text-align: center;
+		margin:0px 0;
+	}
+	.next{
+		text-align: center;
+	}
+	.next img{
+		width:60px;
+		height: 60px;
+		border-radius: 50%;
+	}
+	.mui-content{
+		background:#ff3a41;
+	}
+	.next button{
+		display: block;
+		width: 60%;
+		margin: 0 auto;
+		margin-top: 10px;
+		margin-bottom: 10px;
+		line-height: 25px;
+		border:none;
+		background: url(/static/user/redpack/images/button-yellow.png) no-repeat center center;
+		background-size: 100% 100%;
+		color:red;
+	}
+	@media only screen and (max-height:568px) {
+    	.next button{
+            display: block;
+            width: 60%;
+            margin: 0 auto;
+            margin-top: 0px;
+            margin-bottom: 5px;
+            line-height: 20px;
+            border:none;
+            background: url(/static/user/redpack/images/button-yellow.png) no-repeat center center;
+            background-size: 100% 100%;
+            color:red;
+        }
+        body {
+            padding-bottom: 10px;
+        }
+        .next .foot {
+            padding-bottom: 5px;
+        }
+    }
+	.next .foot{
+		color:#fffa70;
+		display:block;
+	}
+	.content{
+		height: 200px;
+	}
+
+</style>
+<body>
+    <div class="mui-content">
+       	<div class="contianer">
+       		<img class="img" src="/static/user/redpack/images/index_bg.jpg" alt="" />
+       		<div class="next">
+       			<div class="header_pic">
+       				<img src="{{avatar}}" alt="" />
+       			</div>
+       			
+       			<button id="start">开始收红包</button>
+       			<span class="foot" question-count={{question_count}}>收红包记录</span>       			
+       		</div>
+       	</div>
+       	<div class="mui-backdrop" id='popup' count={{question_count}}>
+       		<div class="content" style='height:160px'> 
+       			<img src="/static/user/redpack/images/icon-houzi.png" alt="" class="img" />
+       			<span class="close"></span>
+       			<p>好友红包已经准备就等你发问题了</p>
+       			<button id='home-btn'>去登录</button>
+       		</div>
+       	</div>
+       	<div class="mui-backdrop" id='norecord' count={{question_count}} >
+            <div class="content" style='height:100px'>  
+                <img src="/static/user/redpack/images/icon-houzi.png" alt="" class="img" />
+                <span class="close"></span>
+                <p>您没有收红包纪录</p>
+            </div>
+        </div>
+    </div>
+    <script src="/static/user/js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/static/user/js/jquery.min.js"></script>
+    <script src='/static/user/js/util.js'></script>
+    <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script type="text/javascript" src="http://www.meifenfen.com/user/jssdk.js"></script>
+    <script type="text/javascript">
+    mui.init();
+
+$(document).ready(function(){
+
+    $('.close').on('click',function(){
+    	$('.mui-backdrop').hide();
+    });
+    $('#home-btn').on('click',function(){
+        window.location = '/static/user/my-not-reg.html?next=http://www.meifenfen.com/user/redpack_index/';
+    });
+    $('#start').on('click',function(){
+        {% if need_login %}
+            $('#popup').show();
+    	{% elif not has_followed %}
+           location.href="/static/user/redpack/about.html";
+        {% else %}
+           location.href="/static/user/redpack/start-red.html";
+    	{% endif %}
+    })
+
+    $('.foot').on('click',function(){
+        {% if question_count==0 %}
+            return $('#norecord').show()
+        {% endif %}
+    	location.href='/static/user/redpack/red_record.html';
+    	console.log(1);
+    })
+
+    try{
+
+   wx.ready(function(){
+    
+        wx.onMenuShareTimeline({
+    
+            title: '是大学生一定要点进来，不点后悔！', // 分享标题
+    
+            link: 'http://www.meifenfen.com/user/redpack_index/', // 分享链接
+    
+            imgUrl: 'http://7xnpdb.com2.z0.glb.qiniucdn.com/act_logo.jpg', // 分享图标
+    
+            success: function () {
+    
+                console.log('success')
+    
+                // 用户确认分享后执行的回调函数
+    
+            },
+    
+            cancel: function () {
+    
+                console.log('cancel')
+    
+                // 用户取消分享后执行的回调函数
+    
+            }
+    
+        });
+
+        wx.onMenuShareAppMessage({
+    
+            title: '是大学生一定要点进来，不点后悔！', // 分享标题
+    
+            desc: '过年红包不嫌多，好玩劲爆自然来，发个问题，等着收红包。', // 分享描述
+    
+            link: 'http://www.meifenfen.com/user/redpack_index/', // 分享链接
+    
+            imgUrl: 'http://7xnpdb.com2.z0.glb.qiniucdn.com/act_logo.jpg', // 分享图标
+    
+            success: function () {
+    
+                console.log('success')
+    
+                // 用户确认分享后执行的回调函数
+    
+            },
+    
+            cancel: function () {
+    
+                console.log('cancel')
+    
+                // 用户取消分享后执行的回调函数
+    
+            }
+    
+        });
+    
+    });
+    }catch(e){
+        JSON.stringify(e);
+    
+    }
+
+});
+
+    </script>
+</body>
+</html>

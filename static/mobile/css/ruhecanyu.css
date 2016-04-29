@@ -1,0 +1,20 @@
+.section{
+	 width:18.75rem;
+	 height:30.175rem;
+	 background:url(/static/mobile/image/ruhecanyu.png) no-repeat;
+	 -webkit-background-size: cover;
+	 background-size: cover;
+	 position: relative;
+}
+.inSection{
+	width:7.575rem;
+	height:7.575rem;
+	background:url(/static/mobile/image/weima.png) no-repeat;
+	-webkit-background-size: cover;
+	background-size: cover;
+	position: absolute;
+	left:50%;
+	transform:translateX(-50%);
+	-webkit-transform:translateX(-50%);
+	top:18.175rem;
+}

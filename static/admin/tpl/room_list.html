@@ -1,0 +1,67 @@
+
+
+<div class='app-content'>
+
+    <h1>寝室列表</h1>
+
+    <hr>
+
+    <div>
+        <table class="table table-hover" ng-if="true" style='margin:0'>
+          <thead>
+            <tr>
+              <th>序号</th>
+              <th>申请人</th>
+              <th>寝室名</th>
+              <th ng-click="sortField('pics_count')">照片数<i ng-if='filters._sort=="pics_count"' class="fa fa-angle-down"></i></th>
+              <th ng-click="sortField('vote_count')">票数<i ng-if='filters._sort=="vote_count"' class="fa fa-angle-down"></i></th>
+              <th>排名</th>
+              <th>编号</th>
+              <th>用户</th>
+              <th>学校</th>
+              <th ng-click="sortField('create_time')">创建时间<i ng-if='filters._sort=="create_time"' class="fa fa-angle-down"></i></th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="info in infos">
+              <td>{{info.id}}</td>
+              <td>{{info.applyer_name}}</td>
+              <td>{{info.room_name}}</td>
+              <td>{{info.pics_count}}</td>
+              <td>{{info.vote_count}}</td>
+              <td>{{info.rank}}</td>
+              <td>{{info.apply_no}}</td>
+              <td>
+                <a href='#/index/user_detail/{{info.user.id}}'>{{info.user.name}}({{info.user.phone}})</a>
+              </td>
+              <td>{{info.school.name}}</td>
+              <td>{{info.create_time}}</td>
+              <td class='item-actions'>
+                <a href='#/index/room_detail/{{info.id}}'>详情</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <nav>
+            <ul class="pagination item-pagination" ng-if="page_info.total>1">
+                <li>
+                  <a href="#" aria-label="Previous" ng-click='routeTo(1)'>
+                    <span aria-hidden="true">&laquo;</span>
+                  </a>
+                </li>
+                <li ng-repeat="page in page_info.pages" ng-class="[{active: currentpage==page}]">
+                    <a ng-click='routeTo(page)' ng-if='page>0'>{{page}}</a>
+                    <span ng-if='!(page>0)' style='color:gray;'>...</span>
+                </li>
+                <li>
+                  <a href="#" aria-label="Next" ng-click='routeTo(page_info.total)'>
+                    <span aria-hidden="true">&raquo;</span>
+                  </a>
+                </li>
+            </ul>
+            <span ng-if='total' class='page-item-count'>共{{total}}条</span>
+        </nav>
+    </div>
+
+</div>

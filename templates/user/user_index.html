@@ -1,0 +1,92 @@
+
+{% extends 'user/root.html' %}
+
+{% block content %}
+    <span id='city-name'>城市名</span>
+    <a class='upload-link' href='/user/uploads' >传图片</a>
+{% endblock %}
+
+{% block bottomscript %}
+    wx.ready(function(){
+
+        //获取用户地址
+        wx.getLocation({
+            type: 'wgs84', // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
+            success: function (res) {
+                var latitude = res.latitude; // 纬度，浮点数，范围为90 ~ -90
+                var longitude = res.longitude; // 经度，浮点数，范围为180 ~ -180。
+                var speed = res.speed; // 速度，以米/每秒计
+                var accuracy = res.accuracy; // 位置精度
+                lnglatToLocation(String(latitude), String(longitude));
+            },
+            fail: function (res) {
+                alert('没有权限获取地址');
+                alert(JSON.stringify(res));
+            },
+            cancel: function () {  
+                //这个地方是用户拒绝获取地理位置 
+                alert('用户未授权获取地址');
+            } 
+        });
+
+
+        wx.onMenuShareTimeline({ //朋友圈分享
+    
+            title: '美分分－－为自己加分', // 分享标题
+    
+            link: 'http://{{domain}}/user', // 分享链接
+    
+            imgUrl: 'http://{{domain}}/static/test.jpg', // 分享图标
+    
+            success: function () {
+
+                console.log('success')
+    
+                // 用户确认分享后执行的回调函数
+    
+            },
+    
+            cancel: function () {
+    
+                console.log('cancel')
+    
+                // 用户取消分享后执行的回调函数
+    
+            }
+    
+        });
+
+
+        wx.onMenuShareAppMessage({ //发送消息
+    
+            title: '美分分－－为自己加分',
+    
+            desc: '美分分为自己加分',
+    
+            link: 'http://{{domain}}/user',
+    
+            imgUrl: 'http://{{domain}}/static/test.jpg',
+    
+            success: function () {
+    
+                console.log('success')
+    
+                // 用户确认分享后执行的回调函数
+    
+            },
+    
+            cancel: function () {
+    
+                console.log('cancel')
+    
+                // 用户取消分享后执行的回调函数
+    
+            }
+    
+        });
+
+     })
+{% endblock %}
+
+
+

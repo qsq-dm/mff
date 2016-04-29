@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<title>试用详情</title>
+	<script src="/static/user/js/mui.min.js"></script>
+	<link href="/static/user/css/mui.css" rel="stylesheet"/>
+	<link rel="stylesheet" href="css/style.css" />
+	<link rel="stylesheet" type="text/css" href="css/loading.css"/>
+</head>
+<style type="text/css">
+	.mui-segmented-control .mui-control-item.mui-active {
+		color: #FF6565;
+		background: #FFF;
+		border-left: 1px #D8D8D8 solid;
+		border-top: 3px #FF6565 solid;
+		border-bottom: none;
+	}
+	#item1mobile{
+		padding:0 10px;
+	}
+	.mui-content{
+		padding-bottom: 50px;
+	}
+	.mui-segmented-control {
+		border: none;
+		border-radius: 0;
+		background: #F3F4F6;
+		margin-top:10px;
+
+	}
+
+	.mui-segmented-control .mui-control-item {
+
+		border-bottom: 1px #D8D8D8 solid;
+		border-left: 1px #D8D8D8 solid;
+		border-top: 1px #D8D8D8 solid;
+	}
+
+	.mui-segmented-control .mui-control-item {
+		color: #000;
+	}
+
+
+	
+	.mui-table-view-cell.left,.mui-table-view-cell.right{
+		/*width: 50%;*/
+		height: 128px;
+		position: relative;
+		float: left;
+		overflow: hidden;
+
+	}
+	.mui-table-view-cell.left{
+		padding: 11px 0 0 11px;
+		width: 128px;
+	
+	}
+	.mui-table-view-cell.right{
+		/*width: 65%;*/
+	}
+	.mui-table-view-cell.left img{
+		width: 100%;
+    	}
+    	.mui-table-view-cell.right div{
+    		margin-top: 10px;
+    		color:#ababab;
+    	}
+    	.mui-table-view-cell.right h4{
+    		line-height: 20px;
+    		font-weight: 400;
+    		display: -webkit-box;
+    		overflow: hidden;
+    		white-space: normal !important;
+    		text-overflow: ellipsis;
+    		word-wrap: break-word;
+    		-webkit-line-clamp: 1;
+    		-webkit-box-orient: vertical;
+    	}
+    	.mui-table-view-cell button{
+    		width: 100%;
+    		display: block;
+    		margin:0 auto;
+    		height: 40px;
+    		background: #dd524d;
+    		border:none;
+    		outline-color: none;
+    	}
+    	i{
+    		font-style: normal;
+    		font-size:24px;
+    		font-weight: 400;
+    		margin-right: 10px;
+    	} 	
+    	pre{
+    		word-wrap: break-word
+    	}
+    	.tit{
+    		margin-top:10px;
+    		padding:5px 20px;
+    		margin-bottom: 10px;
+    		border-radius: 100% 100%;
+    		background: #0c89d6;
+    		color: #fff;
+    		display:inline-block;
+    		
+    	}
+    	.mui-table-view img.mui-media-object{
+    		width: 60px;
+    		max-width: 60px;
+    		height: 60px;
+    		border: 1px solid #ccc;
+    		margin-right: 20px;
+    		border-radius: 50%;
+    	}
+    	.mui-table-view-chevron li.mui-table-view-cell{
+    		padding-right: 0;
+    	}
+    	#item2mobile p .right{
+    		float: right;
+    	}
+    	ul.mui-table-view:before{
+    		height: 0;
+    	}
+    	ul.mui-table-view:after{
+    		height: 0;
+    	}
+    	li.mui-table-view-cell:after{
+    		height: 0;
+    	}
+    	li.mui-table-view-cell{
+   			/*border-top:1px dashed #ccc;
+   			border-bottom:1px dashed #ccc;*/
+   			margin-bottom: 10px;
+   		}
+   		.user-judge .fr .show-pic{
+   			margin-right: 10px;
+   		}
+   		.user-judge .intro-cont .p-name{
+   			font-size:14px;
+   		}
+   		.mui-content,body{
+   			background: #fff;
+   		}
+   		.mui-content-padded{
+   			margin:0;
+   		}
+   		.table{
+   			display: table;
+   			width: 100%;
+   			box-sizing: border-box;
+   			padding:10px;
+   			border-bottom:1px dashed #ccc;
+   			margin-top: 10px;
+   			position: relative;
+   			
+   		}
+   		.table.cur{
+   			background: url(img/trial-act-img.png) no-repeat right center;
+   			background-size: auto 80%;
+   		}
+   		.table div{
+   			display:table-cell;
+   			box-sizing: border-box;
+   			vertical-align: top;
+   		}
+   		.table div:nth-child(1){
+   			width: 38px;
+   			height: 38px;
+   		}
+   		.table div:nth-child(2){
+   			padding-left:10px;
+   		}		
+   		.table img{
+   			width: 100%;
+   			height: 100%;
+   			border-radius: 50%;
+   			/*border:1px solid red;*/
+   		}
+		/*.mui-bar-tab .mui-tab-item.mui-active{
+			color: #929292;
+		}
+		#footer a:nth-child(2){
+			background: #FF6565;
+			color: #fff;
+		}*/
+		.check-all-cont{
+			position: fixed;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			background: #FFF;
+			overflow: hidden;
+		}
+		.check-all-cont li{
+			float: left;
+			height: 45px;
+			line-height: 40px;
+		}
+		.check-all-cont li:first-of-type{
+			width: 60%;
+			box-sizing: border-box;
+			padding-left:15px;
+			background:#fff;
+			border-top:1px solid #ccc;
+			
+		}
+		.check-all-cont li:last-of-type{
+			width: 40%;
+		}
+		.check-all-cont li:last-of-type button{
+			height: 100%;
+			width: 100%;
+			border-radius: 0;
+			text-overflow: ellipsis;
+			overflow: hidden;
+		}
+		.user-judge .fr{
+			font-size:0;
+		}
+		i.color-red,span.color-red{
+			margin-left:10px;
+		}
+#item1mobile p{
+	rgb(85, 85, 85);
+}
+		.txt{
+			color:rgb(85, 85, 85);
+		}
+		.text-over{
+			display: inline-block;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			width:130px;
+			overflow: hidden;
+		}	
+	</style>
+	<body>
+		<div class="mui-content">
+			<ul class="mui-table-view" style="margin-top: 0;overflow: hidden;">
+				<li class="mui-table-view-cell left no-after-line">
+					<img id='img' src="img/ad-big-pic.png" alt="" />
+				</li>
+				<li class="mui-table-view-cell right no-after-line">
+					<h4 id='title'></h4>
+					<div>
+						份数<i class="color-red" id='count' style="vertical-align: -3px;"></i> 
+					</div>
+					<div>
+						人气<span class="color-red color-black" id='total'></span>
+					</div>
+					<div>
+						费用<span class="color-red color-black" id='fee'></span>
+					</div>
+					<!--<div>剩余:<span class="color-red">10天9时20分20秒</span></div>-->
+				</li>
+			</ul>
+			<div id="segmentedControl" class="mui-segmented-control">
+				<a class="mui-control-item mui-active" href="#item1mobile">
+					试用规则
+				</a>
+				<a class="mui-control-item" href="#item2mobile">
+					申请名单
+				</a>
+				<a class="mui-control-item" href="#item3mobile">
+					试用体会
+				</a>
+			</div>
+			<div class="mui-content-padded">
+				<div id="item1mobile" class="mui-control-content mui-active">
+					<div class="tit" id='before'>
+						试用流程
+					</div>
+					<p style="height: 1px;"></p>
+					<!--<div class="txt">
+						<span class="color-red">1、注册：</span><br />通过手机号注册成为美分分会员	
+					</div>								
+					<div class="txt">
+						<span class="color-red">2、申请试用：</span><br />填写姓名、手机号、学校、宿舍地址，然后提交申请（活动仅限在校大学生申请）	
+					</div>	
+					<div class="txt">
+						<span class="color-red">3、查看结果：</span><br />活动时间截止1天后，美分分会根据你提交的资料和申请理由，决定最后获得试用名单。你可以在“我的试用”里查看结果	
+					</div>						
+					<div class="txt">
+						<span class="color-red">4、获得试用：</span><br />公布名单后，美分分将在5天内寄出试用商品；如是美分分整形项目，将通过指定项目的代金券抵扣的形式来领取试用			
+					</div>														
+					<div class="txt">
+						<span class="color-red">5、提交试用体会：</span><br />收到产品后，10天内提交对产品的使用感受		
+					</div>-->
+					<div class="tit">
+						试用攻略
+					</div>
+					<div class='txt'></div>
+					<!--<div class="txt">1、填写真实的申请信息和完整有说服力的申请理由</div>
+					<div class="txt">2、及时提交申请报告，高质量的申请报告能提升后续申请获得率</div>
+					<div class="txt">3、多次申请，听说申请很多次的人都获得过试用的机会哦</div>
+					<div class="txt">4、通过微信分享给好友，分享得越多，获得试用机率越高哦</div>																																												-->
+				</div>
+				<div id="item2mobile" class="mui-control-content ">
+						<div class="noCoupon" style="text-align: center; display: none;">
+								<img src="img/icon-no-repay.png" style="width: 20%;margin-top: 50px;">
+								<p>暂无申请</p>
+								<p>美分分，为你加分，大学生分期去整形</p>
+						</div>
+						<div class="loader-inner ball-pulse" style='text-align: center;display: block;'>
+					          <div></div>
+					          <div></div>
+					          <div></div>
+					    </div>
+				</div>
+				<div id="item3mobile" class="mui-control-content">
+						<div class="noCoupon" style="text-align: center; display: none;">
+								<img src="img/icon-no-repay.png" style="width: 20%;margin-top: 50px;">
+								<p>暂无试用体会</p>
+								<p>美分分，为你加分，大学生分期去整形</p>
+						</div>					
+				</div>
+			</div>
+
+		</div>
+		<ul class="check-all-cont mui-checkbox">
+			<li id="niming">
+				<p class="color-black">剩余<span class="color-red" id="countdown">10天9时20分20秒</span></p>
+			</li>
+			<li>
+				<button class="mui-btn-negative" id="submit">立即申请</button>
+			</li>
+		</ul>
+		<script src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+		<script type="text/javascript" src="http://www.meifenfen.com/user/jssdk.js"></script>
+		<script src='js/util.js'></script>
+		<script>
+		//详情
+		$('.mui-control-item').on('tap',function(){
+			var index=$(this).index();
+			location.hash='2'
+			sessionStorage.setItem('tap',index);
+			$(this).addClass('mui-active').siblings().removeClass('mui-active');
+			$('.mui-control-content').eq(index).addClass('mui-active').siblings().removeClass('mui-active');
+		});
+		if(location.hash=='#1'){
+			$('.mui-control-item').eq(0).trigger('tap');
+		}else{
+			if (sessionStorage.getItem('tap')==1) {
+				$('.mui-control-item').eq(1).trigger('tap');
+			}else if(sessionStorage.getItem('tap')==2){
+				$('.mui-control-item').eq(2).trigger('tap');
+			}		
+		}
+		if (sessionStorage.getItem('tap')==1) {
+			$('.mui-control-item').eq(1).trigger('tap');
+		}else if(sessionStorage.getItem('tap')==2){
+			$('.mui-control-item').eq(2).trigger('tap');
+		}
+		var $submit=$('#submit')
+		$.ajax({
+			xhrFields: {withCredentials: true},
+			type:"get",
+			url:"http://"+getHostName()+"/user/get_trial_detail/?trial_id="+Common.UrlGet().trial_id,
+			dataType:'json',
+			
+			success:function(data){
+				var trial=data.trial;
+				$('#fee').html(trial.cat_str)
+				$('#img').attr('src',trial.image);
+				$('#title').html(trial.title);
+				$('#count').html(trial.total);
+				$('#total').html(trial.apply_count );
+				$('#submit').attr('data',trial.id);
+				$('#before').after(trial.process);
+				$('#fee').html()
+				$('.txt').append(trial.rules)
+				ding(trial.end_time,'#countdown');
+				switch(data.status){
+					case -1:
+					$submit.html('立即申请');
+					Location('trial-applyer.html');
+					break;
+					case 0:
+					$submit.html('等待审核 ')
+					$submit.css({'background':'#ccc','border':'1px solid #ccc'});
+					break;
+					case 1:
+					$submit.html('写试用体会')
+					Location('trial-judge.html');					
+					break;
+					case 2:
+					$submit.html('去下单')
+					$submit.on('click',function(){
+						location.href='detail.html?item_id='+data.item_id;
+					})
+					break;
+					case 3:
+					$submit.html('写试用体会');
+					Location('trial-judge.html');
+					break;
+					case 4:
+					$submit.html('查看试用体会');
+					$('.mui-control-item').last().trigger('tap');
+					$submit.on('click',function(){
+						$('.mui-control-item').last().trigger('tap')
+					})
+					break;
+					case 5:
+					$submit.html('未获得试用');
+					$submit.css({'background':'#ccc','border':'1px solid #ccc'});				
+					break;
+					case 6:
+					$submit.html('已结束');
+					$submit.css({'background':'#ccc','border':'1px solid #ccc'});
+					break;	
+					default:	
+				}
+				wx.ready(function(){
+					
+					wx.onMenuShareTimeline({
+						
+					        title:trial.title, // 分享标题
+					        
+					        link: 'http://'+getHostName()+'/static/user/trial-detail.html?trial_id='+trial.id, // 分享链接
+					        
+					        imgUrl:trial.image, // 分享图标
+					        
+					        success: function () {
+					        	
+					        	console.log('success')
+					        	
+					            // 用户确认分享后执行的回调函数
+					            
+					        },
+					        
+					        cancel: function () {
+					        	
+					        	console.log('cancel')
+					        	
+					            // 用户取消分享后执行的回调函数
+					            
+					        }
+					        
+					    });
+					
+					wx.onMenuShareAppMessage({
+					        title:trial.title , // 分享标题
+					        link: 'http://'+getHostName()+'/static/user/trial-detail.html?trial_id='+trial.id, // 分享链接
+					        imgUrl:trial.image, // 分享图标     
+					        desc: '我正在免费申请，你也快来申请吧！！！美分分，为你加分，大学还分期去整形。', // 分享描述
+					        success: function () {
+					        	
+					        	console.log('success')
+					        	
+					            // 用户确认分享后执行的回调函数
+					            
+					        },
+					        
+					        cancel: function () {
+					        	
+					        	console.log('cancel')
+					        	
+					            // 用户取消分享后执行的回调函数
+					            
+					        }
+					        
+					    });
+					
+				});	
+
+
+},error:function(){
+
+}
+});
+//    底部按跳转事件
+function Location(local){
+	$submit.on('click',function(){
+		if(getCookie('sign_user')){
+			location.href=local+'?trial_id='+$(this).attr('data');
+		}else{
+			location.href='login.html?next='+location.href
+		}
+		
+	})	
+}
+var has_more1;
+var offset1=undefined;
+var has_more2;
+var offset2=undefined;
+		//体会
+		function trial_Tihui(){
+			if(offset1){
+				var Url="http://"+getHostName()+"/user/trial_comment_list/?trial_id="+Common.UrlGet().trial_id+"&offset="+offset1;
+			}else{
+				var Url="http://"+getHostName()+"/user/trial_comment_list/?trial_id="+Common.UrlGet().trial_id;
+			}				
+			$.ajax({		
+				xhrFields: {withCredentials: true},
+				type:"get",
+				url:Url,
+				dataType:'json',
+				success:function(data){
+					var infos=data.infos;
+					if(infos.length==0 && offset1==undefined){
+							$('#item3mobile .noCoupon').show()
+					}
+					has_more1=data.has_more;
+					offset1=data.offset;
+					for (var i = 0; i < infos.length; i++) {
+						var photo_str='';
+						for (var k = 0; k < infos[i].photo_list.length; k++) {
+	//						phone_str+='<img class="show-pic" src="'+infos[i].photo_list[k]+'">';
+							photo_str+='<span class="show-par"><img class="show-pic item-comment-img" src="'+infos[i].photo_list[k]+'"/></span>'
+						};
+						var node='<div class="user-judge bg-white"><div class="fl"><img src="'+infos[i].user.avatar+'"></div><div class="intro-cont"><div class="fr"><span class="color-black p-name">'+infos[i].user.name+'</span><p style="font-size:12px;margin-top:-7px;">'+infos[i].school+'</p><h5 class="color-black mui-ellipsis-2 lower-line-height" style="margin-top:0;">'+infos[i].content+'</h5>'+photo_str+'<p class="size-sm"><span>'+infos[i].create_time+'</span></p></div></div></div>';
+						$('#item3mobile').append(node)
+	
+					};
+	
+	
+				},error:function(){
+	
+				}
+			});					
+		}
+trial_Tihui()
+trial_list()
+		
+			//申请名单
+			function trial_list(){
+				if(offset2){
+					var Url="http://"+getHostName()+"/user/trial_applyers/?trial_id="+Common.UrlGet().trial_id+"&offset="+offset2;
+				}else{
+					var Url="http://"+getHostName()+"/user/trial_applyers/?trial_id="+Common.UrlGet().trial_id;
+				}					
+				$.ajax({
+					xhrFields: {withCredentials: true},
+					type:"get",
+					url:Url,
+					dataType:'json',
+					success:function(data){
+						var infos=data.infos;						
+						if(infos.length==0 && offset2==undefined){
+							$('#item2mobile .noCoupon').show()
+						}
+//						$('.loader-inner').hide();
+						has_more2=data.has_more;
+						offset2=data.offset;
+						if (!has_more2){
+							$('.loader-inner').hide();
+						};
+						for (var i = 0; i < infos.length; i++) {
+							var str=$('<div class="table"><div><img src="'+infos[i].user.avatar+'" alt=""></div><div><p class="color-black">'+infos[i].user.name+'</p><p class="size-sm"><span class="text-over">'+infos[i].school+'</span><span style="float: right;">'+infos[i].create_time+'</span></p></div></div>');
+							if (infos[i].status==1 || infos[i].status==2 ||infos[i].status==3) {
+								str.addClass('cur')
+							};
+							$('.loader-inner').before(str);
+						};
+						
+					},error:function(){
+	
+					}
+				});	
+					
+			}
+//刚加载页面如果没有分页直接隐藏			
+
+
+window.onscroll = function () { 
+		if (getScrollTop() + getClientHeight() == getScrollHeight()) { 
+			if (has_more1) {
+				trial_Tihui()//试用
+			};
+			if (has_more2) {
+//				$('.loader-inner').show();
+				setTimeout(function(){
+					trial_list();
+				},1000)
+				//申请名单
+			}
+		} 
+} 
+
+
+			
+//微信预览代码			
+$(document).on('tap','.show-pic',function(event){
+	
+	item_comment_img_preview(event)
+})
+var item_comment_img_preview = function(event) {
+	var obj = event.target;
+	if(!obj.getAttribute('src')) {
+		console.log('image not ready');
+		return;
+	}
+	console.log('preview item comment image');
+	console.log(obj.getAttribute('src'));
+	var current = obj.getAttribute('src');
+	var img_tags = $(obj).parent().find('.show-pic');
+	var image_list = [];
+	for(var i=0;i<img_tags.length;i++) {
+		image_list.push($(img_tags[i]).attr('src'));
+	}
+	wx.previewImage({
+		current: current,
+		urls: image_list,
+	});
+}
+//倒计时代码
+function ding(end,id){
+	var timeList = end.split(' ');;
+	var riqi=timeList[0].split('-');
+	console.log(riqi[0])
+	var time=riqi[1]+'/'+riqi[2]+'/'+riqi[0]+' '+timeList[1];
+	var end = new Date(time);
+	var _second = 1000;
+	var _minute = _second * 60;
+	var _hour = _minute * 60;
+	var _day = _hour * 24;
+	var timer;
+	function showRemaining() {
+		var now = new Date();
+		var distance = end - now;
+// console.log(111)
+if (distance < 0) {
+	clearInterval(timer);
+          // document.getElementById('countdown').innerHTML = 'EXPIRED!';
+          $(id).html('活动已经结束');
+          return;
+      }
+      var days = Math.floor(distance / _day);
+      var hours = Math.floor((distance % _day) / _hour);
+      var minutes = Math.floor((distance % _hour) / _minute);
+      var seconds = Math.floor((distance % _minute) / _second);
+      $(id).html(days + '天'+hours+'时'+minutes+'分'+seconds+'秒')
+        // console.log('仅剩'+days + '天'+hours+'时'+minutes+'分'+seconds+'秒') ;
+    }
+    timer = setInterval(showRemaining, 1000);			          	
+}			
+        </script>
+    </body>
+    </html>

@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="format-detection"content="telephone=no"/>	
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>项目详情</title>
+    <script src="/static/user/js/swiper.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/user/css/swiper.min.css"/>
+    <script src="/static/user/js/mui.min.js"></script>
+    <link href="/static/user/css/mui.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="/static/user/css/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/user/css/style.css"/>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?61b678558a59e95c85431d0243d592ef";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+    </script>
+    <style type="text/css">
+	    .lower-line-height{
+	    	line-height: 20px;
+	    }
+    </style>
+    <script>
+
+    </script>
+    <style type="text/css">
+        .swiper-container {
+            width: 100%;
+            max-height: 220px;
+            background: #fff;
+        }
+        .swiper-pagination-bullet-active {
+            background: white !important;
+        }
+        .padding-bottom {
+            height: 10px;
+            margin-bottom: 60px;
+        }
+        .swiper-slide img{
+        	display: block;
+        }
+        .check-stages{
+        	position: relative;
+        }
+        /*.check-stages:after {
+		    position: absolute;
+		    right: 0;
+		    bottom: 0;
+		    left: 0;
+		    height: 1px;
+		    background:#c8c7cc;
+		    content: '';}*/
+	   .how-to-use pre {
+	       margin: 0;
+	       word-wrap: break-word;
+	   }
+    </style>
+</head>
+<body>
+
+        <div class="swiper-container swiper-container-horizontal">
+            <div class="swiper-wrapper">
+                    <div class="swiper-slide" style="width: 100%;"><img class='img'  width="100%" /></div>
+            </div>
+            <!-- Add Pagination -->
+            <div class="swiper-pagination swiper-pagination-clickable">
+                <span class="swiper-pagination-bullet"></span>
+            </div>
+        </div>
+
+		<ul class="mui-table-view no-after-line">
+			<li class="mui-table-view-cell mui-media">
+				<div class="mui-media-body">
+					<h4 style="font-size: 16px;" id='mainTitle'>最新华丽美版Ulthera 还你紧致童颜</h4>
+					<p class='mui-ellipsis'>
+						<span id='yyname'>上海春夏秋冬外科整形医院</span>
+					</p>
+					<p class='mui-ellipsis'>
+						售价:<span class="color-red has-m-right" id='price'>￥600</span>
+						原价:<span class="line-throu" id='oldPrice'>￥1000</span>
+					</p>
+				</div>
+			</li>
+		</ul>
+		<div class="check-stages" style="margin-bottom: 10px;border-bottom:1px solid #c8c7cc;">
+		<p style="text-align: left;line-height: 14px;padding-left: 4px;margin-bottom: 0px;" id='option'>请选择分期数:</p>
+			<!--<div class="text-cont active">
+				<p>￥658直购</p>
+				<p>（无服务费）</p>
+				<i class="iconfont">&#xe614;</i>
+			</div>
+			<div class="text-cont">
+				<p>￥226.67×3期</p>
+				<p>（无服务费）</p>
+				<i class="iconfont">&#xe614;</i>
+			</div>
+			<div class="text-cont">
+				<p>￥226.67×6期</p>
+				<p>（无服务费）</p>
+				<i class="iconfont">&#xe614;</i>
+			</div>
+			<div class="text-cont">
+				<p>￥226.67×12期</p>
+				<p>（无服务费）</p>
+				<i class="iconfont">&#xe614;</i>
+			</div>-->
+			<!--<p class="color-black my-clear mui-left">需首付:0元</p>-->
+		</div>
+		<ul class="mui-table-view no-before-line shoufu" style="display: none;">
+			<li class="mui-table-view-cell">
+				<span id='payment'>需首付:0元</span>
+				<span class="color-grey size-sm" id='payDetails'>（首付金额＝总价－你的可用额度234元）</span>
+			</li>
+		</ul>
+		<ul class="mui-table-view has-m-top">
+			<li class="mui-table-view-cell no-after-line">
+				<a class="mui-navigate-right" onclick='gotoProjectDetail()'>
+					项目、医师图文详情
+				</a>
+			</li>
+		</ul>
+		<ul class="mui-table-view has-m-top">
+			<li class="mui-table-view-cell mui-media hospital-link">
+				<a class="mui-navigate-right">
+					<div class="mui-media-body">
+						<img class="icon-hospital" src="img/icon-hospital.png"/>
+						<!--<i class="iconfont color-blue size-big">&#xe62e;</i>-->
+						<sapn id='hospitalName'>上海春夏秋冬外科整形医院</sapn>
+						<p class="mui-ellipsis" style="padding-left: 24px;" id='hospitalTag'>
+							<span class="aptitude color-blue size-sm">二级美容诊所</span>
+							<span class="aptitude color-blue size-sm">16年资质</span>
+							<span class="aptitude color-blue size-sm">韩国引进技术</span>
+						</p>
+					</div>
+				</a>
+			</li>
+			<li class="mui-table-view-cell">
+				<i class="iconfont size-sm color-blue">&#xe60a;</i>
+				<span id='phone'>预约电话：  021-2865379</span>
+			</li>
+		</ul>
+		<ul class="mui-table-view has-m-top" id='fake-user-comment'>
+			<li class="mui-table-view-cell">
+				购买须知
+			</li>
+		</ul>
+		<div class="how-to-use bg-white">
+			<p>消费时间</p>
+			<div class="color-black" id='item_use_time'>
+			    <pre style='margin-bottom: 7px;font-size: 13px;'>购买成功后，任何时间都可以消费</pre>
+			</div>
+			<p style="margin-bottom: 3px;">消费流程</p>
+			<ul class="use-process">
+				<li>
+					<div class="circle bg-yellow color-white">
+						<i class="iconfont">&#xe620;</i>
+					</div>
+					<i class="iconfont color-yellow pointo">&#xe62a;</i>
+					<p class="size-sm color-black">购买成功</p>
+				</li>
+				<li>
+					<div class="circle bg-red color-white">
+						<!--<i class="iconfont">&#xe624;</i>-->
+						<img class="sm-icon" src="img/icon-callout.png"/>
+					</div>
+					<i class="iconfont color-red pointo">&#xe62a;</i>
+					<p class="size-sm color-black">电话预约医院</p>
+				</li>
+				<li>
+					<div class="circle bg-blue color-white">
+						<!--<i class="iconfont">&#xe628;</i>-->
+						<img class="sm-icon" src="img/icon-checkcode.png"/>
+					</div>
+					<i class="iconfont color-blue pointo">&#xe62a;</i>
+					<p class="size-sm color-black">携身份证和验证<br />服务码到院消费</p>
+				</li>
+				<li>
+					<div class="circle bg-green color-white">
+						<!--<i class="iconfont">&#xe633;</i>-->
+						<img class="sm-icon" src="img/icon-smileface.png"/>
+					</div>
+					<p class="size-sm color-black">手术完成</p>
+					<!--<i class="iconfont color-g">&#xe62a;</i>-->
+				</li>
+			</ul>
+			<p>特别提醒</p>
+			<div class="color-black lower-line-height" id='item_note'>
+			    <pre style='margin-bottom: 7px;font-size: 13px;'>如已成功预约医院想取消订单，需电话医院取消预约后方可取消订单。</pre>
+			</div>
+		</div>
+		<ul class="mui-table-view has-m-top" id='comment'>
+			<li class="mui-table-view-cell no-after-line">
+				<a class="mui-navigate-right" id='href'>
+					用户评价(0)
+				</a>
+			</li>
+		</ul>
+		<!--<div class="user-judge bg-white">
+		    <div class="fl">
+		        <img src="http://7xnpdb.com1.z0.glb.clouddn.com/avatar/1448878641.78">
+		    </div>
+		    <div class="intro-cont">
+		        <div class="fr"><span class="color-grey p-name">xianpeng</span><i class="iconfont color-gold star"> </i><i class="iconfont color-gold star"> </i><i class="iconfont color-gold star"> </i><i class="iconfont color-gold star"> </i><i class="iconfont color-gold star"> </i>
+		            <h5 class="color-black mui-ellipsis-2 lower-line-height">121</h5>
+		                <span class="show-par"><img class="show-pic" src="http://7xnpdb.com1.z0.glb.clouddn.com/o_1a6msqbi0156m1g7v5nif8kqm2b1450320106155.jpg"></span>		                
+						<span class="show-par"><img class="show-pic" src="http://7xnpdb.com1.z0.glb.clouddn.com/o_1a6msqbi0156m1g7v5nif8kqm2b1450320106155.jpg"></span>			                
+		                <p class="size-sm"><i class="iconfont"></i><span>2015-12-21 16:54:49</span>
+		                </p>
+		        </div>
+		    </div>
+		</div>-->
+		<div class="noJudge" style="text-align: center;display: none;border-bottom: 1px dashed #ECECEC;padding-bottom: 10px;background:#fff;">
+				<img src="img/icon-no-repay.png" style="width: 20%;margin-top: 10px;">
+				<p>暂无评价</p>
+				<p>美分分为你加分，大学生分期去整形</p>
+		</div>
+		</div>
+        <div class='padding-bottom'></div>
+		<div class="btn-cont">
+			<button class="mui-btn" id='wish'>放入心愿单</button>
+			<a class="mui-btn mui-btn-negative" id='buy'>立即购买</a>
+		</div>
+	</div>
+	<script type="text/javascript" src="/static/user/js/jquery.min.js" ></script>
+	<script src='/static/user/js/util.js'></script>
+
+	<script>
+		$(document).ready(function(){
+			$(document).on("touchstart",'.text-cont',function(){
+				$(".text-cont").removeClass("active");
+				$(this).addClass("active");
+				if($(this).attr('need')>0){
+					$('.shoufu').show();
+					$('#payDetails').html('（首付金额＝总价－你的可用额度'+$(this).attr('period')+'元）')
+					$('#payment').html('需首付:'+$(this).attr('need')+'元');
+					$('.check-stages').css({'margin-bottom':'0','border-bottom':'none'});
+				}else{
+					$('.shoufu').hide();
+					$('.check-stages').css('border-bottom','1px solid #c8c7cc');
+				}
+				
+			});
+		});
+		var item_photos = [];
+		function gotoProjectDetail() {
+		    var item_id = Common.UrlGet()['item_id'];
+		    window.location = '/user/project_doctor_description/?item_id='+item_id;
+		}
+	   $('#href').click(function () {
+	        var item_id = Common.UrlGet()['item_id'];
+	        var oTxt=$('#href').text();
+	        if(oTxt.indexOf('0')!='-1'){
+	        	return
+	        }
+            window.location = '/static/user/judge-list.html?item_id='+item_id;
+	   })
+       var wx_img_preview = function() {
+            var obj = this;
+            if(!obj.getAttribute('data')) {
+                console.log('image not ready');
+                return;
+            }
+            console.log('preview image');
+            console.log(obj.getAttribute('data'));
+            wx.previewImage({
+                current: obj.getAttribute('data'),
+                urls: item_photos,
+            });
+       }
+       var item_comment_img_preview = function() {
+            var obj = this;
+            if(!obj.getAttribute('src')) {
+                console.log('image not ready');
+                return;
+            }
+            console.log('preview item comment image');
+            console.log(obj.getAttribute('src'));
+            var current = obj.getAttribute('src');
+            var img_tags = $(this).parent().find('.show-pic');
+            var image_list = [];
+            for(var i=0;i<img_tags.length;i++) {
+                image_list.push($(img_tags[i]).attr('src'));
+            }
+            wx.previewImage({
+                current: current,
+                urls: image_list,
+            });
+       }
+	</script>
+    <script src='/static/user/js/detail.js'></script>
+    <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script type="text/javascript" src="http://www.meifenfen.com/user/jssdk.js"></script>
+</body>
+</html>

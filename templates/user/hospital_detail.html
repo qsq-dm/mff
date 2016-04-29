@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>医院主页</title>
+    <script src="/static/user/js/mui.min.js"></script>
+    <script src="/static/user/js/jquery.min.js"></script>
+    <script src="/static/user/js/swiper.min.js"></script>
+    <link href="/static/user/css/mui.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="/static/user/css/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/user/css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/user/css/swiper.min.css"/>
+    <script type="text/javascript" charset="utf-8">
+      	//mui.init();
+      	
+    </script>
+    <script>
+        $(document).ready(function () {
+        var swiper = new Swiper('.swiper-container', {
+            pagination: '.swiper-pagination',
+            autoplayDisableOnInteraction: false,
+            autoplay : 3000,
+            loop: true,
+            paginationClickable: true
+        });
+        });
+    </script>
+    <style type="text/css">
+	    .swiper-container {
+            width: 100%;
+            max-height: 220px;
+        }
+        .swiper-pagination-bullet-active {
+            background: white !important;
+        }
+        .swiper-container img {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+<div class="swiper-container swiper-container-horizontal">
+        <div class="swiper-wrapper">
+            {% for photo in hospital['photo_list'] %}
+                <div class="swiper-slide swiper-slide-active" style="width: 100%;"><img src="{{photo}}" class='hospital-img' data={{photo}} width="100%" /></div>
+            {% endfor %}
+        </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination swiper-pagination-clickable">
+            <span class="swiper-pagination-bullet"></span>
+            <span class="swiper-pagination-bullet"></span>
+            <span class="swiper-pagination-bullet"></span>
+            <span class="swiper-pagination-bullet"></span>
+            <span class="swiper-pagination-bullet"></span>
+        </div>
+    </div>
+		<ul class="mui-table-view no-after-line">
+			<li class="mui-table-view-cell mui-media">
+				<div class="mui-media-body">
+					{{hospital['name']}}
+					<p class="mui-ellipsis lower-line-height">
+					    {% for tag in hospital['tag_list'] %}
+					       <span class="aptitude color-blue size-sm">{{tag}}</span>
+					    {% endfor %}
+					</p>
+				</div>
+			</li>
+		</ul>
+		<pre class="color-black bg-white  has-lr-padded hospital-desc" style='word-wrap: break-word;margin:0;'>{{hospital['desc']}}</pre>
+		<p class="color-black bg-white has-after-line has-lr-padded" style="padding-bottom: 6px;">门诊时间: {{hospital['working_time']}}</p>
+		<ul class="mui-table-view has-m-top">
+			<li class="mui-table-view-cell no-after-line">
+				<a class="mui-navigate-right" href="tel:{{hospital['phone']}}">
+					<i class="iconfont color-blue size-sm">&#xe60a;</i>
+					咨询电话 ：{{hospital['phone']}}
+				</a>
+			</li>
+		</ul>
+		<ul class="mui-table-view has-m-top">
+			<li class="mui-table-view-cell no-after-line" onclick='location="/user/hospital_location/?hospital_id={{hospital["id"]}}"'>
+				<a class="mui-navigate-right">
+					<i class="iconfont color-blue size-sm">&#xe63c;</i>
+					{{hospital['addr']}}
+				</a>
+			</li>
+		</ul>
+		<ul class="mui-table-view item-list has-m-top">
+			<li class="mui-table-view-cell">
+				医院项目
+			</li>
+			{% for info in infos[:3] %}
+            <li class="mui-table-view-cell no-after-line mui-media">
+                <a href="/static/user/detail.html?item_id={{info['id']}}">
+                    <img class="mui-media-object mui-pull-left" src="{{info['image']}}">
+                    <div class="mui-media-body">
+                        {{info['title']}}
+                        <p class='mui-ellipsis'>
+                            <span>{{hospital['name']}}</span>
+                        </p>
+                        <p class='mui-ellipsis'>
+                            售价：<span class="color-red">￥{{info['price']}}</span>
+                            医院价：<span class="line-throu">￥{{info['orig_price']}}</span>
+                        </p>
+                    </div>
+                    <div class="month-pay  month-pay-sm">
+                        <div class="tit">月供</div>
+                        <div class="num">
+                            <p class="color-red">
+                                <b>￥{{info.period_money}}</b>
+                                <span>x {{info.period_count}}</span>
+                            </p>
+                        </div>
+                    </div>
+                </a>
+            </li>
+			{% endfor %}
+
+			<li class="mui-table-view-cell mui-text-center">
+				<span class="color-grey" onclick='location="/user/hospital_item_list/?hospital_id={{hospital.id}}"'>
+					查看全部
+					<i class="iconfont">&#xe639;</i>
+				</span>
+				
+			</li>
+		</ul>
+
+	</div>
+
+
+    <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script type="text/javascript" src="http://www.meifenfen.com/user/jssdk.js"></script>
+    <script>
+        $(document).ready(function(){
+           var wx_img_preview = function() {
+                var obj = this;
+                if(!obj.getAttribute('data')) {
+                    console.log('image not ready');
+                    return;
+                }
+                console.log('preview image');
+                console.log(obj.getAttribute('data'));
+                wx.previewImage({
+                    current: obj.getAttribute('data'),
+                    urls: {{ hospital['photo_list']|tojson}},
+                });
+           }
+           $('.hospital-img').click(wx_img_preview);
+        });
+
+
+wx.ready(function(){
+
+    wx.onMenuShareTimeline({
+
+        title: '{{hospital["name"]}}', // 分享标题
+
+        link: 'http://www.meifenfen.com/user/hospital_detail/?hospital_id={{hospital.id}}', // 分享链接
+
+        imgUrl: '{{hospital["photo_list"][0]}}', // 分享图标
+
+        success: function () {
+
+            console.log('success')
+
+            // 用户确认分享后执行的回调函数
+
+        },
+
+        cancel: function () {
+
+            console.log('cancel')
+
+            // 用户取消分享后执行的回调函数
+
+        }
+
+    });
+
+    wx.onMenuShareAppMessage({
+
+        title: '{{hospital["name"]}}', // 分享标题
+
+        desc: $('.hospital-desc').html(), // 分享描述
+
+        link: 'http://www.meifenfen.com/user/hospital_detail/?hospital_id={{hospital.id}}', // 分享链接
+
+        imgUrl: '{{hospital["photo_list"][0]}}', // 分享图标
+
+        success: function () {
+
+            console.log('success')
+
+            // 用户确认分享后执行的回调函数
+
+        },
+
+        cancel: function () {
+
+            console.log('cancel')
+
+            // 用户取消分享后执行的回调函数
+
+        }
+
+    });
+
+});
+
+
+    </script>
+
+</body>
+</html>

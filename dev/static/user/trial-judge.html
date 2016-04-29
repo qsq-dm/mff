@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<meta name="format-detection"content="telephone=no"/>	
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>试用感想</title>
+    <script src="/static/user/js/mui.min.js"></script>
+    <link href="/static/user/css/mui.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="css/iconfont.css">
+    <link rel="stylesheet" type="text/css" href="/static/user/css/style.css"/>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?61b678558a59e95c85431d0243d592ef";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+    </script>
+    <style type="text/css">
+    	.mui-table-view .mui-media-object {
+			height: 60px;
+			max-width: 60px;
+		}
+		.mui-control-content{
+			min-height:300px;
+		}
+		.mui-table-view-cell.mui-checkbox.mui-left {
+			padding-left: 40px;
+			vertical-align: middle;
+		}
+		.mui-radio input[type="radio"]:checked:before, .mui-checkbox input[type="checkbox"]:checked:before{
+			color: #FF6565;
+		}
+		.mui-checkbox.repayed input[type="checkbox"]:checked:before{
+			color: #9B9B9B;
+		}
+		
+		.check-all-cont{
+			position: fixed;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			background: #FFF;
+			overflow: hidden;
+			text-align: center;
+			padding:10px 0;
+		}
+		.check-all-cont li{
+			margin:0 auto;
+			height: 40px;
+			line-height: 40px;
+			width:50%;
+			background: #FF6565;
+			border-radius: 5px;
+			color: #fff;
+		}
+		.check-all-cont li:last-of-type button{
+			height: 100%;
+			width: 100%;
+			border-radius: 0;
+		}
+		#star{
+			display: inline-block;
+		}
+		.star-cont{
+			height: 40px;
+			line-height: 40px;
+			padding:0 14px;
+			background: #FFF;
+		}
+		.star-cont span{
+			display: inline-block;
+			/*line-height: 30px;*/
+		}
+		textarea{
+			border: none;
+			margin: 0;
+		}
+		.judge-pic-cont{
+			width: 100%;
+			overflow: hidden;
+			margin-top: -6px;
+		}
+		.judge-pic-cont li{
+			width: 32%;
+			float: left;
+			padding: 4px;
+			position: relative
+		}
+		.judge-pic-cont li img{
+			width:95px;
+			height: 95px;
+		}
+		.judge-pic-cont li input{
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			opacity: 0;
+		}
+		.load-cont{
+			height: 8px;
+			width: 95px;
+			border: 1px solid #ECECEC;
+			position: absolute;
+			bottom: 30px;
+			left: 4px;
+			border-radius: 10px;
+			background: #FFF;
+		}
+		.del {
+			color: #9B9B9B;
+			font-size: 24px;
+			position: absolute;
+			top: 8px;
+			left: 8px;
+		}
+    </style>
+</head>
+<body>
+	<div class="mui-content">
+		<textarea id='tit' name="" rows="6" cols="" placeholder="写下你的试用体会吧，传递美，传递爱，和小伙伴们一起变美！"></textarea>
+		<ul class="judge-pic-cont bg-white">
+			<p style="display: none;" class='after'></p>
+			<li class='file'>
+				<img id='pic-no1' src="img/apply-plus-pic1.png"/>
+				<input id='up-no1' type="file" name="" id="" value="" multiple  />
+			</li>
+		</ul>
+		<ul class="check-all-cont mui-checkbox">
+			<li id='submit'>
+             提交申请
+			</li>
+		</ul>
+	</div>
+	<script type="text/javascript" src="/static/user/js/jquery.min.js" ></script>
+	<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<script type="text/javascript" src="http://www.meifenfen.com/user/jssdk.js"></script>
+	<script src='/static/user/js/util.js'></script>
+	<script>
+var total = 0;
+var uploaded= 0;
+var para=Common.UrlGet() 
+var upload = function(_file) {
+	var picLength=$('.judge-pic-cont li').length+_file.files.length
+	if (_file.files.length === 0) {
+		return;
+	}
+	if(picLength>7){
+        return setTimeout(function(){alert('最多上传六张图片')},1000); //防止主线程block
+    }
+    if(picLength==7){
+    	$('.file').hide();
+    }
+//	if (_file.files.length >6) {
+//		alert('最多上传6张图片');
+//		return
+//	}
+for(var j=0;j<_file.files.length;j++){
+	
+	(function(one_file) {
+		var reader = new FileReader();  
+
+		reader.readAsDataURL(one_file);
+		reader.onload = function(e) { 
+			var str=$('<li><img class="pic-no2" src="'+reader.result+'" uploading=true><i class="iconfont del">&#xe625;</i><div class="load-cont"><div class="load-bar"><div class="load-bar-inner" data-loading="0"></div></div></div></li>');
+			//$('.judge-pic-cont').prepend(str[0]); 
+			$('.after').before(str[0]);
+			(function( file, str){
+				var data = new FormData();
+				data.append('file', file);
+				data.append('image_cat', 'comment')
+				var request = new XMLHttpRequest();
+				request.withCredentials = true;
+				request.onreadystatechange = function() {
+					if (request.readyState == 4) {
+						try {
+							window.r = request.response;
+							var resp = JSON.parse(request.response);
+							$('.mask').hide();
+							$('.load-cont').hide()
+							str.find('img').attr('src',resp.fullpath);
+							str.find('img').attr('path',resp.image)
+							
+							$(_file).attr('path', resp.image);
+						} catch (e) {
+							var resp = {
+								status: 'error',
+								data: 'Unknown error occurred: [' + request.responseText + ']'
+							};
+						}
+						
+					}
+				};
+				request.upload.addEventListener('progress', function(e) {
+					console.log(parseInt(100 * e.loaded / e.total));
+					$('.mask').find('span').html(parseInt(100 * e.loaded / e.total) + '%');
+					str.find('.load-bar-inner').css('width',parseInt(100 * e.loaded / e.total) + '%')
+					
+					
+				}, false);
+				request.open('POST', 'http://'+getHostName()+'/user/upload_image/?' + token);
+				request.send(data);
+			})(one_file, str);
+		}
+	})(_file.files[j])
+}	
+}
+//
+$("#up-no1").change(function() {
+	if ($(this)[0].files.length>6) {
+		    setTimeout(function(){alert('最多上传六张图片')},1000); //防止主线程block
+		    return;
+		}
+		upload($(this)[0]);
+	});
+
+$(document).on('touchend','.del',function(event){	
+	event.stopPropagation();
+	event.preventDefault();
+	$(this).parent('li').remove()
+	$('#up-no1').val('');
+	$('.file').show()
+});
+var falg=true;
+$('#submit').click(function(){
+	var content=$('#tit').val();
+	if(content.length==0){
+		alert('请输入您的评价');
+		return
+	}
+	var str='';
+	for(var i=0;i<$('.pic-no2').length;i++){
+		if($('.pic-no2').eq(i).attr('path')==undefined){
+			alert('您的图片尚未上传完毕，稍后再次提交')
+			return;						
+		}else{
+			str+=$('.pic-no2').eq(i).attr('path')+','
+		}
+		
+	}
+	if(str.length>0){
+		str=str.substring(0,str.length-1)
+	}else{
+		str='';
+	}
+	$.ajax({
+		type:"post",
+		xhrFields: {withCredentials: true},
+		url:"http://"+getHostName()+"/user/comment_trial/",
+		dataType:'json',
+		data:{
+			trial_id:para.trial_id,
+			content:content,
+			photos:str,
+		},
+		success:function(data){
+			if(data.code==0){
+				location.href='/static/user/trial-detail.html?trial_id='+para.trial_id;				
+			}else{
+				alert(data.msg);
+			}
+		},error:function(){
+			alert('网络出小差了请稍后再试');
+		}
+	});
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
+	</script>
+</body>
+</html>

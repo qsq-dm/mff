@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8" />
+		<title>Document</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="/static/user/css/mui.css" />
+		<link rel="stylesheet" type="text/css" href="/static/user/redpack/css/common.css" />
+	</head>
+	<style type="text/css">
+		html,
+		body {
+			height: 100%;
+			background: #ff3a41;
+		}
+		
+		.mui-content {
+			background: #ff3a41;
+			padding-bottom: 15px;
+		}
+		
+		.warp {
+			margin: 10px 10px 0;
+			background: #fff0ff;
+			box-sizing: border-box;
+			padding: 10px;
+			border-radius: 5px;
+			position: relative;
+			height: 298px;
+		}
+		
+		.warp .box {
+			border: 2px solid #ff3a41;
+			box-sizing: border-box;
+			padding: 10px;
+			border-radius: 5px;
+			height: 278px;
+		}
+		
+		.line {
+			/*border-top:1px dashed red;*/
+			margin-top: 10px;
+			background: url(images/line.png) no-repeat 0 center, url(images/line.png) no-repeat right center;
+			text-align: center;
+			background-size: 32%;
+			color: #FF3A41;
+		}
+		
+		.list li {
+			line-height: 40px;
+			margin-bottom: 10px;
+			text-align: left;
+		}
+		
+		.list li img {
+			width: 40px;
+			height: 40px;
+			border-radius: 50%;
+			vertical-align: middle;
+		}
+		
+		.list li .ml {
+			margin-left: 10px;
+		}
+		
+		.problem {
+			/*background: url(images/iocn-rigth.png) no-repeat right center;*/
+			background-size: auto 20px;
+			color: #ff3a41;
+		}
+		
+		.problem h4 {
+			color: #ff3a41;
+			font-weight: bold;
+			font-size: 16px;
+			text-align: center;
+			margin-top: 20px;
+		}
+		
+		.problem span {
+			margin-left: 5px;
+		}
+		
+		.btn {
+			text-align: center;
+		}
+		
+		.btn button {
+			width: 40%;
+			display: block;
+			margin: 5px auto;
+		}
+		
+		.header img {
+			width: 100%;
+		}
+		
+		.bg {
+			position: absolute;
+			top: -30px;
+			left: 50%;
+			margin-left: -30px;
+		}
+		
+		.bg img {
+			width: 60px;
+			height: 60px;
+			border-radius: 50%;
+		}
+		
+		.img {
+			margin-top: 20px;
+		}
+		
+		.img img {
+			width: 100%;
+		}
+		
+		.foot {
+			background: url(images/button-yellow.png) no-repeat 0 0;
+			background-size: 100% 100%;
+			color: red;
+			border: none;
+			width: 60%;
+			margin: 10px auto 0;
+			/*margin:0;
+			position: absolute;
+			bottom:10px;
+			left: 50%;
+			margin-left:-30%;*/
+		}
+		
+		.tit {
+			text-align: center;
+			display: none;
+			padding: 20px 0;
+			color: #ccc;
+			margin-top:40px;
+		}
+		
+		#chakan {
+			display: none;
+		}
+		
+		.content {
+			padding-top: 20px;
+			padding-bottom: 15px;
+		}
+		
+		.list .pad {
+			box-sizing: border-box;
+			padding: 0 10px;
+			margin: 0;
+		}
+		
+		.list .pad img {
+			width: 30px;
+			height: 30px;
+			border-radius: 50%;
+		}
+		
+		.list-pop {
+			max-height: 300px;
+			overflow-y: scroll;
+		}
+		
+		.red_drop {
+			box-sizing: border-box;
+			padding: 0 10px;
+			position: relative;
+		}
+		
+		.red_drop .pic {
+			position: absolute;
+			width: 50px;
+			height: 50px;
+			border-radius: 50%;
+			background: url(images/drop-raduis.png) no-repeat 0 0;
+			background-size: 100% 100%;
+			top: 18%;
+			left: 50%;
+			margin-left: -25px;
+			padding: 5px;
+		}
+		
+		.red_drop img {
+			width: 100%;
+		}
+		
+		.text {
+			width: 100%;
+			position: absolute;
+			top: 40%;
+			text-align: center;
+			left: 0;
+			color: #fff;
+		}
+		
+		.text p {
+			color: #fff;
+		}
+		
+		.text p span {
+			font-size: 30px;
+		}
+		
+		.mui-backdrop {
+			display: none;
+		}
+		
+		#open {
+			display: block;
+			line-height: 40px;
+			text-align: center;
+			width: 50%;
+			margin: 10px auto;
+			color: #fff;
+			background: url(images/button-red.png) no-repeat 0 0;
+			background-size: 100% 100%;
+		}
+		.poin{
+			width: 80%;
+			/*margin:10px auto;*/
+			display: none;
+			position: absolute;
+			top:5%;
+			margin-left: -40%;
+			left: 50%;
+			}
+			.content .img{
+				top:-60px;
+			}
+	</style>
+
+	<body>
+		<div class="mui-content">
+			<div class="header">
+				<img src="images/start_redpack.jpg" alt="" />
+			</div>
+			<div class="warp">
+				<div class="bg">
+					<img src="images/header_pic.png" alt="" />
+				</div>
+				<div class="box">
+					<div class="problem">
+
+						<h4>我是不是处</h2>
+        				<div>答案:<span>是</span></div>
+        				<div>红包:<span>随机</span></div>
+        			      			
+        		</div>
+        		<div class="line">
+        			<span class="count">12</span>人查看答案
+        		</div>
+        		<ul class="list" id="first">
+        			<!--<li>
+        				<img src="images/header_pic.png" alt="" />
+        				<span class="ml">托马斯</span>
+        				<span class="fr">2.8元</span>
+        			</li>
+        			<li>
+        				<img src="images/header_pic.png" alt="" />
+        				<span class="ml">托马斯</span>
+        				<span class="fr">2.8元</span>
+        			</li>-->
+        		</ul>    
+        		<div class="tit">暂无收到红包</div>
+        			<div class="btn">
+        				<button class="mui-btn mui-btn-danger" id="genduo">查看更多</button>
+        				
+        				<button class="mui-btn mui-btn-danger" id="chakan">查看答案</button>
+        				
+        		</div>
+        	 </div>        	
+       		 </div>
+       		 <div class="img">
+       		 	<img src="images/text.png" alt="" />
+       		 </div>
+       		 <button class="mui-btn mui-btn-block foot">转发好友收红包</button>
+       		<!-- 蒙版-->
+       		    <div class="mui-backdrop">
+       		    	<img src="images/mark-icon.png" class="poin" alt="" />
+		       		<div class="content">  
+		       			<img src="images/icon-houzi.png" alt="" class="img" />
+		       			<span class="close"></span>
+		       			<ul class="list list-pop">
+		       				<!--<li class="pad">
+		        				<img src="images/header_pic.png" alt="" />
+		        				<span class="ml size-sm">托马斯</span>
+		        				<span class="fr size-sm">2.8元</span>
+		        			</li>-->
+		       			</ul>
+		       			<div class="red_drop" style="display: none;">
+		       				<img src="images/drop-bg.png" alt="" />
+		       				<div class="pic">
+		       					<img src="images/header_pic.png" alt="" />
+		       					
+		       				</div>
+		       				<div class="text">
+		       						<p><span>2.8</span>元</p>
+		       						<span>红包到，答案到</span>
+		       				</div>
+		       				<div class="btn">
+		       					<span id="open">发个红包，看答案</span>
+		       				</div>
+		       			</div>
+		       		</div>
+		       	</div> 
+   		    </div>
+    <script src="/static/user/js/mui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/static/user/js/jquery.min.js"></script>
+    <script src="/static/user/js/util.js"></script>
+    <script type="text/javascript">
+    mui.init();
+    var para=Common.UrlGet();
+
+	$.ajax({
+		xhrFields: {withCredentials: true},
+		type: "post",
+		url: "http://" + getHostName() + "/user/question_viewers/",
+		dataType: 'json',
+		data: {
+			user_question_id:para.user_question_id										
+		},
+		success: function(data) {
+			var infos=data.infos;
+			
+			if(infos.length<2){
+				$('#genduo').hide();
+			}
+			if(infos.length==0){
+				$('.tit').show();
+			};
+			for(var i=0;i<infos.length;i++){
+				if(i==2){
+					break;
+				}
+				var str='<li><img src="'+infos[i].qr_user.headimgurl+'" alt="" /><span class="ml">'+infos[i].qr_user.nickname+'</span><span class="fr">'+infos[i].price+'元</span></li>'
+				$('#first').append(str);
+			}
+			
+			for(var i=0;i<infos.length;i++){
+				var str='<li class="pad"><img src="'+infos[i].qr_user.headimgurl+'" alt="" /><span class="ml">'+infos[i].qr_user.nickname+'</span><span class="fr">'+infos[i].price+'元</span></li>'
+				$('.list-pop').append(str);
+			};
+			$('.count').html(infos.length);
+			
+		},
+		error: function(){
+			
+		}
+	});
+	$('.close').on('click',function(){
+    	$('.mui-backdrop').hide()
+    })
+    $('#genduo').on('click',function(){
+    	$('.mui-backdrop').show();
+    	$('.red_drop').hide();
+    	$('.list-pop').show();
+    	$('.poin').hide();
+    	$('.content').show();
+    });
+	$('.foot').on('click',function(){
+		$('.mui-backdrop').show();
+		$('.poin').show();
+		$('.content').hide();
+	});
+	$('#chakan').on('click',function(){
+		$('.mui-backdrop').show();
+		$('.content').show();
+		$('.red_drop').show();
+		$('.list-pop').hide();
+	});
+	$('.mui-backdrop').on('click',function(){
+		$('.mui-backdrop').hide();
+	})
+    </script>
+</body>
+</html>
