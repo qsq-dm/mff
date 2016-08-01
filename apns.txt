@@ -1,0 +1,14 @@
+1.准备证书申请文件
+打开苹果电脑实用工具里的钥匙串访问程序
+选择钥匙串访问—>证书助理—>从证书颁发机构申请证书
+输入邮件地址，常用名词随便命名，在这里命名为APNS
+选择存储到磁盘，将生成的APNS.certSigningRequest文件保存到本地磁盘
+此时，在钥匙串访问程序的密钥（Keys）分类里应该可以找到APNS的专用密钥，右键点击导出“APNS”将专用密钥导出为p12文件，保存时会提示输入口令，输入后生成simida.p12文件
+2.
+openssl pkcs12 -nocerts -out simida_csr.pem -in simida.p12 (会有提示输入加密短语)
+openssl x509 -in aps_production.cer -inform DER -out aps_production.pem -outform PEM
+cat aps_production.pem simida_csr.pem > ck_production.pem
+测试ck_production.pem是否有效
+openssl s_client -connect gateway.push.apple.com:2195 -cert ck_production.pem
+
+openssl s_client -connect gateway.sandbox.push.apple.com:2195 -cert ck.pem
